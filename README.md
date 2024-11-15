@@ -16,11 +16,11 @@
  
  1. Clone o repositório para sua máquina local:
     ```bash
-    git clone https://github.com/Emersonmrbr/Commands.git
+    git clone git@github.com:Emersonmrbr/Commands.git
     ```
  2. Abra o arquivo HTML desejado em um navegador para visualizar o guia:
     ```bash
-    open git-guide.html
+    open index.html
     ```
  
  ## 📘 Visão Geral dos Guias
@@ -56,7 +56,7 @@
  1. Faça um fork do repositório.
  2. Crie uma nova branch:
     ```bash
-    git checkout -b feature/novo-guia
+    git flow feature start <nome-da-feature>
     ```
  3. Faça suas alterações e commit:
     ```bash
@@ -64,7 +64,7 @@
     ```
  4. Envie para sua branch:
     ```bash
-    git push origin feature/novo-guia
+    git flow feature finish <nome-da-feature>
     ```
  5. Abra um pull request.
  
