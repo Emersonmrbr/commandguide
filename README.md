@@ -1,6 +1,7 @@
  # Repositório de Guias de Comandos
  
  Este repositório fornece guias básicos de comandos para diversas ferramentas e plataformas, incluindo **Git**, **PowerShell**, **PowerShell Hyper-V** e **Ubuntu**. Cada guia está disponível como um arquivo HTML separado para facilitar o acesso e a usabilidade.
+ Para acessar a documentação completa, abra o arquivo `index.html` que está na raiz do repositório. Esse arquivo contém um índice que leva aos outros arquivos de guias correspondentes.
  
  ## 📂 Estrutura do Repositório
  
