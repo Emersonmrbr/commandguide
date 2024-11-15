@@ -4,14 +4,15 @@
  */
 function attachCodeCopyListeners() {
     // Select all <code> elements in the document
-    document.querySelectorAll("code").forEach(element => {
+    document.querySelectorAll("pre").forEach(element => {
         // Add a click event listener to each <code> element
         element.addEventListener("click", async () => {
-            document.body.focus(); // Ensure the document has focus to avoid clipboard issues
+            // Ensure the document has focus to avoid clipboard issues
+            document.body.focus();
 
             try {
                 // Copy the text content of the clicked <code> element to the clipboard
-                await navigator.clipboard.writeText(element.textContent);
+                await navigator.clipboard.writeText(element.innerText);
 
                 // Provide visual feedback by adding a tooltip
                 element.setAttribute("data-tooltip", "Copied!");

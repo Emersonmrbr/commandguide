@@ -123,7 +123,7 @@ header {
     bottom: 0;
 }
 
-code[data-tooltip]::after {
+pre[data-tooltip]::after {
     content: attr(data-tooltip);
     position: absolute;
     background-color: #333;
