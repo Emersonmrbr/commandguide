@@ -1,35 +1,39 @@
-// var code = document.getElementsByTagName("code");
+/**
+ * Attaches a click event to all <code> elements to enable copying their content to the clipboard.
+ * Displays a temporary tooltip with feedback after copying.
+ */
+function attachCodeCopyListeners() {
+    // Select all <code> elements in the document
+    document.querySelectorAll("code").forEach(element => {
+        // Add a click event listener to each <code> element
+        element.addEventListener("click", async () => {
+            document.body.focus(); // Ensure the document has focus to avoid clipboard issues
 
-// for (let index = 0; index < code.length; index++) {
-//     let element = code[index].innerHTML;
-//     document.body.focus();
-//     let element2 = code[index]
-//     element2.addEventListener("click", function (e) {
-//         let copy = e.srcElement.childNodes[0].data;
-//         document.body.focus();
-//         navigator.clipboard.writeText(copy);
-//     })
-// }
+            try {
+                // Copy the text content of the clicked <code> element to the clipboard
+                await navigator.clipboard.writeText(element.textContent);
 
+                // Provide visual feedback by adding a tooltip
+                element.setAttribute("data-tooltip", "Copied!");
 
-// Select all <code> elements in the document
-document.querySelectorAll("pre").forEach(element => {
-    // Add a click event listener to each <code> element
-    element.addEventListener("click", () => {
-        // Ensure the document is focused
-        document.body.focus();
+                // Remove the tooltip after 2 seconds
+                setTimeout(() => element.removeAttribute("data-tooltip"), 2000);
 
-        // Copy the text content of the clicked <code> element to the clipboard
-        navigator.clipboard.writeText(element.textContent)
-            .then(() => {
-                // Log success message to the console
-                console.log("Text copied to clipboard.");
-                alert("Text copied to clipboard.");
-            })
-            .catch(err => {
-                // Log any errors to the console
-                console.error("Failed to copy text: ", err);
-            });
+                console.log("Text copied to clipboard."); // Log success
+            } catch (err) {
+                // Handle any errors that occur during the copying process
+                console.error("Failed to copy text:", err);
+            }
+        });
     });
-});
+}
 
+/**
+ * Initializes the script by attaching event listeners to <code> elements.
+ */
+function initializeCodeCopyFeature() {
+    attachCodeCopyListeners();
+}
+
+// Call the initialization function when the script loads
+initializeCodeCopyFeature();
