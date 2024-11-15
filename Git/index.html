@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Essencial de Comandos Git</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
+</head>
+<style>
+
+</style>
+
+<body>
+    <header>
+        <h1>Guia Essencial de Comandos Git</h1>
+
+    </header>
+    <main>
+        <hr>
+        <p>Este guia aborda os comandos mais importantes para o uso do Git, explicando suas funções e como utilizá-los
+            em um
+            projeto.</p>
+        <hr>
+
+        <h2>Índice</h2>
+        <ul>
+            <li><a href="basicos.html#comandos-basicos">Comandos Básicos</a>
+                <ul>
+                    <li><a href="basicos.html#obter-versao-git">Obter Versão do Git</a></li>
+                    <li><a href="basicos.html#ajuda-comandos-git">Obter Ajuda sobre Comandos do Git</a></li>
+                    <li><a href="basicos.html#listar-configuracoes-globais">Listar Configurações Globais</a></li>
+                    <li><a href="basicos.html#configuracoes-usuario">Configurações de Usuário</a></li>
+                    <li><a href="basicos.html#definir-vscode-editor">Definir VSCode como Editor Padrão</a></li>
+                </ul>
+            </li>
+
+            <li><a href="repositorios.html#trabalhando-com-repositorios">Trabalhando com Repositórios</a>
+                <ul>
+                    <li><a href="repositorios.html#inicializar-repositorio-git">Inicializar um Repositório Git</a></li>
+                    <li><a href="repositorios.html#verificar-estado-repositorio">Verificar o Estado do Repositório</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li><a href="repositorios.html#trabalhando-com-repositórios-remotos">Trabalhando com Repositórios
+                    Remotos</a>
+                <ul>
+                    <li><a href="repositorios.html##vincular-um-repositório-local-a-um-repositório-remoto">Vincular um
+                            repositório local a
+                            um
+                            repositório remoto</a></li>
+                    <li><a href="repositorios.html##renomear-uma-branch">Renomear uma branch</a></li>
+                    <li><a href="repositorios.html##enviar-alterações-para-o-repositório-remoto">Enviar alterações para
+                            o repositório
+                            remoto</a></li>
+                    <li><a href="repositorios.html##clonar-um-repositório-existente">Clonar um repositório existente</a>
+                    </li>
+                    <li><a href="repositorios.html##atualizar-o-repositório-local-com-o-remoto">Atualizar o repositório
+                            local com o
+                            remoto</a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <li><a href="gerenciamentoArquivos.html#gerenciamento-de-arquivos-e-commits">Gerenciamento de
+                    Arquivos e Commits</a>
+                <ul>
+                    <li><a href="gerenciamentoArquivos.html#adicionar-arquivos-ao-índice">Adicionar arquivos ao
+                            índice</a></li>
+                    <li><a href="gerenciamentoArquivos.html#adicionar-todos-os-arquivos-modificados">Adicionar todos os
+                            arquivos modificados</a>
+                    </li>
+                    <li><a href="gerenciamentoArquivos.html#criar-um-commit-com-uma-mensagem-descritiva">Criar um commit
+                            com uma mensagem
+                            descritiva</a></li>
+                </ul>
+            </li>
+
+            <li><a href="gerenciamentoArquivos.html#histórico-de-commits">Histórico de Commits</a>
+                <ul>
+                    <li><a href="gerenciamentoArquivos.html#visualizar-histórico-de-commits">Visualizar histórico de
+                            commits</a></li>
+                    <li><a href="gerenciamentoArquivos.html#filtrar-histórico-pelo-autor">Filtrar histórico pelo
+                            autor</a></li>
+                    <li><a href="gerenciamentoArquivos.html#exibir-os-últimos-n-commits">Exibir os últimos N commits</a>
+                    </li>
+                    <li><a href="gerenciamentoArquivos.html#exibir-histórico-de-um-arquivo-específico">Exibir histórico
+                            de um arquivo
+                            específico</a>
+                    </li>
+                    <li><a href="gerenciamentoArquivos.html#visualizar-contagem-de-commits-por-autor">Visualizar
+                            contagem de commits por autor</a>
+                    </li>
+                    <li><a href="gerenciamentoArquivos.html#exibir-histórico-em-formato-gráfico">Exibir histórico em
+                            formato gráfico</a></li>
+                    <li><a href="gerenciamentoArquivos.html#exibir-histórico-em-uma-linha-por-commit">Exibir histórico
+                            em uma linha por commit</a>
+                    <li><a href="gerenciamentoArquivos.html#exibir-histórico-em-uma-linha-por-commit-com-grafico">Exibir
+                            histórico em uma linha
+                            por commit com representação gráfica</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li><a href="gerenciamentoArquivos.html#comparando-mudanças">Comparando Mudanças</a>
+                <ul>
+                    <li><a href="gerenciamentoArquivos.html#mostrar-diferenças-entre-arquivos-ou-commits">Mostrar
+                            diferenças entre arquivos ou
+                            commits</a></li>
+                    <li><a href="gerenciamentoArquivos.html#comparar-a-área-de-stage-com-o-último-commit">Comparar a
+                            área de stage com o último
+                            commit</a></li>
+                    <li><a href="gerenciamentoArquivos.html#comparar-dois-commits-específicos">Comparar dois commits
+                            específicos</a></li>
+                    <li><a href="gerenciamentoArquivos.html#comparar-duas-branches">Comparar duas branches</a></li>
+                    <li><a href="gerenciamentoArquivos.html#exibir-apenas-os-nomes-dos-arquivos-modificados">Exibir
+                            apenas os nomes dos arquivos
+                            modificados</a></li>
+                </ul>
+            </li>
+
+            <li><a href="branches.html#navegação-e-gerenciamento-de-branches">Navegação e Gerenciamento de Branches</a>
+                <ul>
+                    <li><a href="branches.html##mudar-para-uma-branch-específica">Mudar para uma branch específica</a>
+                    </li>
+                    <li><a href="branches.html##criar-e-mudar-para-uma-nova-branch">Criar e mudar para uma nova
+                            branch</a></li>
+                    <li><a href="branches.html##comando-alternativo-para-mudar-de-branch">Comando alternativo para mudar
+                            de branch</a>
+                    </li>
+                    <li><a href="branches.html##voltar-para-um-estado-anterior-do-repositório">Voltar para um estado
+                            anterior do
+                            repositório</a></li>
+                    <li><a href="branches.html##reverter-um-arquivo-para-o-estado-do-último-commit">Reverter um arquivo
+                            para o estado
+                            do
+                            último commit</a></li>
+                </ul>
+            </li>
+
+
+            <li><a href="fork.html#comando-fork">Comando fork</a></li>
+            <li> <a href="fork.html#explicacao-comando-merge-rebase">Explicando comando merge e rebase</a>
+                <ul>
+                    <li><a href="fork.html#comando-merge">Merge</a></li>
+                    <li><a href="fork.html#comando-rebase">Rebase</a></li>
+                </ul>
+            </li>
+
+            <li><a href="tags.html#trabalhando-com-tags">Trabalhando com Tags</a></li>
+            <ul>
+                <li><a href="tags.html##criar-tag">Criar uma Tag</a></li>
+                <li><a href="tags.html##exibir-tags">Exibir Tags</a></li>
+                <li><a href="tags.html##excluir-tag-local">Excluir uma Tag Local</a></li>
+                <li><a href="tags.html##enviar-tag-para-repositorio-remoto">Enviar Tag para o Repositório Remoto</a>
+                </li>
+                <li><a href="tags.html##enviar-todas-as-tags-para-repositorio-remoto">Enviar Todas as Tags para o
+                        Repositório
+                        Remoto</a></li>
+                <li><a href="tags.html##listar-tags-remoto">Listar Tags no Repositório Remoto</a></li>
+                <li><a href="tags.html##listar-tags-remoto-sem-commit-link">Listar Tags no Repositório Remoto Sem Link
+                        de
+                        Commit</a></li>
+                <li><a href="tags.html##excluir-tag-remota">Excluir Tag no Repositório Remoto</a></li>
+            </ul>
+
+            <li><a href="stash.html#git-stash">Git stash</a></li>
+            <ul>
+                <li><a href="stash.html#quando-usar">Quando usar</a></li>
+                <li><a href="stash.html#como-funciona">Como funciona?</a></li>
+                <li><a href="stash.html#exemplo-fluxo-trabalho">Exemplo de fluxo de trabalho</a></li>
+                <li><a href="stash.html#opcoes-uteis">Opções uteis</a></li>
+            </ul>
+
+            <li><a href="gitFlow.html#estrategia-git-flow">Estratégia Git Flow</a></li>
+            <ul>
+                <li><a href="gitFlow.html#componentes-git-flow">Componentes do Git Flow</a></li>
+                <li><a href="gitFlow.html#branches-principais">Branches Principais</a></li>
+                <li><a href="gitFlow.html#branches-suporte">Branches de Suporte</a></li>
+                <li><a href="gitFlow.html#fluxo-trabalho-git-flow">Fluxo de Trabalho do Git Flow</a></li>
+                <li><a href="gitFlow.html#iniciar-projeto">Iniciar Projeto</a></li>
+                <li><a href="gitFlow.html#nova-funcionalidade">Criar Nova Funcionalidade (Feature)</a></li>
+                <li><a href="gitFlow.html#preparar-versao">Preparar Versão (Release)</a></li>
+                <li><a href="gitFlow.html#corrigir-bug">Corrigir Bug Crítico (Hotfix)</a></li>
+                <li><a href="gitFlow.html#vantagens-git-flow">Vantagens do Git Flow</a></li>
+                <li><a href="gitFlow.html#desvantagens-git-flow">Desvantagens do Git Flow</a></li>
+            </ul>
+
+            <li><a href="gitFlow.html#principais-comandos-git-flow">Principais Comandos do Git Flow</a></li>
+            <ul>
+                <li><a href="gitFlow.html#iniciar-git-flow-repositorio">Iniciar o Git Flow em um Repositório</a></li>
+                <li><a href="gitFlow.html#criar-feature-branch">Criar uma Feature Branch</a></li>
+                <li><a href="gitFlow.html#finalizar-feature-branch">Finalizar uma Feature Branch</a></li>
+                <li><a href="gitFlow.html#publicar-feature-branch">Publicar uma Feature Branch</a></li>
+                <li><a href="gitFlow.html#criar-release-branch">Criar uma Release Branch</a></li>
+                <li><a href="gitFlow.html#finalizar-release-branch">Finalizar uma Release Branch</a></li>
+                <li><a href="gitFlow.html#publicar-release-branch">Publicar uma Release Branch</a></li>
+                <li><a href="gitFlow.html#criar-hotfix-branch">Criar uma Hotfix Branch</a></li>
+                <li><a href="gitFlow.html#finalizar-hotfix-branch">Finalizar uma Hotfix Branch</a></li>
+            </ul>
+
+            <li><a href="desfazer.html#desfazer-alterações">Desfazer alterações</a></li>
+            <ul>
+                <li><a href="desfazer.html#desfazer-alterações-localmente">Desfazer alterações totalmente</a></li>
+                <li><a href="desfazer.html#desfazer-um-commit-recente">Desfazer um commit recente</a></li>
+                <li><a href="desfazer.html#desfazer-um-commit-completo">Desfazer um commit completo</a></li>
+                <li><a href="desfazer.html#reverter-um-commit">Reescrever um commit</a></li>
+            </ul>
+
+        </ul>
+
+    </main>
+    <footer>
+        <p>© 2024 Guia de Git - Todos os direitos reservados.</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+Habilitar o Hyper-V usando o PowerShell
+Abra um console do PowerShell como Administrador.
+Execute o comando a seguir:
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+
+1-Retornar uma lista de máquinas virtuais
+Use o comando Get-VM para retornar uma lista de máquinas virtuais.
+No PowerShell, execute o seguinte comando:
+Get-VM
+2-Para retornar uma lista apenas das máquinas virtuais ligadas, adicione um filtro ao comando Get-VM. Um filtro pode ser adicionado usando o comando Where-Object. Para obter mais informações sobre filtragem, consulte a documentação Usando o Where-Object:
+Get-VM | where {$_.State -eq 'Running'}
+Para listar todas as máquinas virtuais desligadas, execute o seguinte comando. Esse comando é uma cópia do comando da etapa 2 com o filtro alterado de “Em execução” para “Desligado”:
+Get-VM | where {$_.State -eq 'Off'}
+
+Iniciar e desativar máquinas virtuais
+1-Para iniciar uma máquina virtual específica, execute o comando a seguir com o nome da máquina virtual:
+Start-VM -Name <virtual machine name>
+2-Para iniciar todas as máquinas virtuais desligadas, obtenha uma lista dessas máquinas e redirecione a lista para o comando Start-VM:
+Get-VM | where {$_.State -eq 'Off'} | Start-VM
+3-Para desligar todas as máquinas virtuais em execução, execute isto:
+Get-VM | where {$_.State -eq 'Running'} | Stop-VM
+
+Criar um ponto de verificação de VM
+Para criar um ponto de verificação usando o PowerShell, selecione a máquina virtual usando o comando Get-VM e redirecione isso para o comando Checkpoint-VM. Por fim, dê um nome ao ponto de verificação usando -SnapshotName. O comando completo é semelhante ao seguinte:
+Get-VM -Name <VM Name> | Checkpoint-VM -SnapshotName <name for snapshot>
+
+Criar uma máquina virtual
+O exemplo a seguir mostra como criar uma máquina virtual no ISE (Ambiente de Script Integrado) do PowerShell. Este é um exemplo simples e pode ser expandido para incluir recursos adicionais do PowerShell e implantações de VM mais avançadas.
+
+Para abrir o ISE do PowerShell, clique em Iniciar e digite ISE do PowerShell.
+Execute código a seguir para criar uma máquina virtual. Consulte a documentação do New-VM para obter informações detalhadas sobre o comando New-VM.
+
+ $VMName = "VMNAME"
+
+ $VM = @{
+     Name = $VMName
+     MemoryStartupBytes = 2147483648
+     Generation = 2
+     NewVHDPath = "C:\Virtual Machines\$VMName\$VMName.vhdx"
+     NewVHDSizeBytes = 53687091200
+     BootDevice = "VHD"
+     Path = "C:\Virtual Machines\$VMName"
+     SwitchName = (Get-VMSwitch).Name
+ }
+
+ New-VM @VM
+
+Editar configurações do VMConnect
+Você pode editar facilmente suas configurações de conexão para VMConnect executando o seguinte comando no Windows PowerShell ou no prompt de comando:
+
+VMConnect.exe <ServerName> <VMName> /edit
+https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/learn-more/use-local-resources-on-hyper-v-virtual-machine-with-vmconnect
+
+Para configurar a Política de Grupo Local para habilitar e usar a área de trabalho remota sem senha no Windows 11/10, siga estas etapas:
+
+aperte a tecla de Windows + R para abrir a caixa de diálogo Executar.
+Na caixa de diálogo Executar, digite gpedit.msc e pressione Enter para abrir o Editor de Política de Grupo Local.
+No Editor de Política de Grupo Local, use o painel esquerdo para navegar até o caminho abaixo:
+Política de TI local > Configuração do computador > Configurações do Windows > Configurações de segurança > Políticas locais > Opções de segurança
+
+Otimizar disco virtual de todas a máquinas virtuais
+get-VM | Select-Object -Property VMId | Get-VHD | Optimize-VHD -Mode Full
+
+Exportar informações dos discos virtuais em formato json
+get-VM | Select-Object -Property VMId | Get-VHD | ConvertTo-Json | Out-File -FilePath .\Vm.json
+
+Coenectar com a máquina virtual
+VMConnect.exe <ServerName> <VMName>
+Ex: VMConnect.exe MyServer MyVM
+Ex: vmconnect.exe Avell-Emerson Rockwell
+
+
+Let's say you have a VM named TestVM and you want to move its network adapter to a virtual switch named NewSwitch.
+
+List VMs:
+Get-VM
+Get Network Adapter Details:
+Get-VMNetworkAdapter -VMName "TestVM"
+
+Change the Virtual Switch:
+EX: Connect-VMNetworkAdapter -VMName "TestVM" -SwitchName "NewSwitch"
+EX: Connect-VMNetworkAdapter -VMName "Omron" -SwitchName "Default Switch"
+
+Change virtual switch by MAC address
+EX:
+$adapter = Get-VMNetworkAdapter -VMName "YourVMName" | Where-Object {$_.MacAddress -eq "YourMacAddress"}
+Connect-VMNetworkAdapter -VMNetworkAdapter $adapter -SwitchName "NewSwitchName"
+
+Change the Virtual Switch by name:
+EX:
+Connect-VMNetworkAdapter -VMName "Omron" -Name ExternalNetwork -SwitchName "EthernetPcie"
+
+List VM Network adapter
+EX:
+Get-VMNetworkAdapter -VMName "Omron"

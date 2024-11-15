@@ -1,0 +1,20 @@
+Conceder acesso a diretórios
+Abra o powershel como administrador
+Example 1: Copy a security descriptor from one file to another:
+$DogACL = Get-Acl -Path "C:\Dog.txt"
+Set-Acl -Path "C:\Cat.txt" -AclObject $DogACL
+
+Exemplo 2
+$Acl = Get-Acl -Path "C:\Users\nucleomap\OZ3_ServidorGeral\Automacao - Eplan\Parts\MSSQL16.EPLAN\MSSQL"
+Get-ChildItem -Recurse -Force | Set-Acl -AclObject $Acl
+
+Exibe contudo do arquivo
+type Filename.txt
+
+Insere um texto e cria um arquivo .txt se não existir, se exitir o arquivo insere uma linha no final d arquivo
+echo "Inserir texto" >> Filename.txt
+
+Gerando chaves e adicionando a chave pública no GitHub
+ssh-keygen -t ed25519 -C "your_email@exemplo.com" => cria a chave com o comentário com o seu e-mail
+ou
+ssh-keygen -t rsa -b 4096 -C "your_email@exemplo.com"

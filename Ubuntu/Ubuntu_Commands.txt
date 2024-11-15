@@ -1,0 +1,11 @@
+Expandir disco na VM
+Start the VM again and install Guest Utils:
+$ sudo apt install cloud-guest-utils
+If not using English, override locale settings to avoid issues with non-English locales:
+$ LC_ALL=C
+Expand partition into the free space:
+$ sudo growpart /dev/sda 5
+# NB: space between `partition` and `id`!
+Resize:
+$ sudo resize2fs /dev/sda5
+# NB: *no space* between partition and id!

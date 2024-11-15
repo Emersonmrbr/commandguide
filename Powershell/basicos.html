@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Powershel commands</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
+</head>
+
+<body>
+    <header>
+        <h1>Comandos básicos do powershell</h1>
+    </header>
+    <main>
+
+        <h3 id="conceder-acesso-diretorio">Conceder Acesso a Diretórios</h3>
+        <p>Abra o PowerShell como administrador e execute os seguintes comandos para conceder acesso a diretórios:</p>
+        <p>Exemplo 1: Copiar um descritor de segurança de um arquivo para outro:</p>
+        <pre><code>$DogACL = Get-Acl -Path "C:\Dog.txt"</code></pre>
+        <pre><code>Set-Acl -Path "C:\Cat.txt" -AclObject $DogACL</code></pre>
+        <p>Exemplo 2: Copiar um descritor de segurança para múltiplos arquivos:</p>
+        <pre><code>$Acl = Get-Acl -Path "C:\Users\nucleomap\OZ3_ServidorGeral\Automacao - Eplan\Parts\MSSQL16.EPLAN\MSSQL"</code></pre>
+        <pre><code>Get-ChildItem -Recurse -Force | Set-Acl -AclObject $Acl</code></pre>
+
+        <h3 id="exibir-conteudo-arquivo">Exibir Conteúdo de Arquivo</h3>
+        <p>Use o comando abaixo para exibir o conteúdo de um arquivo:</p>
+        <pre><code>type "Filename.txt"</code></pre>
+
+        <h3 id="comando-echo">Comando Echo</h3>
+        <p>Este comando insere um texto em um arquivo. Se o arquivo não existir, ele será criado. Caso já exista, o
+            texto será adicionado ao final do arquivo:</p>
+        <pre><code>echo "Inserir texto" >> Filename.txt</code></pre>
+
+        <h3 id="gerar-chave-publica">Gerar Chave Pública</h3>
+        <p>Para gerar uma chave SSH e adicioná-la ao GitHub, utilize os seguintes comandos:</p>
+        <pre><code>ssh-keygen -t ed25519 -C "your_email@exemplo.com"</code></pre>
+        <p>Ou, para gerar uma chave RSA:</p>
+        <pre><code>ssh-keygen -t rsa -b 4096 -C "your_email@exemplo.com"</code></pre>
+
+    </main>
+    <footer>
+        <p>© 2024 Guia de Powershel - Todos os direitos reservados.</p>
+    </footer>
+</body>
+
+<script src="../js/index.js"></script>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>Guia Essencial de Comandos Git</h1>
+    </header>
+    <main>
+        <h1 id="gerenciamento-de-arquivos-e-commits">Gerenciamento de Arquivos e Commits</h1>
+        <h3 id="adicionar-arquivos-ao-índice">Adicionar arquivos ao índice</h3>
+        <pre><code>git add <arquivo></code></pre>
+        <p>Adiciona um arquivo ao índice de preparação para o commit. O Git começará a rastrear o arquivo e incluirá as
+            alterações no próximo commit.</p>
+        <h3 id="adicionar-todos-os-arquivos-modificados">Adicionar todos os arquivos modificados</h3>
+        <pre><code>git add .</code></pre>
+        <p>Adiciona todos os arquivos modificados e novos ao índice, preparando-os para o próximo commit.</p>
+        <h3 id="criar-um-commit-com-uma-mensagem-descritiva">Criar um commit com uma mensagem descritiva</h3>
+        <pre><code>git commit -m "Mensagem do commit"</code></pre>
+        <p>Cria um commit com os arquivos adicionados ao índice e uma mensagem que descreve as alterações realizadas.
+            Essa
+            mensagem ajuda a documentar o que foi feito no commit.</p>
+        <h2 id="histórico-de-commits">Histórico de Commits</h2>
+        <h3 id="visualizar-histórico-de-commits">Visualizar histórico de commits</h3>
+        <pre><code>git log</code></pre>
+        <p>Exibe o histórico de commits no repositório, incluindo informações como o identificador do commit (hash), o
+            autor, a data e a mensagem do commit.</p>
+        <h3 id="filtrar-histórico-pelo-autor">Filtrar histórico pelo autor</h3>
+        <pre><code>git log --author="Nome do Autor"</code></pre>
+        <p>Filtra o histórico de commits para mostrar apenas os commits realizados por um autor específico.</p>
+        <h3 id="exibir-os-últimos-n-commits">Exibir os últimos N commits</h3>
+        <pre><code>git log -n N</code></pre>
+        <p>Exibe os últimos N commits do repositório, útil para obter uma visão rápida das alterações mais recentes.</p>
+        <h3 id="exibir-histórico-de-um-arquivo-específico">Exibir histórico de um arquivo específico</h3>
+        <pre><code>git log <arquivo></code></pre>
+        <p>Exibe o histórico de commits relacionados a um arquivo específico, útil para revisar alterações feitas em um
+            arquivo específico ao longo do tempo.</p>
+        <h3 id="visualizar-contagem-de-commits-por-autor">Visualizar contagem de commits por autor</h3>
+        <pre><code>git shortlog -sn</code></pre>
+        <p>Exibe uma contagem de commits agrupada por autor, útil para ver quem mais contribuiu para o projeto.</p>
+        <h3 id="exibir-histórico-em-formato-gráfico">Exibir histórico em formato gráfico</h3>
+        <pre><code>git log --oneline --graph --decorate</code></pre>
+        <p>Exibe o histórico de commits de forma compacta e com uma representação gráfica das branches, proporcionando
+            uma visão clara da estrutura do repositório.</p>
+        <h3 id="exibir-histórico-em-uma-linha-por-commit">Exibir histórico em uma linha por commit</h3>
+        <pre><code>git log --oneline</code></pre>
+        <p>Exibe o histórico de commits de forma compacta, com um resumo de cada commit em uma única linha.</p>
+        <h3 id="exibir-histórico-em-uma-linha-por-commit-com-grafico">Exibir histórico em uma linha por commit com
+            representação gráfica</h3>
+        <pre><code>git log --oneline --graph --all</code></pre>
+        <p>Exibe o histórico de commits de forma compacta, com um resumo de cada commit em uma única linha com uma
+            visualização gráfica.</p>
+        <h2 id="comparando-mudanças">Comparando Mudanças</h2>
+        <h3 id="mostrar-diferenças-entre-arquivos-ou-commits">Mostrar diferenças entre arquivos ou commits</h3>
+        <pre><code>git diff</code></pre>
+        <p>Exibe as diferenças entre as versões dos arquivos, mostrando as linhas adicionadas ou removidas. Pode ser
+            usado para ver as mudanças entre o estado atual e o último commit.</p>
+        <h3 id="comparar-a-área-de-stage-com-o-último-commit">Comparar a área de stage com o último commit</h3>
+        <pre><code>git diff --cached</code></pre>
+        <p>Mostra as diferenças entre os arquivos na área de stage e o último commit. Esse comando é útil para revisar
+            as alterações preparadas antes de criar um commit.</p>
+        <h3 id="comparar-dois-commits-específicos">Comparar dois commits específicos</h3>
+        <pre><code>git diff <commit1> <commit2></code></pre>
+        <p>Compara duas versões específicas do repositório, mostrando as diferenças entre esses commits.</p>
+        <h3 id="comparar-duas-branches">Comparar duas branches</h3>
+        <pre><code>git diff <branch1>..<branch2></code></pre>
+        <p>Compara duas branches específicas, mostrando as diferenças entre elas.</p>
+        <h3 id="exibir-apenas-os-nomes-dos-arquivos-modificados">Exibir apenas os nomes dos arquivos modificados</h3>
+        <pre><code>git diff --name-only</code></pre>
+        <p>Exibe apenas os nomes dos arquivos que foram modificados, sem mostrar as diferenças entre as versões.</p>
+    </main>
+    <footer>
+        <p>© 2024 Guia de Git - Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+
+<script src="../js/index.js"></script>
+
+</html>
