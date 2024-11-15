@@ -7,10 +7,10 @@
  
  O repositório está organizado nos seguintes arquivos:
  
- - `https://github.com/Emersonmrbr/Commands/tree/main/Git`: Contém comandos básicos para usar o Git.
- - `https://github.com/Emersonmrbr/Commands/tree/main/Powershell`: Abrange comandos essenciais do PowerShell.
- - `https://github.com/Emersonmrbr/Commands/tree/main/HyperV`: Inclui comandos específicos para gerenciar o Hyper-V através do PowerShell.
- - `https://github.com/Emersonmrbr/Commands/tree/main/Ubuntu`: Lista comandos comuns para trabalhar com o Ubuntu.
+ - `https://github.com/Emersonmrbr/Commands/tree/main/git`: Contém comandos básicos para usar o Git.
+ - `https://github.com/Emersonmrbr/Commands/tree/main/powershell`: Abrange comandos essenciais do PowerShell.
+ - `https://github.com/Emersonmrbr/Commands/tree/main/hyperv`: Inclui comandos específicos para gerenciar o Hyper-V através do PowerShell.
+ - `https://github.com/Emersonmrbr/Commands/tree/main/ubuntu`: Lista comandos comuns para trabalhar com o Ubuntu.
  
  ## 🛠 Como Usar
  
@@ -25,26 +25,26 @@
  
  ## 📘 Visão Geral dos Guias
  
- ### Guia de Git (`https://github.com/Emersonmrbr/Commands/tree/main/Git`)
+ ### Guia de Git (`https://github.com/Emersonmrbr/Commands/tree/main/git`)
  Este guia inclui:
  - Comandos básicos para configurar repositórios.
  - Gerenciamento de branches.
  - Estágio e commit de alterações.
  - Resolução de conflitos.
  
- ### Guia de PowerShell (`https://github.com/Emersonmrbr/Commands/tree/main/Powershell`)
+ ### Guia de PowerShell (`https://github.com/Emersonmrbr/Commands/tree/main/powershell`)
  Este guia aborda:
  - Navegação e gerenciamento de arquivos.
  - Trabalhando com scripts.
  - Comandos de monitoramento do sistema.
  
- ### Guia de PowerShell Hyper-V (`https://github.com/Emersonmrbr/Commands/tree/main/HyperV`)
+ ### Guia de PowerShell Hyper-V (`https://github.com/Emersonmrbr/Commands/tree/main/hyperv`)
  Este guia fornece:
  - Gerenciamento de máquinas virtuais (VMs).
  - Configuração de redes.
  - Alocação de recursos para VMs.
  
- ### Guia de Ubuntu (`https://github.com/Emersonmrbr/Commands/tree/main/Ubuntu`)
+ ### Guia de Ubuntu (`https://github.com/Emersonmrbr/Commands/tree/main/ubuntu`)
  Este guia apresenta:
  - Gerenciamento básico de pacotes com `apt`.
  - Permissões de arquivos e gerenciamento de usuários.

@@ -18,7 +18,7 @@ function attachCodeCopyListeners() {
                 element.setAttribute("data-tooltip", "Copied!");
 
                 // Remove the tooltip after 2 seconds
-                setTimeout(() => element.removeAttribute("data-tooltip"), 2000);
+                setTimeout(() => element.removeAttribute("data-tooltip"), 1000);
 
                 console.log("Text copied to clipboard."); // Log success
             } catch (err) {
