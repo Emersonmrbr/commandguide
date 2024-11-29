@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "prettier": "3.4.1"
+  },
+  "scripts": {
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,html,css,scss,sass}\"",
+    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,html,css,scss,sass}\""
+  }
+}

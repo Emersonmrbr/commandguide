@@ -1,0 +1,27 @@
+{
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "useTabs": false,
+    "overrides": [
+      {
+        "files": "*.scss",
+        "options": {
+          "parser": "scss"
+        }
+      },
+      {
+        "files": "*.sass",
+        "options": {
+          "parser": "sass"
+        }
+      },
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "html"
+        }
+      }
+    ]
+  }
+  
