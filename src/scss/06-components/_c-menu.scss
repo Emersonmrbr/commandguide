@@ -33,7 +33,7 @@ $component-name: 'c-menu';
     grid-template-columns: repeat(3, var(--space-8xl));
 
     @include breakpoint('small-up') {
-      grid-template-columns: repeat(5, calc(var(--space-8xl) * 1));
+      grid-template-columns: repeat(6, calc(var(--space-8xl) * 1));
     }
   }
 
