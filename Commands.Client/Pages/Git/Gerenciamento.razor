@@ -1,0 +1,73 @@
+﻿@page "/git/gerenciamento"
+@inject IJSRuntime JSRuntime
+@inject ISnackbar Snackbar
+
+<MudAlert Severity="Severity.Info">
+    Gerenciamento de Arquivos e Commits
+</MudAlert>
+
+@foreach (var card in cardContents)
+{
+    <MudCard Elevation="25">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">@card.Title</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent Style="@($"color:{Colors.Gray.Darken4}; background:{Colors.Gray.Lighten5};")">
+            <MudIconButton Icon="@Icons.Material.Filled.FileCopy" Color="Color.Default" OnClick='()=>CopyText(card.Command)' />
+            <MudText HtmlTag="code">@card.Command</MudText>
+        </MudCardContent>
+        <MudCardContent>
+            <MudText Typo="Typo.body2">@card.Description</MudText>
+        </MudCardContent>
+        <MudSpacer />
+    </MudCard>
+
+    <MudDivider />
+}
+
+@code {
+
+    List<CardContent> cardContents = new()
+    {
+        new (){Title = "Adicionar Arquivos ao Staging", Command="git add [arquivo]", Description= "Adiciona o arquivo especificado ao staging, preparando-o para o commit."},
+        new (){Title = "Adicionar Todos os Arquivos ao Staging", Command="git add .", Description= "Adiciona todos os arquivos modificados no diretório de trabalho ao staging."},
+        new (){Title = "Comitar Arquivos no Staging", Command="git commit -m \"Mensagem do commit\"", Description= "Cria um novo commit com os arquivos que estão no staging, utilizando a mensagem fornecida."},
+        new (){Title = "Verificar o Status do Repositório", Command="git status", Description= "Exibe o status do diretório de trabalho e do staging, mostrando as mudanças que foram feitas e quais arquivos estão prontos para commit."},
+        new (){Title = "Visualizar o Histórico de Commits", Command="git log", Description= "Exibe o histórico de commits do repositório, mostrando cada commit com seu hash, autor, data e mensagem de commit."},
+        new (){Title = "Reverter um Commit Específico", Command="git revert [commit-hash]", Description= "Cria um novo commit que desfaz as alterações de um commit específico. Esse comando não altera o histórico de commits, mas cria um novo commit de reversão."},
+        new (){Title = "Resetar o Diretório de Trabalho para um Commit Específico", Command="git reset --hard [commit-hash]", Description= "Reseta o diretório de trabalho para o estado de um commit específico, descartando todas as mudanças feitas após aquele commit."},
+        new (){Title = "Desfazer o Último Commit (Mantendo Alterações)", Command="git reset --soft HEAD~1", Description= "Desfaz o último commit, mas mantém as alterações no diretório de trabalho. Esse comando é útil se você deseja ajustar o commit anterior antes de refazê-lo."},
+        new (){Title = "Desfazer o Último Commit (Descartando Alterações)", Command="git reset --hard HEAD~1", Description= "Desfaz o último commit e descarta todas as alterações feitas desde aquele commit. Use com cautela, pois as alterações serão perdidas."},
+        new (){Title = "Mostrar Diferenças Entre Commits", Command="git diff [commit1] [commit2]", Description= "Mostra as diferenças entre dois commits especificados, permitindo visualizar o que mudou entre eles."},
+        new (){Title = "Restaurar Arquivos Modificados para o Último Commit", Command="git checkout -- [arquivo]", Description= "Restaura o arquivo modificado para o estado do último commit, descartando todas as mudanças não commitadas."},
+        new (){Title = "Ver Diferenças no Staging", Command="git diff --staged", Description= "Mostra as diferenças entre os arquivos no staging e o último commit."},
+        new (){Title = "Verificar Detalhes de um Commit Específico", Command="git show [commit-hash]", Description= "Mostra os detalhes completos de um commit específico, incluindo as mudanças feitas e a mensagem de commit."},
+        new (){Title = "Verificar Commit de uma Linha", Command="git blame [arquivo]", Description= "Mostra o commit responsável por cada linha de um arquivo, útil para identificar quando e por quem uma linha foi alterada."},
+        new (){Title = "Listar Commits em uma Linha de Tempo Gráfica", Command="git log --graph --oneline", Description= "Exibe um histórico de commits em formato gráfico e resumido, mostrando a linha do tempo de cada commit."},
+        new (){Title = "Mostrar Commits Entre Dois Pontos", Command="git log [ponto-inicial]..[ponto-final]", Description= "Lista os commits realizados entre dois pontos especificados no histórico do repositório."},
+        new (){Title = "Verificar Diferenças Entre Branches", Command="git diff [branch1] [branch2]", Description= "Mostra as diferenças entre dois branches, permitindo visualizar o que mudou entre eles."},
+        new (){Title = "Verificar Todas as Referências", Command="git reflog", Description= "Exibe um histórico de todas as referências (commits, resets, checkouts) feitas no repositório local, útil para recuperação de mudanças perdidas."},
+        new (){Title = "Alterar a Mensagem do Último Commit", Command="git commit --amend -m \"Nova mensagem do commit\"", Description= "Permite editar a mensagem do último commit. Use com cuidado, especialmente se o commit já foi enviado para um repositório remoto."},
+        new (){Title = "Mostrar Diferenças Entre Arquivos", Command="git diff [arquivo1] [arquivo2]", Description= "Mostra as diferenças entre dois arquivos especificados, permitindo visualizar as mudanças entre eles."},
+
+
+
+    };
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopEnd;
+        Snackbar.Configuration.VisibleStateDuration = 1000;
+        Snackbar.Configuration.HideTransitionDuration = 100;
+        Snackbar.Configuration.ShowTransitionDuration = 1000;
+        Snackbar.Add($"[ {command} ] Copied!");
+    }
+}

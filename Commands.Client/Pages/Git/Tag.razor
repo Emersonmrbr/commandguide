@@ -1,0 +1,64 @@
+﻿@page "/git/tag"
+@inject IJSRuntime JSRuntime
+@inject ISnackbar Snackbar
+
+<MudAlert Severity="Severity.Info">
+    Trabalhando com Tags
+</MudAlert>
+
+@foreach (var card in cardContents)
+{
+    <MudCard Elevation="25">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">@card.Title</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent Style="@($"color:{Colors.Gray.Darken4}; background:{Colors.Gray.Lighten5};")">
+            <MudIconButton Icon="@Icons.Material.Filled.FileCopy" Color="Color.Default" OnClick='()=>CopyText(card.Command)' />
+            <MudText HtmlTag="code">@card.Command</MudText>
+        </MudCardContent>
+        <MudCardContent>
+            <MudText Typo="Typo.body2">@card.Description</MudText>
+        </MudCardContent>
+        <MudSpacer />
+    </MudCard>
+
+    <MudDivider />
+}
+
+@code {
+
+    List<CardContent> cardContents = new()
+    {
+        new (){Title = "Criar uma Tag Leve", Command="git tag [nome-da-tag]", Description= "Cria uma nova tag leve com o nome especificado no commit atual."},
+        new (){Title = "Criar uma Tag Anotada", Command="git tag -a [nome-da-tag] -m \"mensagem da tag\"", Description= "Cria uma nova tag anotada com o nome especificado e uma mensagem descritiva no commit atual."},
+        new (){Title = "Listar Todas as Tags", Command="git tag", Description= "Exibe uma lista de todas as tags existentes no repositório."},
+        new (){Title = "Mostrar Informações de uma Tag", Command="git show [nome-da-tag]", Description= "Mostra as informações detalhadas sobre a tag especificada, incluindo o commit e a mensagem associados."},
+        new (){Title = "Excluir uma Tag Localmente", Command="git tag -d [nome-da-tag]", Description= "Remove a tag especificada do repositório local."},
+        new (){Title = "Enviar Tags para um Repositório Remoto", Command="git push origin [nome-da-tag]", Description= "Envia a tag especificada para o repositório remoto."},
+        new (){Title = "Enviar Todas as Tags para um Repositório Remoto", Command="git push origin --tags", Description= "Envia todas as tags existentes no repositório local para o repositório remoto."},
+        new (){Title = "Excluir uma Tag de um Repositório Remoto", Command="git push origin --delete [nome-da-tag]", Description= "Remove a tag especificada do repositório remoto."},
+        new (){Title = "Verificar Tags com um Padrão Específico", Command="git tag -l \"padrão*\"", Description= "Lista todas as tags que correspondem ao padrão especificado, usando curingas para corresponder nomes parciais."},
+        new (){Title = "Criar uma Tag em um Commit Específico", Command="git tag [nome-da-tag] [commit-hash]", Description= "Cria uma nova tag com o nome especificado no commit especificado pelo hash."},
+        new (){Title = "Editar uma Tag Anotada", Command="git tag -a [nome-da-tag] [commit-hash] -f", Description= "Edita uma tag anotada existente, forçando a atualização com uma nova mensagem ou commit."},
+        new (){Title = "Verificar Detalhes de uma Tag Anotada", Command="git show [nome-da-tag]", Description= "Mostra os detalhes completos de uma tag anotada, incluindo a mensagem e o commit associados."},
+
+
+    };
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopEnd;
+        Snackbar.Configuration.VisibleStateDuration = 1000;
+        Snackbar.Configuration.HideTransitionDuration = 100;
+        Snackbar.Configuration.ShowTransitionDuration = 1000;
+        Snackbar.Add($"[ {command} ] Copied!");
+    }
+}
