@@ -1,0 +1,56 @@
+﻿@page "/git/desfazer"
+@inject IJSRuntime JSRuntime
+@inject ISnackbar Snackbar
+
+<MudAlert Severity="Severity.Info">
+    Desfazendo Alterações
+</MudAlert>
+
+@foreach (var card in cardContents)
+{
+    <MudCard Elevation="25">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">@card.Title</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent Style="@($"color:{Colors.Gray.Darken4}; background:{Colors.Gray.Lighten5};")">
+            <MudIconButton Icon="@Icons.Material.Filled.FileCopy" Color="Color.Default" OnClick='()=>CopyText(card.Command)' />
+            <MudText HtmlTag="code">@card.Command</MudText>
+        </MudCardContent>
+        <MudCardContent>
+            <MudText Typo="Typo.body2">@card.Description</MudText>
+        </MudCardContent>
+        <MudSpacer />
+    </MudCard>
+
+    <MudDivider />
+}
+
+@code {
+
+    List<CardContent> cardContents = new()
+    {
+        new (){Title = "Desfazer alterações não commitadas", Command="git checkout -- [arquivo]", Description= "Desfaz as alterações feitas em um arquivo desde o último commit. Isso restaura o arquivo ao estado em que estava no commit anterior."},
+        new (){Title = "Desfazer um commit recente", Command="git reset --soft HEAD~1", Description= "Desfaz o último commit, mas mantém as alterações no seu diretório de trabalho. Esse comando é útil se você deseja reverter rapidamente um commit, mas manter o conteúdo para ajustá-lo antes de refazer o commit."},
+        new (){Title = "Desfazer um commit e suas alterações", Command="git reset --hard HEAD~1", Description= "Desfaz o último commit e todas as alterações feitas desde o commit. Use com cautela, pois as alterações serão perdidas."},
+        new (){Title = "Reverter um commit específico", Command="git revert [commit-hash]", Description= "Cria um novo commit que desfaz as alterações de um commit específico. Esse comando não altera o histórico de commits, mas cria um novo commit de reversão."},
+
+
+    };
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopEnd;
+        Snackbar.Configuration.VisibleStateDuration = 1000;
+        Snackbar.Configuration.HideTransitionDuration = 100;
+        Snackbar.Configuration.ShowTransitionDuration = 1000;
+        Snackbar.Add($"[ {command} ] Copied!");
+    }
+}

@@ -1,0 +1,100 @@
+﻿@page "/git/mergerebase"
+@inject IJSRuntime JSRuntime
+@inject ISnackbar Snackbar
+
+<MudAlert Severity="Severity.Info">
+    Explicações dos Comandos <code>merge</code> e <code>rebase</code>
+</MudAlert>
+
+@foreach (var card in cardContents)
+{
+    <MudCard Elevation="25">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">@card.Title</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent Style="@($"color:{Colors.Gray.Darken4}; background:{Colors.Gray.Lighten5};")">
+            <MudIconButton Icon="@Icons.Material.Filled.FileCopy" Color="Color.Default" OnClick='()=>CopyText(card.Command)' />
+            <MudText HtmlTag="code">@card.Command</MudText>
+        </MudCardContent>
+        <MudCardContent>
+            <MudText Typo="Typo.body2">@card.Description</MudText>
+        </MudCardContent>
+        <MudSpacer />
+    </MudCard>
+
+    <MudDivider />
+}
+
+<MudCard Elevation="25">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">Diferenças Entre <code>merge</code> e <code>rebase</code></MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudText Typo="Typo.body2">
+            <ul>
+                <li><strong><code>merge</code>:</strong> Mantém a história do commit intacta e cria um commit de merge.</li>
+                <li><strong><code>rebase</code>:</strong> Reescreve a história dos commits, aplicando-os em uma nova base, resultando em um histórico linear.</li>
+            </ul>
+        </MudText>
+    </MudCardContent>
+    <MudSpacer />
+</MudCard>
+
+<MudDivider />
+
+<MudCard Elevation="25">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">Quando Usar Cada Comando</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudText Typo="Typo.body2">
+            <ul>
+                <li><strong>Use <code>merge</code></strong> quando a preservação da história do commit e dos commits de merge for importante.</li>
+                <li><strong>Use <code>rebase</code></strong> quando você deseja um histórico de commits mais limpo e linear, sem os commits de merge.</li>
+            </ul>
+        </MudText>
+    </MudCardContent>
+    <MudSpacer />
+</MudCard>
+
+<MudDivider />
+
+@code {
+
+    List<CardContent> cardContents = new()
+    {
+       new (){Title = "Mesclar uma Branch", Command="git merge [nome-da-branch]", Description= "Mescla a branch especificada com a branch atual. Esse comando é usado para combinar o trabalho realizado em diferentes branches."},
+        new (){Title = "Iniciar um Merge com Mensagem", Command="git merge --no-ff -m \"Mensagem do merge\" [nome-da-branch]", Description= "Mescla a branch especificada com a branch atual usando o modo --no-ff, que cria um commit de merge com a mensagem especificada."},
+        new (){Title = "Abortar um Merge em Andamento", Command="git merge --abort", Description= "Aborta um merge em andamento, revertendo o diretório de trabalho ao estado anterior ao início do merge."},
+        new (){Title = "Rebase Interativo", Command="git rebase -i [base]", Description= "Inicia um rebase interativo, permitindo reorganizar, editar, ou combinar commits a partir da base especificada."},
+        new (){Title = "Rebase de uma Branch", Command="git rebase [branch]", Description= "Aplica os commits da branch atual sobre a base da branch especificada, criando uma linha de commits linear."},
+        new (){Title = "Continuar um Rebase após Resolver Conflitos", Command="git rebase --continue", Description= "Continua um rebase após resolver conflitos, aplicando os commits restantes."},
+        new (){Title = "Pular um Commit com Conflito Durante o Rebase", Command="git rebase --skip", Description= "Pula o commit atual durante um rebase em caso de conflitos que não possam ser resolvidos."},
+        new (){Title = "Abortar um Rebase em Andamento", Command="git rebase --abort", Description= "Aborta um rebase em andamento, revertendo o diretório de trabalho ao estado anterior ao início do rebase."},
+        new (){Title = "Mesclar uma Branch de Feature em Develop", Command="git checkout develop\ngit merge feature/[nome-da-feature]", Description= "Mescla a branch de feature especificada com a branch develop. Esse comando é utilizado no Git Flow para integrar novas funcionalidades."},
+        new (){Title = "Rebase de uma Branch de Feature em Develop", Command="git checkout feature/[nome-da-feature]\ngit rebase develop", Description= "Aplica os commits da branch de feature sobre a base da branch develop, criando uma linha de commits linear. Esse comando é utilizado no Git Flow para manter a branch de feature atualizada com as mudanças na branch develop."},
+
+
+    };
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopEnd;
+        Snackbar.Configuration.VisibleStateDuration = 1000;
+        Snackbar.Configuration.HideTransitionDuration = 100;
+        Snackbar.Configuration.ShowTransitionDuration = 1000;
+        Snackbar.Add($"[ {command} ] Copied!");
+    }
+}

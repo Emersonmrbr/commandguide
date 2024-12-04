@@ -1,0 +1,72 @@
+﻿@page "/hyperv/basico"
+@inject IJSRuntime JSRuntime
+@inject ISnackbar Snackbar
+
+<MudAlert Severity="Severity.Info">
+    Comandos Básicos
+</MudAlert>
+
+@foreach (var card in cardContents)
+{
+    <MudCard Elevation="25">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">@card.Title</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent Style="@($"color:{Colors.Gray.Darken4}; background:{Colors.Gray.Lighten5};")">
+            <MudIconButton Icon="@Icons.Material.Filled.FileCopy" Color="Color.Default" OnClick='()=>CopyText(card.Command)' />
+            <MudText HtmlTag="code">@card.Command</MudText>
+        </MudCardContent>
+        <MudCardContent>
+            <MudText Typo="Typo.body2">@card.Description</MudText>
+        </MudCardContent>
+        <MudSpacer />
+    </MudCard>
+
+    <MudDivider />
+}
+
+@code {
+
+    List<CardContent> cardContents = new()
+    {
+        new (){Title = "Habilitar o Hyper-V usando o PowerShell", Command="Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All", Description= "Para habilitar o Hyper-V, abra o PowerShell como administrador e execute o comando a seguir."},
+        new (){Title = "Retornar uma lista de máquinas virtuais", Command="Get-VM", Description= "Para listar todas as máquinas virtuais no Hyper-V, execute o seguinte comando no PowerShell."},
+        new (){Title = "Máquinas Virtuais em Execução", Command="Get-VM | Where-Object {$_.State -eq 'Running'}", Description= "Para listar apenas as máquinas virtuais que estão em execução, use o filtro Where-Object com a condição State -eq 'Running'."},
+        new (){Title = "Máquinas Virtuais Desligadas", Command="Get-VM | Where-Object {$_.State -eq 'Off'}", Description= "Para listar todas as máquinas virtuais que estão desligadas, use o comando."},
+        new (){Title = "Iniciar uma Máquina Virtual Específica", Command="Start-VM -Name <VM Name>", Description= "Para iniciar uma máquina virtual, execute o seguinte comando, substituindo <VM Name> pelo nome da sua máquina virtual."},
+        new (){Title = "Iniciar Todas as Máquinas Virtuais Desligadas", Command="Get-VM | Where-Object {$_.State -eq 'Off'} | Start-VM", Description= "Para iniciar todas as máquinas virtuais que estão desligadas, use o comando."},
+        new (){Title = "Desligar Todas as Máquinas Virtuais em Execução", Command="Get-VM | Where-Object {$_.State -eq 'Running'} | Stop-VM", Description= "Para desligar todas as máquinas virtuais que estão em execução, execute."},
+        new (){Title = "Criar um Ponto de Verificação de VM", Command="Get-VM -Name <VM Name> | Checkpoint-VM -SnapshotName <Snapshot Name>", Description= "Para criar um ponto de verificação (snapshot) de uma máquina virtual, use o comando a seguir."},
+        new (){Title = "Criar uma Máquina Virtual", Command="$VMName = 'VMNAME'\n\n$VM = @{\nName = $VMName \nMemoryStartupBytes = 2147483648 \nGeneration = 2 \nNewVHDPath = 'C:/Virtual Machines/$VMName/$VMName.vhdx' \nNewVHDSizeBytes = 53687091200 \nBootDevice = 'VHD' \nPath = 'C:/Virtual Machines/$VMName' \nSwitchName = (Get-VMSwitch).Name \n} \nNew-VM @VM", Description= "Para criar uma nova máquina virtual, você pode usar o PowerShell ISE (Integrated Scripting Environment). Abra o PowerShell ISE e execute o código, substituindo os valores conforme necessário."},
+        new (){Title = "Editar Configurações de Conexão do VMConnect", Command="VMConnect.exe <ServerName> <VMName> /edit", Description= "Para editar as configurações de conexão de uma máquina virtual com o VMConnect, execute o comando no PowerShell ou no prompt de comando."},
+        new (){Title = "Configurar a Política de Grupo Local para Habilitar Desktop Remoto sem Senha", Command="gpedit.msc", Description= "Para configurar a Política de Grupo Local para permitir o uso de área de trabalho remota sem senha no Windows 10/11, abra o Editor de Política de Grupo Local. Navegue até: Política de TI Local > Configuração do Computador > Configurações do Windows > Configurações de Segurança > Políticas Locais > Opções de Segurança."},
+        new (){Title = "Otimizar Disco Virtual de Todas as Máquinas Virtuais", Command="Get-VM | Select-Object -Property VMId | Get-VHD | Optimize-VHD -Mode Full", Description= "Para otimizar os discos virtuais de todas as máquinas virtuais, execute o seguinte comando no PowerShell."},
+        new (){Title = "Exportar Informações dos Discos Virtuais em Formato JSON", Command="Get-VM | Select-Object -Property VMId | Get-VHD | ConvertTo-Json | Out-File -FilePath .\\Vm.json", Description= "Para exportar informações dos discos virtuais em formato JSON, execute o comando abaixo."},
+        new (){Title = "Conectar-se à Máquina Virtual", Command="VMConnect.exe <ServerName> <VMName>", Description= "Para se conectar a uma máquina virtual via VMConnect, use o comando. Exemplos: VMConnect.exe MyServer MyVM, VMConnect.exe Avell-Emerson Rockwell."},
+        new (){Title = "Alterar o Adaptador de Rede de uma Máquina Virtual", Command="Connect-VMNetworkAdapter -VMName \"TestVM\" -SwitchName \"NewSwitch\"", Description= "Para conectar a máquina virtual a um novo switch, execute o comando. Exemplo para outra máquina: Connect-VMNetworkAdapter -VMName \"Omron\" -SwitchName \"Default Switch\"."},
+        new (){Title = "Listar Máquinas Virtuais", Command="Get-VM", Description= "Lista todas as máquinas virtuais."},
+        new (){Title = "Obter Detalhes do Adaptador de Rede", Command="Get-VMNetworkAdapter -VMName \"TestVM\"", Description= "Obter detalhes do adaptador de rede da máquina virtual."},
+        new (){Title = "Alterar o Switch Virtual com Base no Endereço MAC", Command="$adapter = Get-VMNetworkAdapter -VMName \"YourVMName\" | Where-Object {$_.MacAddress -eq \"YourMacAddress\"}\nConnect-VMNetworkAdapter -VMNetworkAdapter $adapter -SwitchName \"NewSwitchName\"", Description= "Para alterar o switch de rede de uma máquina virtual usando o endereço MAC do adaptador, execute os comandos."},
+        new (){Title = "Alterar o Switch Virtual pelo Nome do Adaptador", Command="Connect-VMNetworkAdapter -VMName \"YourVMName\" -Name \"YourAdapterName\" -SwitchName \"NewSwitchName\"", Description= "Para alterar o switch virtual de um adaptador de rede específico pelo nome, use o comando."},
+
+
+    };
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopEnd;
+        Snackbar.Configuration.VisibleStateDuration = 1000;
+        Snackbar.Configuration.HideTransitionDuration = 100;
+        Snackbar.Configuration.ShowTransitionDuration = 1000;
+        Snackbar.Add($"[ {command} ] Copied!");
+    }
+}
+

@@ -1,0 +1,63 @@
+﻿@page "/git/branche"
+@inject IJSRuntime JSRuntime
+@inject ISnackbar Snackbar
+
+<MudAlert Severity="Severity.Info">
+    Navegação e Gerenciamento de Branches
+</MudAlert>
+
+@foreach (var card in cardContents)
+{
+    <MudCard Elevation="25">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">@card.Title</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent Style="@($"color:{Colors.Gray.Darken4}; background:{Colors.Gray.Lighten5};")">
+            <MudIconButton Icon="@Icons.Material.Filled.FileCopy" Color="Color.Default" OnClick='()=>CopyText(card.Command)' />
+            <MudText HtmlTag="code">@card.Command</MudText>
+        </MudCardContent>
+        <MudCardContent>
+            <MudText Typo="Typo.body2">@card.Description</MudText>
+        </MudCardContent>
+        <MudSpacer />
+    </MudCard>
+
+    <MudDivider />
+}
+
+@code {
+
+    List<CardContent> cardContents = new()
+    {
+        new (){Title = "Mudar para uma branch específica", Command="git checkout [nome-da-branch]", Description= "Muda para uma branch específica no repositório. Se a branch não existir, o Git irá avisar que ela não foi encontrada."},
+        new (){Title = "Criar e mudar para uma nova branch", Command="git checkout -b [nome-da-branch]", Description= "Cria uma nova branch e muda para ela ao mesmo tempo. Esse comando é útil para criar novas funcionalidades ou corrigir bugs em paralelo ao desenvolvimento principal."},
+        new (){Title = "Comando alternativo para mudar de branch", Command="git switch [nome-da-branch]", Description= "Alternativa ao comando git checkout para mudar de branch. O comando switch é considerado mais intuitivo e foi introduzido em versões mais recentes do Git."},
+        new (){Title = "Voltar para um estado anterior do repositório", Command="git checkout [commit]", Description= "Reverte o repositório para um estado anterior especificado por um commit. O repositório volta para o estado exato de como estava nesse commit."},
+        new (){Title = "Reverter um arquivo para o estado do último commit", Command="git checkout -- [arquivo]", Description= "Reverte um arquivo para o estado do último commit, descartando as alterações feitas no arquivo desde o último commit."},
+        new (){Title = "Listar branches", Command="git branch", Description= "Lista todas as branches locais no repositório. A branch atual será marcada com um asterisco (*)."},
+        new (){Title = "Excluir uma branch", Command="git branch -d [nome-da-branch]", Description= "Exclui a branch especificada. O Git irá avisar se há commits que ainda não foram mesclados, prevenindo a exclusão acidental de trabalho não mesclado."},
+        new (){Title = "Forçar exclusão de uma branch", Command="git branch -D [nome-da-branch]", Description= "Força a exclusão da branch especificada, mesmo que haja commits não mesclados. Use com cuidado, pois isso pode levar à perda de trabalho."},
+        new (){Title = "Renomear uma branch", Command="git branch -m [nome-atual] [novo-nome]", Description= "Renomeia a branch atual ou uma branch especificada para um novo nome."},
+        new (){Title = "Mesclar uma branch", Command="git merge [nome-da-branch]", Description= "Mescla a branch especificada com a branch atual. Esse comando é usado para combinar o trabalho realizado em diferentes branches."},
+
+
+    };
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopEnd;
+        Snackbar.Configuration.VisibleStateDuration = 1000;
+        Snackbar.Configuration.HideTransitionDuration = 100;
+        Snackbar.Configuration.ShowTransitionDuration = 1000;
+        Snackbar.Add($"[ {command} ] Copied!");
+    }
+}
+
