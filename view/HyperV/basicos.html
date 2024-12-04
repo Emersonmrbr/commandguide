@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="src/css/style.min.css" media="screen" />
-    <link rel="icon" href="src/images/favicon.png" type="image/png" />
-    <title>Guia de Comandos</title>
+    <link rel="icon" href="../../src/images/favicon.png" type="image/png" />
+    <title>Guia de Comandos Hyper V</title>
   </head>
 
   <body class="l-body">
     <header data-reactroot role="banner" class="l-header" js-sticky js-header>
-      <a href="index.html" aria-label="Home" class="c-logo js-logo-open-menu">
+      <a href="../../index.html" aria-label="Home" class="c-logo js-logo-open-menu">
         <svg js-sticky js-header class="c-logo__image js-logo-open-menu" viewBox="0 0 1921 380">
           <g class="c-logo__map">
             <path
@@ -62,27 +62,27 @@
       <nav js-sticky class="c-menu">
         <ul class="c-menu__list js-menu">
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="index.html" aria-label="Home">
+            <a class="c-link-frame c-link-skin" href="../../index.html" aria-label="Home">
               <span>home</span>
             </a>
           </li>
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="view/Powershell/index.html" aria-label="Powershel">
+            <a class="c-link-frame c-link-skin" href="../Powershell/index.html" aria-label="Powershel">
               <span>powershel</span>
             </a>
           </li>
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="view//HyperV/index.html" aria-label="Hyper V">
+            <a class="c-link-frame c-link-skin" href="../HyperV/index.html" aria-label="Hyper V">
               <span>hyper v</span>
             </a>
           </li>
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="view//Ubuntu/index.html" aria-label="Ubuntu">
+            <a class="c-link-frame c-link-skin" href="../Ubuntu/index.html" aria-label="Ubuntu">
               <span>ubuntu</span>
             </a>
           </li>
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="view//Terminal/index.html" aria-label="Terminal">
+            <a class="c-link-frame c-link-skin" href="../Terminal/index.html" aria-label="Terminal">
               <span>terminal</span>
             </a>
           </li>
@@ -105,107 +105,176 @@
           </g>
         </svg>
       </section>
+      <section js-sticky class="c-line-header">
+        <svg class="c-line-header__full">
+          <g js-sticky__straight-big class="c-line-header__item">
+            <line x1="0" x2="100%" y2="5" y1="5"></line>
+          </g>
+        </svg>
+        <svg class="c-line-header__right">
+          <g js-sticky__crooked class="c-line-header__item c-line-header__item--color">
+            <line x1="0" x2="43.75" y1="15" y2="15"></line>
+            <line x1="43.75" x2="81.25" y1="15" y2="-5"></line>
+            <line x1="81.25" x2="100%" y1="-5" y2="-5"></line>
+          </g>
+          <g js-sticky__straight-small class="c-line-header__item">
+            <line x1="0" x2="100%" y1="5" y2="5"></line>
+          </g>
+        </svg>
+      </section>
     </header>
 
     <div js-fake class="l-fake"></div>
+
     <script>
       document.querySelector('[js-fake]').style.height = document.querySelector('[js-header]').offsetHeight + 'px';
     </script>
 
     <main class="l-main">
-      <h1>Repositório de Guias de Comandos</h1>
-      <p>
-        Este repositório fornece guias básicos de comandos para diversas ferramentas e plataformas, incluindo <strong>Git</strong>, <strong>PowerShell</strong>,
-        <strong>PowerShell Hyper-V</strong> e <strong>Ubuntu</strong>. Cada guia está disponível como um arquivo HTML separado para facilitar o acesso e a
-        usabilidade. Para acessar a documentação completa, abra o arquivo <code>index.html</code> que está na raiz do repositório. Esse arquivo contém um índice
-        que leva aos outros arquivos de guias correspondentes.
-      </p>
-      <h2>📂 Estrutura do Repositório</h2>
-      <p>O repositório está organizado nos seguintes arquivos:</p>
-      <ul>
-        <li><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Git">Git: Contém comandos básicos para usar o Git.</a></li>
-        <li><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Powershell">PowerShell: Abrange comandos essenciais do PowerShell.</a></li>
-        <li>
-          <a href="https://github.com/Emersonmrbr/Commands/tree/main/src/HyperV"
-            >PowerShell Hyper-V: Inclui comandos específicos para gerenciar o Hyper-V através do PowerShell.</a
-          >
-        </li>
-        <li><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Ubuntu">Ubuntu: Lista comandos comuns para trabalhar com o Ubuntu.</a></li>
-      </ul>
-      <h2>🛠 Como Usar</h2>
-      <ol>
-        <li>
-          Clone o repositório para sua máquina local:
-          <pre><code>git clone git@github.com:Emersonmrbr/Commands.git</code></pre>
-        </li>
-        <li>
-          Abra o arquivo HTML desejado em um navegador para visualizar o guia:
-          <pre><code>open index.html</code></pre>
-        </li>
-      </ol>
-      <h2>📘 Visão Geral dos Guias</h2>
-      <h3><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Git">Guia de Git</a></h3>
-      <p>Este guia inclui:</p>
-      <ul>
-        <li>Comandos básicos para configurar repositórios.</li>
-        <li>Gerenciamento de branches.</li>
-        <li>Estágio e commit de alterações.</li>
-        <li>Resolução de conflitos.</li>
-      </ul>
-      <h3><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Powershell">Guia de PowerShell</a></h3>
-      <p>Este guia aborda:</p>
-      <ul>
-        <li>Navegação e gerenciamento de arquivos.</li>
-        <li>Trabalhando com scripts.</li>
-        <li>Comandos de monitoramento do sistema.</li>
-      </ul>
-      <h3><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/HyperV">Guia de PowerShell Hyper-V</a></h3>
-      <p>Este guia fornece:</p>
-      <ul>
-        <li>Gerenciamento de máquinas virtuais (VMs).</li>
-        <li>Configuração de redes.</li>
-        <li>Alocação de recursos para VMs.</li>
-      </ul>
-      <h3><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Ubuntu">Guia de Ubuntu</a></h3>
-      <p>Este guia apresenta:</p>
-      <ul>
-        <li>Gerenciamento básico de pacotes com <code>apt</code>.</li>
-        <li>Permissões de arquivos e gerenciamento de usuários.</li>
-        <li>Comandos de rede e monitoramento do sistema.</li>
-      </ul>
-      <h2>💡 Contribuindo</h2>
-      <p>Contribuições são bem-vindas! Para sugerir alterações ou adicionar novos guias:</p>
-      <ol>
-        <li>Faça um fork do repositório.</li>
-        <li>
-          Crie uma nova branch:
-          <pre><code>git flow feature start [nome-da-feature]</code></pre>
-        </li>
-        <li>
-          Faça suas alterações e commit:
-          <pre><code>git commit -m "Adicionar novo guia para [ferramenta]"</code></pre>
-        </li>
-        <li>
-          Envie para sua branch:
-          <pre><code>git flow feature finish [nome-da-feature]</code></pre>
-        </li>
-        <li>Abra um pull request.</li>
-      </ol>
-      <h2>📄 Licença</h2>
-      <p>
-        Este repositório está licenciado sob a <a href="LICENSE">Licença MIT</a>. Sinta-se à vontade para usar, modificar e distribuir o conteúdo conforme
-        necessário.
-      </p>
-      <h2>📫 Contato</h2>
-      <p>
-        Para dúvidas ou feedback, abra uma issue no repositório ou entre em contato através do e-mail
-        <a href="mailto:emerson@nucleomap.com.br">emerson@nucleomap.com.br</a>.
-      </p>
+      <section>
+        <h2 id="habilitar hyperv">Habilitar o Hyper-V usando o PowerShell</h2>
+        <p>Para habilitar o Hyper-V, abra o PowerShell como administrador e execute o comando a seguir:</p>
+        <pre><code>Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All</code></pre>
+      </section>
+
+      <section>
+        <h2 id="listar-maquinas-virtual">Retornar uma lista de máquinas virtuais</h2>
+        <p>Para listar todas as máquinas virtuais no Hyper-V, execute o seguinte comando no PowerShell:</p>
+        <pre><code>Get-VM</code></pre>
+      </section>
+
+      <section>
+        <h2 id="filtrar-maquinas-virtuais-estado">Filtrar máquinas virtuais por estado</h2>
+        <h3>Máquinas Virtuais em Execução</h3>
+        <p>
+          Para listar apenas as máquinas virtuais que estão em execução, use o filtro <code>Where-Object</code> com a condição <code>State -eq 'Running'</code>:
+        </p>
+        <pre><code>Get-VM | Where-Object {$_.State -eq 'Running'}</code></pre>
+
+        <h3>Máquinas Virtuais Desligadas</h3>
+        <p>Para listar todas as máquinas virtuais que estão desligadas, use o comando:</p>
+        <pre><code>Get-VM | Where-Object {$_.State -eq 'Off'}</code></pre>
+      </section>
+
+      <section>
+        <h2 id="iniciar-desligar-maquinas-virtuais">Iniciar e Desligar Máquinas Virtuais</h2>
+        <h3>Iniciar uma Máquina Virtual Específica</h3>
+        <p>Para iniciar uma máquina virtual, execute o seguinte comando, substituindo <code>&lt;VM Name&gt;</code> pelo nome da sua máquina virtual:</p>
+        <pre><code>Start-VM -Name &lt;VM Name&gt;</code></pre>
+
+        <h3>Iniciar Todas as Máquinas Virtuais Desligadas</h3>
+        <p>Para iniciar todas as máquinas virtuais que estão desligadas, use o comando:</p>
+        <pre><code>Get-VM | Where-Object {$_.State -eq 'Off'} | Start-VM</code></pre>
+
+        <h3>Desligar Todas as Máquinas Virtuais em Execução</h3>
+        <p>Para desligar todas as máquinas virtuais que estão em execução, execute:</p>
+        <pre><code>Get-VM | Where-Object {$_.State -eq 'Running'} | Stop-VM</code></pre>
+      </section>
+
+      <section>
+        <h2 id="cirar-ponto-verificacao">Criar um Ponto de Verificação de VM</h2>
+        <p>Para criar um ponto de verificação (snapshot) de uma máquina virtual, use o comando a seguir:</p>
+        <pre><code>Get-VM -Name &lt;VM Name&gt; | Checkpoint-VM -SnapshotName &lt;Snapshot Name&gt;</code></pre>
+      </section>
+
+      <section>
+        <h2 id="criar-maquina-virtual">Criar uma Máquina Virtual</h2>
+        <p>
+          Para criar uma nova máquina virtual, você pode usar o PowerShell ISE (Integrated Scripting Environment). O exemplo a seguir cria uma máquina virtual
+          com as configurações básicas. Abra o PowerShell ISE e execute o código abaixo, substituindo os valores conforme necessário.
+        </p>
+        <pre><code>
+$VMName = "VMNAME"
+
+$VM = @{
+    Name = $VMName
+    MemoryStartupBytes = 2147483648
+    Generation = 2
+    NewVHDPath = "C:\Virtual Machines\$VMName\$VMName.vhdx"
+    NewVHDSizeBytes = 53687091200
+    BootDevice = "VHD"
+    Path = "C:\Virtual Machines\$VMName"
+    SwitchName = (Get-VMSwitch).Name
+}
+
+New-VM @VM
+            </code></pre>
+      </section>
+
+      <section>
+        <h2 id="editar-configuracoes-conexao-vmconnect">Editar Configurações de Conexão do VMConnect</h2>
+        <p>Para editar as configurações de conexão de uma máquina virtual com o VMConnect, execute o comando a seguir no PowerShell ou no prompt de comando:</p>
+        <pre><code>VMConnect.exe &lt;ServerName&gt; &lt;VMName&gt; /edit</code></pre>
+        <p>Substitua <code>&lt;ServerName&gt;</code> e <code>&lt;VMName&gt;</code> pelos respectivos nomes do servidor e da máquina virtual.</p>
+        <p>
+          Mais informações sobre o uso de recursos locais com o VMConnect podem ser encontradas
+          <a
+            href="https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/learn-more/use-local-resources-on-hyper-v-virtual-machine-with-vmconnect"
+            >aqui</a
+          >.
+        </p>
+      </section>
+
+      <section>
+        <h2 id="habilitar-desktop-remoto-sem-senha">Configurar a Política de Grupo Local para Habilitar Desktop Remoto sem Senha</h2>
+        <p>Para configurar a Política de Grupo Local para permitir o uso de área de trabalho remota sem senha no Windows 10/11, siga estas etapas:</p>
+        <ol>
+          <li>Pressione <code>Windows + R</code> para abrir a caixa de diálogo Executar.</li>
+          <li>Digite <code>gpedit.msc</code> e pressione <code>Enter</code> para abrir o Editor de Política de Grupo Local.</li>
+          <li>
+            No painel esquerdo, navegue até:
+            <pre><code>Política de TI Local > Configuração do Computador > Configurações do Windows > Configurações de Segurança > Políticas Locais > Opções de Segurança</code></pre>
+          </li>
+        </ol>
+      </section>
+
+      <section>
+        <h2 id="otimizar-disco-virtual">Otimizar Disco Virtual de Todas as Máquinas Virtuais</h2>
+        <p>Para otimizar os discos virtuais de todas as máquinas virtuais, execute o seguinte comando no PowerShell:</p>
+        <pre><code>Get-VM | Select-Object -Property VMId | Get-VHD | Optimize-VHD -Mode Full</code></pre>
+      </section>
+
+      <section>
+        <h2 id="esportar-informacao-disco-virtual">Exportar Informações dos Discos Virtuais em Formato JSON</h2>
+        <p>Para exportar informações dos discos virtuais em formato JSON, execute o comando abaixo:</p>
+        <pre><code>Get-VM | Select-Object -Property VMId | Get-VHD | ConvertTo-Json | Out-File -FilePath .\Vm.json</code></pre>
+      </section>
+
+      <section>
+        <h2 id="conectar-maquina-virtual">Conectar-se à Máquina Virtual</h2>
+        <p>Para se conectar a uma máquina virtual via VMConnect, use o comando:</p>
+        <pre><code>VMConnect.exe &lt;ServerName&gt; &lt;VMName&gt;</code></pre>
+        <p>Exemplos:</p>
+        <pre><code>VMConnect.exe MyServer MyVM</code></pre>
+        <pre><code>VMConnect.exe Avell-Emerson Rockwell</code></pre>
+      </section>
+
+      <section>
+        <h2 id="alterar-adaptador-rede">Alterar o Adaptador de Rede de uma Máquina Virtual</h2>
+        <h3>Listar Máquinas Virtuais</h3>
+        <pre><code>Get-VM</code></pre>
+
+        <h3>Obter Detalhes do Adaptador de Rede</h3>
+        <pre><code>Get-VMNetworkAdapter -VMName "TestVM"</code></pre>
+
+        <h3>Alterar o Switch Virtual</h3>
+        <p>Para conectar a máquina virtual a um novo switch, execute:</p>
+        <pre><code>Connect-VMNetworkAdapter -VMName "TestVM" -SwitchName "NewSwitch"</code></pre>
+        <p>Exemplo para outra máquina:</p>
+        <pre><code>Connect-VMNetworkAdapter -VMName "Omron" -SwitchName "Default Switch"</code></pre>
+
+        <h3>Alterar o Switch Virtual com Base no Endereço MAC</h3>
+        <p>Para alterar o switch de rede de uma máquina virtual usando o endereço MAC do adaptador, execute o seguinte comando:</p>
+        <pre><code>
+$adapter = Get-VMNetworkAdapter -VMName "YourVMName" | Where-Object {$_.MacAddress -eq "YourMacAddress"}
+Connect-VMNetworkAdapter -VMNetworkAdapter $adapter -SwitchName "NewSwitchName"
+            </code></pre>
+
+        <h3>Alterar o Switch Virtual pelo Nome do Adaptador</h3>
+        <p>Para alterar o switch virtual de um adaptador de rede específico pelo nome, use</p>
+      </section>
     </main>
-    <footer class="l-footer">
-      <p>© 2024 - Todos os direitos reservados.</p>
-    </footer>
   </body>
 
-  <script src="src/js/index.min.js"></script>
+  <script src="../../src/js/index.min.js"></script>
 </html>

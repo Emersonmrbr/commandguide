@@ -1,0 +1,28 @@
+::marker {
+  color: var(--color-tertiary);
+}
+
+li,
+ol {
+  list-style: none;
+
+  &::marker {
+    display: none;
+  }
+}
+ol {
+  list-style-type: decimal;
+  margin-left: var(--space-m);
+}
+ul {
+  list-style-type: square;
+  margin-left: var(--space-xl);
+  text-decoration: none;
+}
+p,
+ul,
+ol {
+  margin: var(--step--2);
+  padding: 0;
+  font-size: 1.1rem;
+}
