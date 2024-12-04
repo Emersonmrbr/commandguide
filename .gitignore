@@ -1,1 +1,9 @@
-Commands.code-workspace
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Commands/bin/Release/net8.0
+/Commands/obj
+/Commands.Client/bin/Release/net8.0
+/Commands.Client/obj
