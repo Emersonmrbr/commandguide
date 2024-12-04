@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="src/css/style.min.css" media="screen" />
-    <link rel="icon" href="src/images/favicon.png" type="image/png" />
-    <title>Guia de Comandos</title>
+    <link rel="stylesheet" type="text/css" href="../../src/css/style.min.css" media="screen" />
+    <link rel="icon" href="../../src/images/favicon.png" type="image/png" />
+    <title>Git Flow</title>
   </head>
 
   <body class="l-body">
     <header data-reactroot role="banner" class="l-header" js-sticky js-header>
-      <a href="index.html" aria-label="Home" class="c-logo js-logo-open-menu">
+      <a href="../../index.html" aria-label="Home" class="c-logo js-logo-open-menu">
         <svg js-sticky js-header class="c-logo__image js-logo-open-menu" viewBox="0 0 1921 380">
           <g class="c-logo__map">
             <path
@@ -62,32 +62,32 @@
       <nav js-sticky class="c-menu">
         <ul class="c-menu__list js-menu">
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="index.html" aria-label="Home">
+            <a class="c-link-frame c-link-skin" href="../../index.html" aria-label="Home">
               <span>home</span>
             </a>
           </li>
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="view/Git/index.html" aria-label="Git">
+            <a class="c-link-frame c-link-skin" href="../Git/index.html" aria-label="Git">
               <span>git</span>
             </a>
           </li>
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="view/Powershell/index.html" aria-label="Powershel">
+            <a class="c-link-frame c-link-skin" href="../Powershell/index.html" aria-label="Powershel">
               <span>powershel</span>
             </a>
           </li>
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="view/HyperV/index.html" aria-label="Hyper V">
+            <a class="c-link-frame c-link-skin" href="../HyperV/index.html" aria-label="Hyper V">
               <span>hyper v</span>
             </a>
           </li>
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="view/Ubuntu/index.html" aria-label="Ubuntu">
+            <a class="c-link-frame c-link-skin" href="../Ubuntu/index.html" aria-label="Ubuntu">
               <span>ubuntu</span>
             </a>
           </li>
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="view/Terminal/index.html" aria-label="Terminal">
+            <a class="c-link-frame c-link-skin" href="../Terminal/index.html" aria-label="Terminal">
               <span>terminal</span>
             </a>
           </li>
@@ -113,104 +113,220 @@
     </header>
 
     <div js-fake class="l-fake"></div>
+
     <script>
       document.querySelector('[js-fake]').style.height = document.querySelector('[js-header]').offsetHeight + 'px';
     </script>
 
     <main class="l-main">
-      <h1>Repositório de Guias de Comandos</h1>
+      <h1 id="estrategia-git-flow">Estratégia Git Flow</h1>
+
+      <h2 id="componentes-git-flow">Componentes do Git Flow</h2>
+
+      <h3 id="branches-principais">Branches Principais</h3>
+      <ul>
+        <li><strong>main</strong>: Branch principal contendo o código estável e pronto para produção.</li>
+        <li><strong>develop</strong>: Branch de desenvolvimento com o código mais recente para integração e testes. É a base para novas funcionalidades.</li>
+      </ul>
+
+      <h3 id="branches-suporte">Branches de Suporte</h3>
+      <ul>
+        <li>
+          <strong>Feature Branches:</strong> Destinadas ao desenvolvimento de novas funcionalidades, partem de <code>develop</code> e, ao final, são mescladas
+          de volta em <code>develop</code>.
+        </li>
+        <li>
+          <strong>Release Branches:</strong> Utilizadas para preparação de versões de produção. Partem de <code>develop</code> e, quando prontas, são mescladas
+          em <code>main</code> e <code>develop</code>.
+        </li>
+        <li>
+          <strong>Hotfix Branches:</strong> Criadas para corrigir bugs críticos em produção. Partem de <code>main</code> e, ao final, são mescladas em
+          <code>main</code> e <code>develop</code>.
+        </li>
+      </ul>
+
+      <h2 id="fluxo-trabalho-git-flow">Fluxo de Trabalho do Git Flow</h2>
+
+      <h3 id="iniciar-projeto">Iniciar Projeto</h3>
+      <ul>
+        <li>
+          Clone o repositório:
+          <pre><code>git clone &lt;url-do-repositorio&gt;</code></pre>
+        </li>
+        <li>
+          Crie a branch <code>develop</code> a partir de <code>main</code>:
+          <pre><code>git checkout -b develop main</code></pre>
+        </li>
+      </ul>
+
+      <h3 id="nova-funcionalidade">Criar Nova Funcionalidade (Feature)</h3>
+      <ul>
+        <li>
+          Crie uma branch de funcionalidade a partir de <code>develop</code>:
+          <pre><code>git checkout -b feature/nova-funcionalidade develop</code></pre>
+        </li>
+        <li>Desenvolva a funcionalidade.</li>
+        <li>
+          Mescle a branch de funcionalidade de volta em <code>develop</code>:
+          <pre><code>git checkout develop</code></pre>
+          <pre><code>git merge feature/nova-funcionalidade</code></pre>
+          <pre><code>git branch -d feature/nova-funcionalidade</code></pre>
+        </li>
+      </ul>
+
+      <h3 id="preparar-versao">Preparar Versão (Release)</h3>
+      <ul>
+        <li>
+          Crie uma release branch a partir de <code>develop</code>:
+          <pre><code>git checkout -b release/v1.0 develop</code></pre>
+        </li>
+        <li>Realize testes e ajustes necessários.</li>
+        <li>
+          Mescle a release branch em <code>main</code> e <code>develop</code>:
+          <pre><code>git checkout main</code></pre>
+          <pre><code>git merge release/v1.0</code></pre>
+          <pre><code>git checkout develop</code></pre>
+          <pre><code> git merge release/v1.0</code></pre>
+          <pre><code>git branch -d release/v1.0</code></pre>
+        </li>
+      </ul>
+
+      <h3 id="corrigir-bug">Corrigir Bug Crítico (Hotfix)</h3>
+      <ul>
+        <li>
+          Crie uma hotfix branch a partir de <code>main</code>:
+          <pre><code>git checkout -b hotfix/bug-crucial main</code></pre>
+        </li>
+        <li>Corrija o bug.</li>
+        <li>
+          Mescle a hotfix branch em <code>main</code> e <code>develop</code>:
+          <pre><code>git checkout main</code></pre>
+          <pre><code>git merge hotfix/bug-crucial</code></pre>
+          <pre><code>git checkout develop</code></pre>
+          <pre><code>git merge hotfix/bug-crucial</code></pre>
+          <pre><code>git branch -d hotfix/bug-crucial</code></pre>
+        </li>
+      </ul>
+
+      <h2 id="vantagens-git-flow">Vantagens do Git Flow</h2>
+      <ul>
+        <li>
+          <strong>Estrutura Organizada:</strong> Facilita o gerenciamento de desenvolvimento e lançamentos, proporcionando clareza nas atividades de
+          codificação.
+        </li>
+        <li><strong>Trabalho Simultâneo:</strong> Permite que as equipes desenvolvam múltiplas funcionalidades simultaneamente, minimizando conflitos.</li>
+        <li><strong>Processo Estruturado de Lançamento:</strong> Oferece um fluxo de trabalho claro e eficiente para preparar e lançar novas versões.</li>
+      </ul>
+      <h2 id="desvantagens-git-flow">Desvantagens do Git Flow</h2>
+      <ul>
+        <li>
+          <strong>Complexidade para Pequenos Projetos:</strong> Para projetos menores ou equipes reduzidas, o Git Flow pode adicionar complexidade
+          desnecessária, tornando o processo mais rígido.
+        </li>
+        <li>
+          <strong>Integração Contínua Limitada:</strong> Git Flow não foi idealizado para um ambiente de integração contínua (CI) com deploys automáticos
+          frequentes, sendo menos eficiente para práticas DevOps modernas.
+        </li>
+        <li>
+          <strong>Overhead de Branches:</strong> A criação e manutenção de múltiplas branches (feature, release, hotfix) pode gerar overhead e requerer mais
+          coordenação, especialmente em equipes maiores.
+        </li>
+      </ul>
+
+      <h1 id="principais-comandos-git-flow">Principais Comandos do Git Flow</h1>
+
+      <h2 id="iniciar-git-flow-repositorio">Iniciar o Git Flow em um Repositório</h2>
+      <p>Antes de usar o Git Flow, é necessário inicializá-lo no repositório, configurando as branches padrão e a estrutura do fluxo de trabalho.</p>
+      <pre><code>git flow init</code></pre>
+      <ul>
+        <li>
+          <strong>Explicação:</strong> Este comando inicializa o Git Flow no repositório atual, configurando as branches principais (<code>main</code> e
+          <code>develop</code>) e permitindo a personalização de nomes e parâmetros.
+        </li>
+      </ul>
+
+      <h2 id="criar-feature-branch">Criar uma Feature Branch</h2>
+      <p>Para desenvolver uma nova funcionalidade, crie uma feature branch a partir da branch <code>develop</code>.</p>
+      <pre><code>git flow feature start &lt;nome-da-feature&gt;</code></pre>
+      <ul>
+        <li>
+          <strong>Explicação:</strong>
+          <code>start &lt;nome-da-feature&gt;</code> cria e troca para uma nova feature branch baseada na <code>develop</code>.
+        </li>
+      </ul>
+
+      <h2 id="finalizar-feature-branch">Finalizar uma Feature Branch</h2>
       <p>
-        Este repositório fornece guias básicos de comandos para diversas ferramentas e plataformas, incluindo <strong>Git</strong>, <strong>PowerShell</strong>,
-        <strong>PowerShell Hyper-V</strong> e <strong>Ubuntu</strong>. Cada guia está disponível como um arquivo HTML separado para facilitar o acesso e a
-        usabilidade. Para acessar a documentação completa, abra o arquivo <code>index.html</code> que está na raiz do repositório. Esse arquivo contém um índice
-        que leva aos outros arquivos de guias correspondentes.
+        Ao concluir o desenvolvimento, mescle a feature branch de volta na
+        <code>develop</code> e exclua-a.
       </p>
-      <h2>📂 Estrutura do Repositório</h2>
-      <p>O repositório está organizado nos seguintes arquivos:</p>
+      <pre><code>git flow feature finish &lt;nome-da-feature&gt;</code></pre>
       <ul>
-        <li><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Git">Git: Contém comandos básicos para usar o Git.</a></li>
-        <li><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Powershell">PowerShell: Abrange comandos essenciais do PowerShell.</a></li>
         <li>
-          <a href="https://github.com/Emersonmrbr/Commands/tree/main/src/HyperV"
-            >PowerShell Hyper-V: Inclui comandos específicos para gerenciar o Hyper-V através do PowerShell.</a
-          >
+          <strong>Explicação:</strong>
+          <code>finish &lt;nome-da-feature&gt;</code> mescla a feature branch na <code>develop</code>, exclui a branch e retorna para a <code>develop</code>.
         </li>
-        <li><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Ubuntu">Ubuntu: Lista comandos comuns para trabalhar com o Ubuntu.</a></li>
       </ul>
-      <h2>🛠 Como Usar</h2>
-      <ol>
-        <li>
-          Clone o repositório para sua máquina local:
-          <pre><code>git clone git@github.com:Emersonmrbr/Commands.git</code></pre>
-        </li>
-        <li>
-          Abra o arquivo HTML desejado em um navegador para visualizar o guia:
-          <pre><code>open index.html</code></pre>
-        </li>
-      </ol>
-      <h2>📘 Visão Geral dos Guias</h2>
-      <h3><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Git">Guia de Git</a></h3>
-      <p>Este guia inclui:</p>
+
+      <h2 id="publicar-feature-branch">Publicar uma Feature Branch</h2>
+      <p>Para colaborar com outros desenvolvedores, publique a feature branch no repositório remoto.</p>
+      <pre><code>git flow feature publish &lt;nome-da-feature&gt;</code></pre>
       <ul>
-        <li>Comandos básicos para configurar repositórios.</li>
-        <li>Gerenciamento de branches.</li>
-        <li>Estágio e commit de alterações.</li>
-        <li>Resolução de conflitos.</li>
-      </ul>
-      <h3><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Powershell">Guia de PowerShell</a></h3>
-      <p>Este guia aborda:</p>
-      <ul>
-        <li>Navegação e gerenciamento de arquivos.</li>
-        <li>Trabalhando com scripts.</li>
-        <li>Comandos de monitoramento do sistema.</li>
-      </ul>
-      <h3><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/HyperV">Guia de PowerShell Hyper-V</a></h3>
-      <p>Este guia fornece:</p>
-      <ul>
-        <li>Gerenciamento de máquinas virtuais (VMs).</li>
-        <li>Configuração de redes.</li>
-        <li>Alocação de recursos para VMs.</li>
-      </ul>
-      <h3><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Ubuntu">Guia de Ubuntu</a></h3>
-      <p>Este guia apresenta:</p>
-      <ul>
-        <li>Gerenciamento básico de pacotes com <code>apt</code>.</li>
-        <li>Permissões de arquivos e gerenciamento de usuários.</li>
-        <li>Comandos de rede e monitoramento do sistema.</li>
-      </ul>
-      <h2>💡 Contribuindo</h2>
-      <p>Contribuições são bem-vindas! Para sugerir alterações ou adicionar novos guias:</p>
-      <ol>
-        <li>Faça um fork do repositório.</li>
         <li>
-          Crie uma nova branch:
-          <pre><code>git flow feature start [nome-da-feature]</code></pre>
+          <strong>Explicação:</strong>
+          <code>publish &lt;nome-da-feature&gt;</code> envia a feature branch para o repositório remoto para acesso por outros desenvolvedores.
         </li>
+      </ul>
+
+      <h2 id="criar-release-branch">Criar uma Release Branch</h2>
+      <p>Quando estiver pronto para uma nova versão, crie uma release branch a partir da <code>develop</code>.</p>
+      <pre><code>git flow release start &lt;versao&gt;</code></pre>
+      <ul>
+        <li><strong>Explicação:</strong> <code>start &lt;versao&gt;</code> cria uma nova branch de lançamento baseada na <code>develop</code>.</li>
+      </ul>
+
+      <h2 id="finalizar-release-branch">Finalizar uma Release Branch</h2>
+      <p>Após os testes, mescle a release branch nas branches <code>main</code> e <code>develop</code>, crie uma tag de versão e exclua-a.</p>
+      <pre><code>git flow release finish &lt;versao&gt;</code></pre>
+      <ul>
         <li>
-          Faça suas alterações e commit:
-          <pre><code>git commit -m "Adicionar novo guia para [ferramenta]"</code></pre>
+          <strong>Explicação:</strong> <code>finish &lt;versao&gt;</code> mescla a release branch nas branches <code>main</code> e <code>develop</code>, cria
+          uma tag de versão e exclui a release branch.
         </li>
+      </ul>
+
+      <h2 id="publicar-release-branch">Publicar uma Release Branch</h2>
+      <p>Para colaboração, publique a release branch antes de finalizá-la.</p>
+      <pre><code>git flow release publish &lt;versao&gt;</code></pre>
+      <ul>
+        <li><strong>Explicação:</strong> <code>publish &lt;versao&gt;</code> envia a release branch para o repositório remoto.</li>
+      </ul>
+
+      <h2 id="criar-hotfix-branch">Criar uma Hotfix Branch</h2>
+      <p>Para corrigir rapidamente um bug em produção, crie uma hotfix branch a partir da <code>main</code>.</p>
+      <pre><code>git flow hotfix start &lt;nome-do-hotfix&gt;</code></pre>
+      <ul>
         <li>
-          Envie para sua branch:
-          <pre><code>git flow feature finish [nome-da-feature]</code></pre>
+          <strong>Explicação:</strong>
+          <code>start &lt;nome-do-hotfix&gt;</code> cria uma nova branch de correção baseada na <code>main</code>.
         </li>
-        <li>Abra um pull request.</li>
-      </ol>
-      <h2>📄 Licença</h2>
-      <p>
-        Este repositório está licenciado sob a <a href="LICENSE">Licença MIT</a>. Sinta-se à vontade para usar, modificar e distribuir o conteúdo conforme
-        necessário.
-      </p>
-      <h2>📫 Contato</h2>
-      <p>
-        Para dúvidas ou feedback, abra uma issue no repositório ou entre em contato através do e-mail
-        <a href="mailto:emerson@nucleomap.com.br">emerson@nucleomap.com.br</a>.
-      </p>
+      </ul>
+
+      <h2 id="finalizar-hotfix-branch">Finalizar uma Hotfix Branch</h2>
+      <p>Após a correção, mescle a hotfix branch nas branches <code>main</code> e <code>develop</code>, crie uma tag de versão e exclua-a.</p>
+      <pre><code>git flow hotfix finish &lt;nome-do-hotfix&gt;</code></pre>
+      <ul>
+        <li>
+          <strong>Explicação:</strong>
+          <code>finish &lt;nome-do-hotfix&gt;</code> mescla a hotfix branch nas branches <code>main</code> e <code>develop</code>, cria uma tag de versão e
+          exclui a branch de correção.
+        </li>
+      </ul>
     </main>
     <footer class="l-footer">
-      <p>© 2024 - Todos os direitos reservados.</p>
+      <p>© 2024 Guia de Git - Todos os direitos reservados.</p>
     </footer>
   </body>
 
-  <script src="src/js/index.min.js"></script>
+  <script src="../../src/js/index.min.js"></script>
 </html>

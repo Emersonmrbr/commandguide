@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="src/css/style.min.css" media="screen" />
-    <link rel="icon" href="src/images/favicon.png" type="image/png" />
-    <title>Guia de Comandos</title>
+    <link rel="stylesheet" type="text/css" href="../../src/css/style.min.css" media="screen" />
+    <link rel="icon" href="../../src/images/favicon.png" type="image/png" />
+    <title>Terminal Comandos Básicos</title>
   </head>
 
   <body class="l-body">
     <header data-reactroot role="banner" class="l-header" js-sticky js-header>
-      <a href="index.html" aria-label="Home" class="c-logo js-logo-open-menu">
+      <a href="../../index.html" aria-label="Home" class="c-logo js-logo-open-menu">
         <svg js-sticky js-header class="c-logo__image js-logo-open-menu" viewBox="0 0 1921 380">
           <g class="c-logo__map">
             <path
@@ -62,37 +62,38 @@
       <nav js-sticky class="c-menu">
         <ul class="c-menu__list js-menu">
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="index.html" aria-label="Home">
+            <a class="c-link-frame c-link-skin" href="../../index.html" aria-label="Home">
               <span>home</span>
             </a>
           </li>
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="view/Git/index.html" aria-label="Git">
-              <span>git</span>
-            </a>
-          </li>
-          <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="view/Powershell/index.html" aria-label="Powershel">
+            <a class="c-link-frame c-link-skin" href="../Powershell/index.html" aria-label="Powershel">
               <span>powershel</span>
             </a>
           </li>
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="view/HyperV/index.html" aria-label="Hyper V">
+            <a class="c-link-frame c-link-skin" href="../Git/index.html" aria-label="Git">
+              <span>git</span>
+            </a>
+          </li>
+          <li class="c-menu__item">
+            <a class="c-link-frame c-link-skin" href="../HyperV/index.html" aria-label="Hyper V">
               <span>hyper v</span>
             </a>
           </li>
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="view/Ubuntu/index.html" aria-label="Ubuntu">
+            <a class="c-link-frame c-link-skin" href="../Ubuntu/index.html" aria-label="Ubuntu">
               <span>ubuntu</span>
             </a>
           </li>
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="view/Terminal/index.html" aria-label="Terminal">
+            <a class="c-link-frame c-link-skin" href="../Terminal/index.html" aria-label="Terminal">
               <span>terminal</span>
             </a>
           </li>
         </ul>
       </nav>
+
       <section js-sticky class="c-line-header">
         <svg class="c-line-header__full">
           <g js-sticky__straight-big class="c-line-header__item">
@@ -113,104 +114,144 @@
     </header>
 
     <div js-fake class="l-fake"></div>
+
     <script>
       document.querySelector('[js-fake]').style.height = document.querySelector('[js-header]').offsetHeight + 'px';
     </script>
 
     <main class="l-main">
-      <h1>Repositório de Guias de Comandos</h1>
-      <p>
-        Este repositório fornece guias básicos de comandos para diversas ferramentas e plataformas, incluindo <strong>Git</strong>, <strong>PowerShell</strong>,
-        <strong>PowerShell Hyper-V</strong> e <strong>Ubuntu</strong>. Cada guia está disponível como um arquivo HTML separado para facilitar o acesso e a
-        usabilidade. Para acessar a documentação completa, abra o arquivo <code>index.html</code> que está na raiz do repositório. Esse arquivo contém um índice
-        que leva aos outros arquivos de guias correspondentes.
-      </p>
-      <h2>📂 Estrutura do Repositório</h2>
-      <p>O repositório está organizado nos seguintes arquivos:</p>
-      <ul>
-        <li><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Git">Git: Contém comandos básicos para usar o Git.</a></li>
-        <li><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Powershell">PowerShell: Abrange comandos essenciais do PowerShell.</a></li>
-        <li>
-          <a href="https://github.com/Emersonmrbr/Commands/tree/main/src/HyperV"
-            >PowerShell Hyper-V: Inclui comandos específicos para gerenciar o Hyper-V através do PowerShell.</a
-          >
-        </li>
-        <li><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Ubuntu">Ubuntu: Lista comandos comuns para trabalhar com o Ubuntu.</a></li>
-      </ul>
-      <h2>🛠 Como Usar</h2>
-      <ol>
-        <li>
-          Clone o repositório para sua máquina local:
-          <pre><code>git clone git@github.com:Emersonmrbr/Commands.git</code></pre>
-        </li>
-        <li>
-          Abra o arquivo HTML desejado em um navegador para visualizar o guia:
-          <pre><code>open index.html</code></pre>
-        </li>
-      </ol>
-      <h2>📘 Visão Geral dos Guias</h2>
-      <h3><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Git">Guia de Git</a></h3>
-      <p>Este guia inclui:</p>
-      <ul>
-        <li>Comandos básicos para configurar repositórios.</li>
-        <li>Gerenciamento de branches.</li>
-        <li>Estágio e commit de alterações.</li>
-        <li>Resolução de conflitos.</li>
-      </ul>
-      <h3><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Powershell">Guia de PowerShell</a></h3>
-      <p>Este guia aborda:</p>
-      <ul>
-        <li>Navegação e gerenciamento de arquivos.</li>
-        <li>Trabalhando com scripts.</li>
-        <li>Comandos de monitoramento do sistema.</li>
-      </ul>
-      <h3><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/HyperV">Guia de PowerShell Hyper-V</a></h3>
-      <p>Este guia fornece:</p>
-      <ul>
-        <li>Gerenciamento de máquinas virtuais (VMs).</li>
-        <li>Configuração de redes.</li>
-        <li>Alocação de recursos para VMs.</li>
-      </ul>
-      <h3><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Ubuntu">Guia de Ubuntu</a></h3>
-      <p>Este guia apresenta:</p>
-      <ul>
-        <li>Gerenciamento básico de pacotes com <code>apt</code>.</li>
-        <li>Permissões de arquivos e gerenciamento de usuários.</li>
-        <li>Comandos de rede e monitoramento do sistema.</li>
-      </ul>
-      <h2>💡 Contribuindo</h2>
-      <p>Contribuições são bem-vindas! Para sugerir alterações ou adicionar novos guias:</p>
-      <ol>
-        <li>Faça um fork do repositório.</li>
-        <li>
-          Crie uma nova branch:
-          <pre><code>git flow feature start [nome-da-feature]</code></pre>
-        </li>
-        <li>
-          Faça suas alterações e commit:
-          <pre><code>git commit -m "Adicionar novo guia para [ferramenta]"</code></pre>
-        </li>
-        <li>
-          Envie para sua branch:
-          <pre><code>git flow feature finish [nome-da-feature]</code></pre>
-        </li>
-        <li>Abra um pull request.</li>
-      </ol>
-      <h2>📄 Licença</h2>
-      <p>
-        Este repositório está licenciado sob a <a href="LICENSE">Licença MIT</a>. Sinta-se à vontade para usar, modificar e distribuir o conteúdo conforme
-        necessário.
-      </p>
-      <h2>📫 Contato</h2>
-      <p>
-        Para dúvidas ou feedback, abra uma issue no repositório ou entre em contato através do e-mail
-        <a href="mailto:emerson@nucleomap.com.br">emerson@nucleomap.com.br</a>.
-      </p>
+      <h3 id="listar-diretorios">Listar diretórios</h3>
+      <p>Use o comando abaixo para listar todos os arquivos e pastas em um diretório:</p>
+      <pre><code>dir</code></pre>
+
+      <h3 id="mudar-diretorio">Mudar diretório</h3>
+      <p>Use o comando abaixo para mudar para um diretório específico:</p>
+      <pre><code>cd [nome-do-diretorio]</code></pre>
+
+      <h3 id="copiar-arquivos">Copiar arquivos</h3>
+      <p>Use o comando abaixo para copiar arquivos de um local para outro:</p>
+      <pre><code>copy [arquivo-fonte] [destino]</code></pre>
+
+      <h3 id="mover-arquivos">Mover arquivos</h3>
+      <p>Use o comando abaixo para mover arquivos de um local para outro:</p>
+      <pre><code>move [arquivo-fonte] [destino]</code></pre>
+
+      <h3 id="apagar-arquivos">Apagar arquivos</h3>
+      <p>Use o comando abaixo para deletar arquivos:</p>
+      <pre><code>del [nome-do-arquivo]</code></pre>
+
+      <h3 id="criar-diretorio">Criar diretório</h3>
+      <p>Use o comando abaixo para criar um novo diretório:</p>
+      <pre><code>mkdir [nome-do-diretorio]</code></pre>
+
+      <h3 id="renomear-arquivos">Renomear arquivos</h3>
+      <p>Use o comando abaixo para renomear arquivos:</p>
+      <pre><code>ren [nome-antigo] [nome-novo]</code></pre>
+
+      <h3 id="ver-informações-do-sistema">Ver informações do sistema</h3>
+      <p>Use o comando abaixo para exibir informações detalhadas sobre o sistema:</p>
+      <pre><code>systeminfo</code></pre>
+
+      <h3 id="limpar-tela">Limpar tela</h3>
+      <p>Use o comando abaixo para limpar a tela do terminal:</p>
+      <pre><code>cls</code></pre>
+
+      <h3 id="ver-endereço-ip">Ver endereço IP</h3>
+      <p>Use o comando abaixo para exibir informações sobre a rede, incluindo o endereço IP:</p>
+      <pre><code>ipconfig</code></pre>
+
+      <h3 id="testar-conexão">Testar conexão</h3>
+      <p>Use o comando abaixo para testar a conectividade com outro dispositivo na rede:</p>
+      <pre><code>ping [endereço]</code></pre>
+
+      <h3 id="traceroute">Ver rota de pacotes</h3>
+      <p>Use o comando abaixo para exibir a rota que os pacotes percorrem até um destino:</p>
+      <pre><code>tracert [endereço]</code></pre>
+
+      <h3 id="ver-tarefas-em-execução">Ver tarefas em execução</h3>
+      <p>Use o comando abaixo para exibir todas as tarefas em execução no sistema:</p>
+      <pre><code>tasklist</code></pre>
+
+      <h3 id="finalizar-tarefa">Finalizar tarefa</h3>
+      <p>Use o comando abaixo para finalizar uma tarefa específica:</p>
+      <pre><code>taskkill /IM [nome-do-processo] /F</code></pre>
+
+      <h3 id="chkdsk">Verificar e reparar disco</h3>
+      <p>Use o comando abaixo para verificar e reparar erros no disco:</p>
+      <pre><code>chkdsk</code></pre>
+
+      <h3 id="formatar-disco">Formatar disco</h3>
+      <p>Use o comando abaixo para formatar um disco:</p>
+      <pre><code>format [unidade:]</code></pre>
+
+      <h3 id="ver-tabelas-de-roteamento">Ver tabelas de roteamento</h3>
+      <p>Use o comando abaixo para exibir a tabela de roteamento da rede:</p>
+      <pre><code>route print</code></pre>
+
+      <h3 id="ver-compartilhamentos-de-rede">Ver compartilhamentos de rede</h3>
+      <p>Use o comando abaixo para exibir todos os compartilhamentos de rede no sistema:</p>
+      <pre><code>net share</code></pre>
+
+      <h3 id="sincronizar-horário">Sincronizar horário</h3>
+      <p>Use o comando abaixo para sincronizar o relógio do sistema com um servidor de horário:</p>
+      <pre><code>w32tm /resync</code></pre>
+
+      <h3 id="configurar-firewall">Configurar firewall</h3>
+      <p>Use o comando abaixo para configurar as regras do firewall do Windows:</p>
+      <pre><code>netsh advfirewall firewall</code></pre>
+
+      <h3 id="ver-espaco-em-disco">Ver espaço em disco</h3>
+      <p>Use o comando abaixo para exibir informações sobre o espaço em disco:</p>
+      <pre><code>wmic logicaldisk get size,freespace,caption</code></pre>
+
+      <h3 id="abrir-editor-de-registro">Abrir editor de registro</h3>
+      <p>Use o comando abaixo para abrir o Editor de Registro do Windows:</p>
+      <pre><code>regedit</code></pre>
+
+      <h3 id="abrir-gerenciador-de-tarefas">Abrir gerenciador de tarefas</h3>
+      <p>Use o comando abaixo para abrir o Gerenciador de Tarefas:</p>
+      <pre><code>taskmgr</code></pre>
+
+      <h3 id="ver-versao-do-windows">Ver versão do Windows</h3>
+      <p>Use o comando abaixo para exibir a versão do Windows:</p>
+      <pre><code>ver</code></pre>
+
+      <h3 id="desligar-sistema">Desligar sistema</h3>
+      <p>Use o comando abaixo para desligar o sistema:</p>
+      <pre><code>shutdown /s</code></pre>
+
+      <h3 id="reiniciar-sistema">Reiniciar sistema</h3>
+      <p>Use o comando abaixo para reiniciar o sistema:</p>
+      <pre><code>shutdown /r</code></pre>
+
+      <h3 id="ver-permissoes">Ver permissões de arquivos</h3>
+      <p>Use o comando abaixo para exibir as permissões de um arquivo:</p>
+      <pre><code>icacls [nome-do-arquivo]</code></pre>
+
+      <h3 id="alterar-permissoes">Alterar permissões de arquivos</h3>
+      <p>Use o comando abaixo para alterar as permissões de um arquivo:</p>
+      <pre><code>cacls [nome-do-arquivo] /P [usuário]:[permissões]</code></pre>
+
+      <h3 id="listar-conexoes-e-portas">Listar conexões e portas</h3>
+      <p>Use o comando abaixo para exibir conexões e portas:</p>
+      <pre><code>netstat -a</code></pre>
+
+      <h3 id="listar-conexoes-e-programas">Listar programas</h3>
+      <p>Use o comando abaixo para exibir programas que estão usando as conexões:</p>
+      <pre><code>netstat -b</code></pre>
+
+      <h3 id="listar-conexoes-em-forma-numerica">Listar conexões em forma numérica</h3>
+      <p>Use o comando abaixo para exibir conexões em forma numérica:</p>
+      <pre><code>netstat -n</code></pre>
+
+      <h3 id="ver-numero-serie-BIOS">Ver número de serie da BIOS</h3>
+      <p>Use o comando abaixo para exibir o número de serie da BIOS:</p>
+      <pre><code>wmic bios get serialnumber</code></pre>
     </main>
     <footer class="l-footer">
-      <p>© 2024 - Todos os direitos reservados.</p>
+      <p>© 2024 Guia de Terminal de Comando - Todos os direitos reservados.</p>
     </footer>
   </body>
 
-  <script src="src/js/index.min.js"></script>
+  <script src="../../src/js/index.min.js"></script>
 </html>

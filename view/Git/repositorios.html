@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="src/css/style.min.css" media="screen" />
-    <link rel="icon" href="src/images/favicon.png" type="image/png" />
-    <title>Guia de Comandos</title>
+    <link rel="stylesheet" type="text/css" href="../../src/css/style.min.css" media="screen" />
+    <link rel="icon" href="../../src/images/favicon.png" type="image/png" />
+    <title>Repositórios</title>
   </head>
 
   <body class="l-body">
     <header data-reactroot role="banner" class="l-header" js-sticky js-header>
-      <a href="index.html" aria-label="Home" class="c-logo js-logo-open-menu">
+      <a href="../../index.html" aria-label="Home" class="c-logo js-logo-open-menu">
         <svg js-sticky js-header class="c-logo__image js-logo-open-menu" viewBox="0 0 1921 380">
           <g class="c-logo__map">
             <path
@@ -62,32 +62,32 @@
       <nav js-sticky class="c-menu">
         <ul class="c-menu__list js-menu">
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="index.html" aria-label="Home">
+            <a class="c-link-frame c-link-skin" href="../../index.html" aria-label="Home">
               <span>home</span>
             </a>
           </li>
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="view/Git/index.html" aria-label="Git">
+            <a class="c-link-frame c-link-skin" href="../Git/index.html" aria-label="Git">
               <span>git</span>
             </a>
           </li>
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="view/Powershell/index.html" aria-label="Powershel">
+            <a class="c-link-frame c-link-skin" href="../Powershell/index.html" aria-label="Powershel">
               <span>powershel</span>
             </a>
           </li>
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="view/HyperV/index.html" aria-label="Hyper V">
+            <a class="c-link-frame c-link-skin" href="../HyperV/index.html" aria-label="Hyper V">
               <span>hyper v</span>
             </a>
           </li>
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="view/Ubuntu/index.html" aria-label="Ubuntu">
+            <a class="c-link-frame c-link-skin" href="../Ubuntu/index.html" aria-label="Ubuntu">
               <span>ubuntu</span>
             </a>
           </li>
           <li class="c-menu__item">
-            <a class="c-link-frame c-link-skin" href="view/Terminal/index.html" aria-label="Terminal">
+            <a class="c-link-frame c-link-skin" href="../Terminal/index.html" aria-label="Terminal">
               <span>terminal</span>
             </a>
           </li>
@@ -113,104 +113,77 @@
     </header>
 
     <div js-fake class="l-fake"></div>
+
     <script>
       document.querySelector('[js-fake]').style.height = document.querySelector('[js-header]').offsetHeight + 'px';
     </script>
 
     <main class="l-main">
-      <h1>Repositório de Guias de Comandos</h1>
+      <h1 id="trabalhando-com-repositorios">Trabalhando com Repositórios</h1>
+
+      <h3 id="inicializar-repositorio-git">Inicializar um Repositório Git</h3>
+      <pre><code>git init</code></pre>
+      <p>Inicializa um novo repositório Git no diretório atual, criando um repositório vazio para gerenciar o versionamento dos arquivos no local.</p>
+
+      <h3 id="verificar-estado-repositorio">Verificar o Estado do Repositório</h3>
+      <pre><code>git status</code></pre>
       <p>
-        Este repositório fornece guias básicos de comandos para diversas ferramentas e plataformas, incluindo <strong>Git</strong>, <strong>PowerShell</strong>,
-        <strong>PowerShell Hyper-V</strong> e <strong>Ubuntu</strong>. Cada guia está disponível como um arquivo HTML separado para facilitar o acesso e a
-        usabilidade. Para acessar a documentação completa, abra o arquivo <code>index.html</code> que está na raiz do repositório. Esse arquivo contém um índice
-        que leva aos outros arquivos de guias correspondentes.
+        Exibe o estado atual do repositório, indicando quais arquivos foram modificados, quais estão preparados para commit e quais ainda não estão rastreados
+        pelo Git.
       </p>
-      <h2>📂 Estrutura do Repositório</h2>
-      <p>O repositório está organizado nos seguintes arquivos:</p>
-      <ul>
-        <li><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Git">Git: Contém comandos básicos para usar o Git.</a></li>
-        <li><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Powershell">PowerShell: Abrange comandos essenciais do PowerShell.</a></li>
-        <li>
-          <a href="https://github.com/Emersonmrbr/Commands/tree/main/src/HyperV"
-            >PowerShell Hyper-V: Inclui comandos específicos para gerenciar o Hyper-V através do PowerShell.</a
-          >
-        </li>
-        <li><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Ubuntu">Ubuntu: Lista comandos comuns para trabalhar com o Ubuntu.</a></li>
-      </ul>
-      <h2>🛠 Como Usar</h2>
-      <ol>
-        <li>
-          Clone o repositório para sua máquina local:
-          <pre><code>git clone git@github.com:Emersonmrbr/Commands.git</code></pre>
-        </li>
-        <li>
-          Abra o arquivo HTML desejado em um navegador para visualizar o guia:
-          <pre><code>open index.html</code></pre>
-        </li>
-      </ol>
-      <h2>📘 Visão Geral dos Guias</h2>
-      <h3><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Git">Guia de Git</a></h3>
-      <p>Este guia inclui:</p>
-      <ul>
-        <li>Comandos básicos para configurar repositórios.</li>
-        <li>Gerenciamento de branches.</li>
-        <li>Estágio e commit de alterações.</li>
-        <li>Resolução de conflitos.</li>
-      </ul>
-      <h3><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Powershell">Guia de PowerShell</a></h3>
-      <p>Este guia aborda:</p>
-      <ul>
-        <li>Navegação e gerenciamento de arquivos.</li>
-        <li>Trabalhando com scripts.</li>
-        <li>Comandos de monitoramento do sistema.</li>
-      </ul>
-      <h3><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/HyperV">Guia de PowerShell Hyper-V</a></h3>
-      <p>Este guia fornece:</p>
-      <ul>
-        <li>Gerenciamento de máquinas virtuais (VMs).</li>
-        <li>Configuração de redes.</li>
-        <li>Alocação de recursos para VMs.</li>
-      </ul>
-      <h3><a href="https://github.com/Emersonmrbr/Commands/tree/main/src/Ubuntu">Guia de Ubuntu</a></h3>
-      <p>Este guia apresenta:</p>
-      <ul>
-        <li>Gerenciamento básico de pacotes com <code>apt</code>.</li>
-        <li>Permissões de arquivos e gerenciamento de usuários.</li>
-        <li>Comandos de rede e monitoramento do sistema.</li>
-      </ul>
-      <h2>💡 Contribuindo</h2>
-      <p>Contribuições são bem-vindas! Para sugerir alterações ou adicionar novos guias:</p>
-      <ol>
-        <li>Faça um fork do repositório.</li>
-        <li>
-          Crie uma nova branch:
-          <pre><code>git flow feature start [nome-da-feature]</code></pre>
-        </li>
-        <li>
-          Faça suas alterações e commit:
-          <pre><code>git commit -m "Adicionar novo guia para [ferramenta]"</code></pre>
-        </li>
-        <li>
-          Envie para sua branch:
-          <pre><code>git flow feature finish [nome-da-feature]</code></pre>
-        </li>
-        <li>Abra um pull request.</li>
-      </ol>
-      <h2>📄 Licença</h2>
+      <h1 id="trabalhando-com-repositórios-remotos">Trabalhando com Repositórios Remotos</h1>
+      <h3 id="vincular-um-repositório-local-a-um-repositório-remoto">Vincular um repositório local a um repositório remoto</h3>
+      <pre><code>git remote add origin [url-do-repositório]</code></pre>
+      <p>Associa um repositório remoto a um repositório local, permitindo o envio e recebimento de alterações.</p>
+      <h3 id="renomear-uma-branch">Renomear uma branch</h3>
+      <pre><code>git branch -m [novo-nome]</code></pre>
+      <p>Renomeia a branch atual. Esse comando pode ser útil para organizar ou corrigir erros nos nomes das branches.</p>
+      <h3 id="enviar-alterações-para-o-repositório-remoto">Enviar alterações para o repositório remoto</h3>
+      <pre><code>git push origin [branch]</code></pre>
+      <p>Envia as alterações da branch local para o repositório remoto, permitindo que outros colaboradores acessem as mudanças.</p>
+      <h3 id="baixar-alterações-do-repositório-remoto">Baixar alterações do repositório remoto</h3>
+      <pre><code>git pull origin [branch]</code></pre>
+      <p>Baixa as alterações da branch especificada do repositório remoto para o repositório local.</p>
+      <h3 id="obter-informações-do-repositório-remoto">Obter informações sobre o repositório remoto</h3>
+      <pre><code>git remote -v</code></pre>
+      <p>Exibe as informações do repositório remoto associado ao repositório local, como a URL do repositório.</p>
+      <h3 id="remover-um-repositório-remoto">Remover um repositório remoto</h3>
+      <pre><code>git remote remove [nome-do-repositório]</code></pre>
+      <p>Remove um repositório remoto associado ao repositório local, caso não seja mais necessário.</p>
+      <h3 id="sincronizar-branch-local-com-remoto">Sincronizar branch local com o repositório remoto</h3>
+      <pre><code>git fetch origin [branch]</code></pre>
       <p>
-        Este repositório está licenciado sob a <a href="LICENSE">Licença MIT</a>. Sinta-se à vontade para usar, modificar e distribuir o conteúdo conforme
-        necessário.
+        Baixa as alterações de um repositório remoto sem integrar essas mudanças ao repositório local. Isso ajuda a verificar o estado remoto sem afetar o
+        repositório local.
       </p>
-      <h2>📫 Contato</h2>
+      <h3 id="clonar-um-repositório-remoto">Clonar um repositório remoto</h3>
+      <pre><code>git clone [url-do-repositório]</code></pre>
+      <p>Cria uma cópia local de um repositório remoto, incluindo seu histórico de commits e branches.</p>
+      <h2 id="gerenciamento-de-conflitos">Gerenciamento de Conflitos</h2>
+      <h3 id="detectar-conflitos">Detectar conflitos de merge</h3>
+      <pre><code>git merge [branch]</code></pre>
       <p>
-        Para dúvidas ou feedback, abra uma issue no repositório ou entre em contato através do e-mail
-        <a href="mailto:emerson@nucleomap.com.br">emerson@nucleomap.com.br</a>.
+        Quando você tenta fazer o merge de uma branch em outra, pode haver conflitos, que são alterações incompatíveis. O Git irá alertá-lo e marcar os arquivos
+        com conflitos. Você precisará editar os arquivos para resolver os conflitos antes de realizar o commit.
+      </p>
+      <h3 id="resolver-conflitos-de-merge">Resolver conflitos de merge</h3>
+      <p>
+        Após detectar conflitos, abra os arquivos afetados e procure pelas marcações do Git que indicam as áreas conflitantes. Resolva o conflito manualmente e
+        remova as marcações. Após isso, adicione os arquivos ao índice e faça o commit.
+      </p>
+      <pre><code>git add [arquivo]</code></pre>
+      <pre><code>git commit</code></pre>
+      <h3 id="cancelar-um-merge">Cancelar um merge em andamento</h3>
+      <pre><code>git merge --abort</code></pre>
+      <p>
+        Se você decidir que o merge não é necessário ou que não deseja continuar devido a conflitos, pode cancelar o processo de merge e voltar ao estado
+        anterior.
       </p>
     </main>
     <footer class="l-footer">
-      <p>© 2024 - Todos os direitos reservados.</p>
+      <p>© 2024 Guia de Git - Todos os direitos reservados.</p>
     </footer>
   </body>
 
-  <script src="src/js/index.min.js"></script>
+  <script src="../../src/js/index.min.js"></script>
 </html>
