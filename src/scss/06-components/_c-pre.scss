@@ -1,0 +1,20 @@
+$component-name: 'c-pre';
+
+.#{$component-name} {
+  background-color: var(--color-background);
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+  overflow-x: auto;
+  &[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: var(--color-background);
+    color: #fff;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 12px;
+    transform: translateY(-20px);
+  }
+}
