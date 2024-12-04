@@ -1,0 +1,106 @@
+﻿@page "/git/stash"
+@inject IJSRuntime JSRuntime
+@inject ISnackbar Snackbar
+
+<MudAlert Severity="Severity.Info">
+    Comando git stash
+</MudAlert>
+
+<MudText Typo="Typo.body1">
+    O comando <code>git stash</code> é usado para armazenar temporariamente alterações no seu diretório de trabalho (working directory) que ainda não foram commitadas. Ele permite que você "guarde" essas mudanças em uma "pilha" (stash) para que você possa retornar a um estado limpo do repositório e, mais tarde, recuperar essas alterações quando necessário.
+</MudText>
+
+<MudText Typo="Typo.h6">
+    Quando Usar <code>git stash</code>?
+</MudText>
+
+<MudText Typo="Typo.body1">
+    É útil quando você está trabalhando em uma funcionalidade ou correção de bug, mas precisa interromper seu trabalho temporariamente (por exemplo, para mudar de branch ou atualizar seu repositório local), mas não quer fazer um commit ainda. O <code>git stash</code> permite que você volte para um estado limpo do repositório e depois recupere as alterações quando for conveniente.
+</MudText>
+
+<MudText Typo="Typo.h6">
+    Como Funciona o <code>git stash</code>?
+</MudText>
+
+@foreach (var card in cardContents)
+{
+    <MudCard Elevation="25">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">@card.Title</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent Style="@($"color:{Colors.Gray.Darken4}; background:{Colors.Gray.Lighten5};")">
+            <MudIconButton Icon="@Icons.Material.Filled.FileCopy" Color="Color.Default" OnClick='()=>CopyText(card.Command)' />
+            <MudText HtmlTag="code">@card.Command</MudText>
+        </MudCardContent>
+        <MudCardContent>
+            <MudText Typo="Typo.body2">@card.Description</MudText>
+        </MudCardContent>
+        <MudSpacer />
+    </MudCard>
+
+    <MudDivider />
+}
+
+<MudText Typo="Typo.h6">
+    Exemplo de Fluxo de Trabalho com <code>git stash</code>:
+</MudText>
+
+<MudList T="string" ReadOnly="true">
+    <MudListItem Text="Você está em uma branch de desenvolvimento e fez algumas alterações que ainda não quer commitar." Icon="@Icons.Material.Filled.StarRate" />
+    <MudDivider />
+    <MudText Typo="Typo.body1">
+        Você precisa mudar para outra branch rapidamente, então usa:
+        <pre><code>git stash</code></pre>
+    </MudText>
+    <MudDivider />
+
+    <MudListItem Text="Após terminar o trabalho na outra branch, você pode retornar à branch original e aplicar as mudanças armazenadas:" Icon="@Icons.Material.Filled.StarRate" />
+    <MudDivider />
+    <MudText Typo="Typo.body1">
+        <pre><code>git stash pop</code></pre>
+    </MudText>
+    <MudDivider />
+</MudList>
+
+<MudText Typo="Typo.body1">
+    O <code>git stash</code> é uma ferramenta poderosa para gerenciar mudanças temporárias, permitindo que você seja flexível e trabalhe de maneira mais eficiente sem perder seu progresso em andamento.
+</MudText>
+
+@code {
+
+    List<CardContent> cardContents = new()
+    {
+        new (){Title = "Salvar Alterações em Stash", Command="git stash", Description= "Salva temporariamente todas as alterações no diretório de trabalho e no staging, permitindo que você trabalhe em outra coisa sem perder seu progresso atual."},
+        new (){Title = "Listar Stashes", Command="git stash list", Description= "Exibe uma lista de todas as stashes salvas, mostrando informações como a mensagem, o hash e a referência do stash."},
+        new (){Title = "Aplicar Stash Mais Recente", Command="git stash apply", Description= "Aplica o stash mais recente ao diretório de trabalho atual, mantendo o stash na lista."},
+        new (){Title = "Aplicar Stash por Nome", Command="git stash apply [stash@{n}]", Description= "Aplica um stash específico ao diretório de trabalho atual, mantendo o stash na lista."},
+        new (){Title = "Aplicar e Remover Stash Mais Recente", Command="git stash pop", Description= "Aplica o stash mais recente ao diretório de trabalho atual e remove-o da lista de stashes."},
+        new (){Title = "Aplicar e Remover Stash por Nome", Command="git stash pop [stash@{n}]", Description= "Aplica um stash específico ao diretório de trabalho atual e remove-o da lista de stashes."},
+        new (){Title = "Remover Stash Específico", Command="git stash drop [stash@{n}]", Description= "Remove um stash específico da lista de stashes, sem aplicá-lo."},
+        new (){Title = "Remover Todos os Stashes", Command="git stash clear", Description= "Remove todos os stashes salvos da lista, sem aplicá-los."},
+        new (){Title = "Criar Stash com Mensagem", Command="git stash save \"mensagem\"", Description= "Salva as alterações em um novo stash com uma mensagem descritiva para fácil identificação."},
+        new (){Title = "Criar Stash de Arquivos Não Rastreáveis", Command="git stash -u", Description= "Salva temporariamente todas as alterações, incluindo arquivos não rastreados, permitindo que você trabalhe em outra coisa sem perder seu progresso atual."},
+        new (){Title = "Criar Stash de Arquivos Ignorados", Command="git stash -a", Description= "Salva temporariamente todas as alterações, incluindo arquivos ignorados, permitindo que você trabalhe em outra coisa sem perder seu progresso atual."},
+        new (){Title = "Mostrar Diferenças de um Stash", Command="git stash show [stash@{n}]", Description= "Mostra as diferenças entre o stash especificado e o estado atual do diretório de trabalho."},
+        new (){Title = "Mostrar Diferenças Detalhadas de um Stash", Command="git stash show -p [stash@{n}]", Description= "Mostra as diferenças detalhadas entre o stash especificado e o estado atual do diretório de trabalho."},
+
+
+    };
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopEnd;
+        Snackbar.Configuration.VisibleStateDuration = 1000;
+        Snackbar.Configuration.HideTransitionDuration = 100;
+        Snackbar.Configuration.ShowTransitionDuration = 1000;
+        Snackbar.Add($"[ {command} ] Copied!");
+    }
+}

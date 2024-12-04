@@ -1,0 +1,57 @@
+﻿@page "/git/basico"
+@inject IJSRuntime JSRuntime
+@inject ISnackbar Snackbar
+
+<MudAlert Severity="Severity.Info">
+    Comandos Básicos
+</MudAlert>
+
+@foreach (var card in cardContents)
+{
+    <MudCard Elevation="25">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">@card.Title</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent Style="@($"color:{Colors.Gray.Darken4}; background:{Colors.Gray.Lighten5};")">
+            <MudIconButton Icon="@Icons.Material.Filled.FileCopy" Color="Color.Default" OnClick='()=>CopyText(card.Command)' />
+            <MudText HtmlTag="code">@card.Command</MudText>
+        </MudCardContent>
+        <MudCardContent>
+            <MudText Typo="Typo.body2">@card.Description</MudText>
+        </MudCardContent>
+        <MudSpacer />
+    </MudCard>
+
+    <MudDivider />
+}
+
+@code {
+
+    List<CardContent> cardContents = new()
+    {
+        new (){Title = "Obter Versão do Git", Command="git --version", Description= "Exibe a versão do Git instalada no sistema, útil para confirmar a instalação e verificar a versão atual."},
+        new (){Title = "Obter Ajuda sobre Comandos do Git", Command="git --help", Description= "Lista os comandos disponíveis no Git e abre o manual de ajuda detalhando o uso de cada comando. Pode ser seguido por um comando específico, como git help commit, para exibir ajuda desse comando."},
+        new (){Title = "Listar Configurações Globais", Command="git config --global --list", Description= "Exibe todas as configurações globais definidas no sistema, como nome de usuário e email, permitindo verificar a aplicação dessas configurações."},
+        new (){Title = "Configurações de Usuário", Command="git config --global user.name \"Seu Nome\"", Description= "Define o nome e o email que aparecerão nos commits feitos neste sistema. Essas configurações são essenciais para rastrear a autoria dos commits, associando-as aos commits sempre que o Git for usado neste computador."},
+        new (){Title = "Configurações de Usuário", Command="git config --global user.email \"seuemail@exemplo.com\"", Description= "Define o nome e o email que aparecerão nos commits feitos neste sistema. Essas configurações são essenciais para rastrear a autoria dos commits, associando-as aos commits sempre que o Git for usado neste computador."},
+        new (){Title = "Definir VSCode como Editor Padrão", Command="git config --global core.editor \"code --wait\"", Description= "Define o VSCode como editor padrão para editar mensagens de commit e outros conteúdos solicitados pelo Git. O argumento --wait instrui o Git a aguardar o fechamento do editor antes de prosseguir."},
+
+    };
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopEnd;
+        Snackbar.Configuration.VisibleStateDuration = 1000;
+        Snackbar.Configuration.HideTransitionDuration = 100;
+        Snackbar.Configuration.ShowTransitionDuration = 1000;
+        Snackbar.Add($"[ {command} ] Copied!");
+    }
+}

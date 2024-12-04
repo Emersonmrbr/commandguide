@@ -1,0 +1,95 @@
+﻿@page "/git/fork"
+@inject IJSRuntime JSRuntime
+@inject ISnackbar Snackbar
+
+<MudAlert Severity="Severity.Info">
+    Comando fork
+</MudAlert>
+<MudText Typo="Typo.body1">
+    O <code>fork</code> não é um comando Git propriamente dito, mas sim uma funcionalidade oferecida por plataformas como GitHub, GitLab e Bitbucket. Ele permite criar uma cópia de um repositório de outro usuário na sua conta, mantendo o vínculo com o repositório original.
+</MudText>
+
+<MudDivider />
+
+<MudCard Elevation="25">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">Quando usar?</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudText Typo="Typo.body2">Quando você deseja contribuir para um projeto de terceiros sem acesso direto de escrita.</MudText>
+    </MudCardContent>
+    <MudCardContent>
+        <MudText Typo="Typo.body2">Para iniciar uma versão personalizada de um projeto, mantendo uma conexão com o repositório original para possíveis futuras sincronizações.</MudText>
+    </MudCardContent>
+    <MudSpacer />
+</MudCard>
+
+<MudDivider />
+
+<MudText Typo="Typo.h6">
+    <strong>Passos comuns após realizar o fork:</strong>
+</MudText>
+@foreach (var card in cardContents)
+{
+    <MudCard Elevation="25">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">@card.Title</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent Style="@($"color:{Colors.Gray.Darken4}; background:{Colors.Gray.Lighten5};")">
+            <MudIconButton Icon="@Icons.Material.Filled.FileCopy" Color="Color.Default" OnClick='()=>CopyText(card.Command)' />
+            <MudText HtmlTag="code">@card.Command</MudText>
+        </MudCardContent>
+        <MudCardContent>
+            <MudText Typo="Typo.body2">@card.Description</MudText>
+        </MudCardContent>
+        <MudSpacer />
+    </MudCard>
+
+    <MudDivider />
+
+    <MudCard Elevation="25">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">Abrir um Pull Request</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudText Typo="Typo.body2">No GitHub, abra um pull request do seu repositório fork para o repositório original, solicitando a integração das suas alterações.</MudText>
+        </MudCardContent>
+        <MudSpacer />
+    </MudCard>
+}
+
+@code {
+
+    List<CardContent> cardContents = new()
+    {
+new (){Title = "Clonar o Repositório Fork", Command="git clone <url-do-seu-fork>", Description= "Clona o repositório fork para sua máquina local."},
+new (){Title = "Configurar o Repositório Original como Upstream", Command="git remote add upstream <url-do-repositorio-original>", Description= "Adiciona o repositório original (upstream) como uma remote para manter o fork atualizado com as mudanças do repositório original."},
+new (){Title = "Buscar Atualizações do Repositório Upstream", Command="git fetch upstream", Description= "Busca as atualizações do repositório upstream."},
+new (){Title = "Mesclar Atualizações do Upstream na sua Branch Principal", Command="git checkout main\ngit merge upstream/main", Description= "Mescla as atualizações do repositório upstream na sua branch principal."},
+new (){Title = "Criar uma Nova Branch para Fazer Alterações", Command="git checkout -b minha-nova-branch", Description= "Cria uma nova branch para realizar suas alterações."},
+new (){Title = "Fazer Alterações no Código", Command="", Description= "Faça as alterações necessárias no código no seu ambiente local."},
+new (){Title = "Adicionar e Comitar as Alterações", Command="git add .\ngit commit -m \"Descrição das alterações\"", Description= "Adiciona e comita as alterações feitas no código."},
+new (){Title = "Enviar as Alterações para o Repositório Fork", Command="git push origin minha-nova-branch", Description= "Envia as alterações para o seu repositório fork no GitHub."},
+    };
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopEnd;
+        Snackbar.Configuration.VisibleStateDuration = 1000;
+        Snackbar.Configuration.HideTransitionDuration = 100;
+        Snackbar.Configuration.ShowTransitionDuration = 1000;
+        Snackbar.Add($"[ {command} ] Copied!");
+    }
+}
