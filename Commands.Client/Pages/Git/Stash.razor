@@ -6,17 +6,28 @@
     Comando git stash
 </MudAlert>
 
-<MudText Typo="Typo.body1">
-    O comando <code>git stash</code> é usado para armazenar temporariamente alterações no seu diretório de trabalho (working directory) que ainda não foram commitadas. Ele permite que você "guarde" essas mudanças em uma "pilha" (stash) para que você possa retornar a um estado limpo do repositório e, mais tarde, recuperar essas alterações quando necessário.
-</MudText>
+<MudCard Elevation="25">
+    <MudCardContent>
+        <MudText Typo="Typo.body1">
+            O comando <code>git stash</code> é usado para armazenar temporariamente alterações no seu diretório de trabalho (working directory) que ainda não foram commitadas. Ele permite que você "guarde" essas mudanças em uma "pilha" (stash) para que você possa retornar a um estado limpo do repositório e, mais tarde, recuperar essas alterações quando necessário.
+        </MudText>
+    </MudCardContent>
+    <MudSpacer />
+</MudCard>
 
-<MudText Typo="Typo.h6">
-    Quando Usar <code>git stash</code>?
-</MudText>
-
-<MudText Typo="Typo.body1">
-    É útil quando você está trabalhando em uma funcionalidade ou correção de bug, mas precisa interromper seu trabalho temporariamente (por exemplo, para mudar de branch ou atualizar seu repositório local), mas não quer fazer um commit ainda. O <code>git stash</code> permite que você volte para um estado limpo do repositório e depois recupere as alterações quando for conveniente.
-</MudText>
+<MudCard Elevation="25">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">Quando Usar <code>git stash</code>?</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudText Typo="Typo.body2">
+            É útil quando você está trabalhando em uma funcionalidade ou correção de bug, mas precisa interromper seu trabalho temporariamente (por exemplo, para mudar de branch ou atualizar seu repositório local), mas não quer fazer um commit ainda. O <code>git stash</code> permite que você volte para um estado limpo do repositório e depois recupere as alterações quando for conveniente.
+        </MudText>
+    </MudCardContent>
+    <MudSpacer />
+</MudCard>
 
 <MudText Typo="Typo.h6">
     Como Funciona o <code>git stash</code>?

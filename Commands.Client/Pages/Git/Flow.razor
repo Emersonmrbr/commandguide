@@ -3,33 +3,51 @@
 @inject ISnackbar Snackbar
 
 <MudAlert Severity="Severity.Info">
-    Estratégia Git Flow
+    Estratégia Git Flow / Componentes do Git Flow
 </MudAlert>
 
-<MudText Typo="Typo.h6" GutterBottom="true">Componentes do Git Flow</MudText>
 
-<MudText Typo="Typo.h6" GutterBottom="true">Branches Principais</MudText>
-<MudList T="string" ReadOnly="true">
-    <MudListItem>
-        <strong>main</strong>: Branch principal contendo o código estável e pronto para produção.
-    </MudListItem>
-    <MudListItem>
-        <strong>develop</strong>: Branch de desenvolvimento com o código mais recente para integração e testes. É a base para novas funcionalidades.
-    </MudListItem>
-</MudList>
+<MudCard Elevation="25">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">Branches Principais</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudList T="string" ReadOnly="true">
+            <MudListItem>
+                <strong>main</strong>: Branch principal contendo o código estável e pronto para produção.
+            </MudListItem>
+            <MudListItem>
+                <strong>develop</strong>: Branch de desenvolvimento com o código mais recente para integração e testes. É a base para novas funcionalidades.
+            </MudListItem>
+        </MudList>
+    </MudCardContent>
+    <MudSpacer />
+</MudCard>
 
-<MudText Typo="Typo.h6" GutterBottom="true">Branches de Suporte</MudText>
-<MudList T="string" ReadOnly="true">
-    <MudListItem>
-        <strong>Feature Branches:</strong> Destinadas ao desenvolvimento de novas funcionalidades, partem de <code>develop</code> e, ao final, são mescladas de volta em <code>develop</code>.
-    </MudListItem>
-    <MudListItem>
-        <strong>Release Branches:</strong> Utilizadas para preparação de versões de produção. Partem de <code>develop</code> e, quando prontas, são mescladas em <code>main</code> e <code>develop</code>.
-    </MudListItem>
-    <MudListItem>
-        <strong>Hotfix Branches:</strong> Criadas para corrigir bugs críticos em produção. Partem de <code>main</code> e, ao final, são mescladas em <code>main</code> e <code>develop</code>.
-    </MudListItem>
-</MudList>
+<MudCard Elevation="25">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">Branches de Suporte</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudList T="string" ReadOnly="true">
+            <MudListItem>
+                <strong>Feature Branches:</strong> Destinadas ao desenvolvimento de novas funcionalidades, partem de <code>develop</code> e, ao final, são mescladas de volta em <code>develop</code>.
+            </MudListItem>
+            <MudListItem>
+                <strong>Release Branches:</strong> Utilizadas para preparação de versões de produção. Partem de <code>develop</code> e, quando prontas, são mescladas em <code>main</code> e <code>develop</code>.
+            </MudListItem>
+            <MudListItem>
+                <strong>Hotfix Branches:</strong> Criadas para corrigir bugs críticos em produção. Partem de <code>main</code> e, ao final, são mescladas em <code>main</code> e <code>develop</code>.
+            </MudListItem>
+        </MudList>
+    </MudCardContent>
+    <MudSpacer />
+</MudCard>
+
 
 <MudAlert Severity="Severity.Info">
     Comandos do Git Flow
@@ -62,13 +80,24 @@
         new (){Title = "Iniciar o Git Flow em um Repositório", Command="git flow init", Description= "Inicializa o Git Flow no repositório atual, configurando as branches principais (main e develop) e permitindo a personalização de nomes e parâmetros."},
         new (){Title = "Criar uma Branch de Funcionalidade (Feature)", Command="git flow feature start [nome-da-feature]", Description= "Cria uma nova branch de funcionalidade a partir de develop para o desenvolvimento de novas funcionalidades."},
         new (){Title = "Finalizar uma Branch de Funcionalidade (Feature)", Command="git flow feature finish [nome-da-feature]", Description= "Mescla a branch de funcionalidade de volta em develop e a deleta."},
-        new (){Title = "Publicar uma Branch de Funcionalidade (Feature)", Command="git flow feature publish [nome-da-feature]", Description= "Publica a branch de funcionalidade em um repositório remoto para colaboração com outros desenvolvedores."},
-        new (){Title = "Obter uma Branch de Funcionalidade Publicada", Command="git flow feature pull origin [nome-da-feature]", Description= "Obtem uma branch de funcionalidade publicada a partir do repositório remoto para o repositório local."},
         new (){Title = "Criar uma Branch de Release", Command="git flow release start [versão]", Description= "Cria uma branch de release a partir de develop para preparar uma nova versão de produção."},
         new (){Title = "Finalizar uma Branch de Release", Command="git flow release finish [versão]", Description= "Mescla a branch de release em main e develop, marca uma tag de versão em main, e deleta a branch de release."},
-        new (){Title = "Publicar uma Branch de Release", Command="git flow release publish [versão]", Description= "Publica a branch de release em um repositório remoto para colaboração."},
         new (){Title = "Criar uma Branch de Hotfix", Command="git flow hotfix start [versão]", Description= "Cria uma branch de hotfix a partir de main para corrigir bugs críticos em produção."},
         new (){Title = "Finalizar uma Branch de Hotfix", Command="git flow hotfix finish [versão]", Description= "Mescla a branch de hotfix em main e develop, marca uma tag de versão em main, e deleta a branch de hotfix."},
+        new (){Title = "Mesclar Atualizações do Upstream na Branch Principal", Command="git merge upstream/main", Description= "Mescla as atualizações do repositório upstream na branch principal do repositório fork."},
+        new (){Title = "Reverter um Commit Específico", Command="git revert [commit-hash]", Description= "Cria um novo commit que desfaz as alterações de um commit específico, mantendo o histórico de commits intacto."},
+        new (){Title = "Resetar Diretório de Trabalho para um Commit Específico", Command="git reset --hard [commit-hash]", Description= "Reseta o diretório de trabalho para o estado de um commit específico, descartando todas as mudanças feitas após aquele commit."},
+        new (){Title = "Criar e Aplicar um Stash", Command="git stash push -m \"mensagem\"", Description= "Salva temporariamente todas as alterações no diretório de trabalho com uma mensagem descritiva e as aplica depois com git stash apply."},
+        new (){Title = "Listar todos os Stashes", Command="git stash list", Description= "Exibe uma lista de todos os stashes salvos, com informações como a mensagem, o hash e a referência do stash."},
+        new (){Title = "Mesclar uma Branch", Command="git merge [nome-da-branch]", Description= "Mescla a branch especificada com a branch atual, combinando o trabalho de diferentes branches."},
+        new (){Title = "Iniciar um Rebase Interativo", Command="git rebase -i [base]", Description= "Inicia um rebase interativo, permitindo reorganizar, editar ou combinar commits a partir da base especificada."},
+        new (){Title = "Abortar um Rebase em Andamento", Command="git rebase --abort", Description= "Aborta um rebase em andamento, revertendo o diretório de trabalho ao estado anterior ao início do rebase."},
+        new (){Title = "Adicionar Arquivos ao Staging", Command="git add [arquivo]", Description= "Adiciona o arquivo especificado ao staging, preparando-o para o commit."},
+        new (){Title = "Comitar Arquivos no Staging", Command="git commit -m \"mensagem do commit\"", Description= "Cria um novo commit com os arquivos no staging, utilizando a mensagem fornecida."},
+        new (){Title = "Verificar o Status do Repositório", Command="git status", Description= "Exibe o status do diretório de trabalho e do staging, mostrando mudanças feitas e arquivos prontos para commit."},
+        new (){Title = "Visualizar o Histórico de Commits", Command="git log", Description= "Exibe o histórico de commits do repositório, mostrando cada commit com seu hash, autor, data e mensagem de commit."},
+        new (){Title = "Restaurar Arquivos Modificados para o Último Commit", Command="git checkout -- [arquivo]", Description= "Restaura o arquivo modificado para o estado do último commit, descartando todas as mudanças não commitadas."},
+
     };
     public class CardContent()
     {
