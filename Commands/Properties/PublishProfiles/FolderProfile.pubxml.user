@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\emers\source\repos\Commands\Commands\bin\Release\net8.0\publish\</_PublishTargetUrl>
-    <History>True|2024-12-04T22:20:15.5273322Z||;True|2024-12-04T18:16:06.8125326-03:00||;True|2024-12-04T18:14:54.4942521-03:00||;True|2024-12-04T18:11:00.6794163-03:00||;</History>
+    <History>True|2024-12-05T10:27:12.8611155Z||;True|2024-12-04T19:20:15.5273322-03:00||;True|2024-12-04T18:16:06.8125326-03:00||;True|2024-12-04T18:14:54.4942521-03:00||;True|2024-12-04T18:11:00.6794163-03:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>
