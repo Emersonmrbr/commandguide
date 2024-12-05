@@ -51,6 +51,87 @@
 <MudAlert Severity="Severity.Info">
     Sequencia do Git Flow
 </MudAlert>
+
+<MudCard Elevation="25">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">1. Inicialização do Git Flow</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudText Typo="Typo.body2">Inicializa o Git Flow no repositório configurando as branches principais (<code>main</code> e <code>develop</code>). Essa etapa é crucial para estruturar o repositório para uso do Git Flow.</MudText>
+    </MudCardContent>
+    <MudSpacer />
+</MudCard>
+
+<MudCard Elevation="25">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">2. Desenvolvimento de Funcionalidade (Feature)</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudText Typo="Typo.body2"><strong>Criação da Branch de Funcionalidade:</strong> Crie uma nova branch de funcionalidade a partir da branch <code>develop</code>. Esta nova branch é utilizada exclusivamente para desenvolver uma nova funcionalidade.</MudText>
+        <MudText Typo="Typo.body2"><strong>Desenvolvimento e Commits:</strong> Realize o desenvolvimento da funcionalidade, fazendo commits regulares para salvar o progresso. Isso mantém as alterações organizadas e rastreáveis.</MudText>
+        <MudText Typo="Typo.body2"><strong>Finalização da Funcionalidade:</strong> Quando a funcionalidade estiver completa e testada, finalize a branch de funcionalidade, mesclando-a de volta em <code>develop</code> e deletando a branch de funcionalidade.</MudText>
+    </MudCardContent>
+    <MudSpacer />
+</MudCard>
+
+<MudCard Elevation="25">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">3. Preparação de Release</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudText Typo="Typo.body2"><strong>Criação da Branch de Release:</strong> Quando uma série de funcionalidades estiver pronta para lançamento, crie uma branch de release a partir de <code>develop</code>. Esta branch é usada para ajustes finais e testes.</MudText>
+        <MudText Typo="Typo.body2"><strong>Ajustes e Testes:</strong> Realize ajustes necessários, correções de bugs e testes para garantir que a release esteja pronta para produção.</MudText>
+        <MudText Typo="Typo.body2"><strong>Finalização da Release:</strong> Quando a release estiver pronta, finalize-a, mesclando a branch de release em <code>main</code> e <code>develop</code>, marcando uma tag de versão em <code>main</code> e deletando a branch de release.</MudText>
+    </MudCardContent>
+    <MudSpacer />
+</MudCard>
+
+<MudCard Elevation="25">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">4. Correções de Bug de Produção (Hotfix)</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudText Typo="Typo.body2"><strong>Criação da Branch de Hotfix:</strong> Quando um bug crítico é encontrado em produção, crie uma branch de hotfix a partir de <code>main</code>. Isso permite que a correção seja desenvolvida e lançada rapidamente.</MudText>
+        <MudText Typo="Typo.body2"><strong>Desenvolvimento e Commits:</strong> Realize a correção do bug, fazendo commits regulares para salvar o progresso.</MudText>
+        <MudText Typo="Typo.body2"><strong>Finalização da Hotfix:</strong> Quando a correção estiver completa, finalize a branch de hotfix, mesclando-a em <code>main</code> e <code>develop</code>, marcando uma tag de versão em <code>main</code> e deletando a branch de hotfix.</MudText>
+    </MudCardContent>
+    <MudSpacer />
+</MudCard>
+
+<MudCard Elevation="25">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">Ciclo Contínuo</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudText Typo="Typo.body2"><strong>Repetição do Ciclo:</strong> O ciclo de desenvolvimento do Git Flow é repetitivo e contínuo. Após a finalização de uma release ou hotfix, o ciclo reinicia com a criação de novas funcionalidades, seguido de preparação de novas releases e correções de bugs conforme necessário.</MudText>
+    </MudCardContent>
+    <MudSpacer />
+</MudCard>
+
+<MudCard Elevation="25">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">Benefícios do Git Flow</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudText Typo="Typo.body2"><strong>Organização:</strong> Mantém o desenvolvimento organizado com branches claras e definidas para diferentes etapas do ciclo de vida do software.</MudText>
+        <MudText Typo="Typo.body2"><strong>Isolamento:</strong> Garante que novas funcionalidades e correções de bugs sejam desenvolvidas de forma isolada, minimizando conflitos de merge e mantendo a estabilidade do código.</MudText>
+        <MudText Typo="Typo.body2"><strong>Histórico Claro:</strong> Facilita a visualização do histórico de desenvolvimento com commits e tags bem definidos, permitindo um acompanhamento preciso do progresso do projeto.</MudText>
+    </MudCardContent>
+    <MudSpacer />
+</MudCard>
+
 @foreach (var card in cardSequenciaGitFlow)
 {
     <MudCard Elevation="25">
@@ -71,6 +152,8 @@
 
     <MudDivider />
 }
+
+
 
 
 <MudAlert Severity="Severity.Info">
