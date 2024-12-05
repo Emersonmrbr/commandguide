@@ -48,6 +48,30 @@
     <MudSpacer />
 </MudCard>
 
+<MudAlert Severity="Severity.Info">
+    Sequencia do Git Flow
+</MudAlert>
+@foreach (var card in cardSequenciaGitFlow)
+{
+    <MudCard Elevation="25">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">@card.Title</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent Style="@($"color:{Colors.Gray.Darken4}; background:{Colors.Gray.Lighten5};")">
+            <MudIconButton Icon="@Icons.Material.Filled.FileCopy" Color="Color.Default" OnClick='()=>CopyText(card.Command)' />
+            <MudText HtmlTag="code">@card.Command</MudText>
+        </MudCardContent>
+        <MudCardContent>
+            <MudText Typo="Typo.body2">@card.Description</MudText>
+        </MudCardContent>
+        <MudSpacer />
+    </MudCard>
+
+    <MudDivider />
+}
+
 
 <MudAlert Severity="Severity.Info">
     Comandos do Git Flow
@@ -74,6 +98,18 @@
 }
 
 @code {
+    List<CardContent> cardSequenciaGitFlow = new(){
+        new (){Title = "Inicializar o Git Flow no Repositório", Command="git flow init", Description= "Inicializa o Git Flow no repositório atual, configurando as branches principais (main e develop) e permitindo a personalização de nomes e parâmetros."},
+        new (){Title = "Criar uma Branch de Funcionalidade (Feature)", Command="git flow feature start [nome-da-feature]", Description= "Cria uma nova branch de funcionalidade a partir de develop para o desenvolvimento de novas funcionalidades."},
+        new (){Title = "Desenvolver a Funcionalidade", Command="", Description= "Faça todas as alterações necessárias na nova branch de funcionalidade criada. Isso pode incluir adição de novos arquivos, modificações de arquivos existentes e commits regulares para salvar o progresso."},
+        new (){Title = "Adicionar Arquivos ao Staging", Command="git add [arquivo]", Description= "Adiciona o arquivo especificado ao staging, preparando-o para o commit."},
+        new (){Title = "Comitar as Mudanças", Command="git commit -m \"Mensagem do commit explicando as mudanças\"", Description= "Cria um novo commit com os arquivos no staging, utilizando a mensagem fornecida."},
+        new (){Title = "Finalizar uma Branch de Funcionalidade (Feature)", Command="git flow feature finish [nome-da-feature]", Description= "Mescla a branch de funcionalidade de volta em develop e a deleta."},
+        new (){Title = "Atualizar o Repositório Remoto - Puxar", Command="git pull origin develop", Description= "Puxar as últimas mudanças do repositório remoto para garantir que seu branch de desenvolvimento esteja atualizado."},
+        new (){Title = "Atualizar o Repositório Remoto - Enviar", Command="git push origin develop", Description= "Enviar as mudanças para o repositório remoto, atualizando o branch de desenvolvimento no repositório remoto."},
+        new (){Title = "Adicionar uma Tag (Opcional)", Command="git tag -a [nome-da-tag] -m \"Descrição da tag\"", Description= "Cria uma tag para marcar essa versão no repositório."},
+        new (){Title = "Enviar a Tag para o Repositório Remoto", Command="git push origin [nome-da-tag]", Description= "Enviar a tag criada para o repositório remoto."},
+     };
 
     List<CardContent> cardContents = new()
     {
