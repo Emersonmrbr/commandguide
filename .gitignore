@@ -7,3 +7,7 @@
 /Commands/obj
 /Commands.Client/bin/Release/net8.0
 /Commands.Client/obj
+/Commands/bin/Debug/net8.0/BlazorDebugProxy
+/Commands/bin/Debug/net8.0
+/Commands.Client/bin/Debug/net8.0
+/Commands/Properties/PublishProfiles/FolderProfile.pubxml.user
