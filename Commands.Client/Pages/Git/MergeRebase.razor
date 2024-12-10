@@ -79,15 +79,15 @@
         new (){Title = "Abortar um Rebase em Andamento", Command="git rebase --abort", Description= "Aborta um rebase em andamento, revertendo o diretório de trabalho ao estado anterior ao início do rebase."},
         new (){Title = "Mesclar uma Branch de Feature em Develop", Command="git checkout develop\ngit merge feature/[nome-da-feature]", Description= "Mescla a branch de feature especificada com a branch develop. Esse comando é utilizado no Git Flow para integrar novas funcionalidades."},
         new (){Title = "Rebase de uma Branch de Feature em Develop", Command="git checkout feature/[nome-da-feature]\ngit rebase develop", Description= "Aplica os commits da branch de feature sobre a base da branch develop, criando uma linha de commits linear. Esse comando é utilizado no Git Flow para manter a branch de feature atualizada com as mudanças na branch develop."},
-
-
     };
+
     public class CardContent()
     {
         public string Title = string.Empty;
         public string Command = string.Empty;
         public string Description = string.Empty;
     }
+
     public async Task CopyText(string command)
     {
         await JSRuntime.InvokeVoidAsync("copyToClipboard", command);

@@ -43,15 +43,15 @@
         new (){Title = "Criar uma Tag em um Commit Específico", Command="git tag [nome-da-tag] [commit-hash]", Description= "Cria uma nova tag com o nome especificado no commit especificado pelo hash."},
         new (){Title = "Editar uma Tag Anotada", Command="git tag -a [nome-da-tag] [commit-hash] -f", Description= "Edita uma tag anotada existente, forçando a atualização com uma nova mensagem ou commit."},
         new (){Title = "Verificar Detalhes de uma Tag Anotada", Command="git show [nome-da-tag]", Description= "Mostra os detalhes completos de uma tag anotada, incluindo a mensagem e o commit associados."},
-
-
     };
+
     public class CardContent()
     {
         public string Title = string.Empty;
         public string Command = string.Empty;
         public string Description = string.Empty;
     }
+
     public async Task CopyText(string command)
     {
         await JSRuntime.InvokeVoidAsync("copyToClipboard", command);

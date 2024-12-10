@@ -51,16 +51,15 @@
         new (){Title = "Verificar Todas as Referências", Command="git reflog", Description= "Exibe um histórico de todas as referências (commits, resets, checkouts) feitas no repositório local, útil para recuperação de mudanças perdidas."},
         new (){Title = "Alterar a Mensagem do Último Commit", Command="git commit --amend -m \"Nova mensagem do commit\"", Description= "Permite editar a mensagem do último commit. Use com cuidado, especialmente se o commit já foi enviado para um repositório remoto."},
         new (){Title = "Mostrar Diferenças Entre Arquivos", Command="git diff [arquivo1] [arquivo2]", Description= "Mostra as diferenças entre dois arquivos especificados, permitindo visualizar as mudanças entre eles."},
-
-
-
     };
+
     public class CardContent()
     {
         public string Title = string.Empty;
         public string Command = string.Empty;
         public string Description = string.Empty;
     }
+
     public async Task CopyText(string command)
     {
         await JSRuntime.InvokeVoidAsync("copyToClipboard", command);

@@ -96,15 +96,15 @@
         new (){Title = "Criar Stash de Arquivos Ignorados", Command="git stash -a", Description= "Salva temporariamente todas as alterações, incluindo arquivos ignorados, permitindo que você trabalhe em outra coisa sem perder seu progresso atual."},
         new (){Title = "Mostrar Diferenças de um Stash", Command="git stash show [stash@{n}]", Description= "Mostra as diferenças entre o stash especificado e o estado atual do diretório de trabalho."},
         new (){Title = "Mostrar Diferenças Detalhadas de um Stash", Command="git stash show -p [stash@{n}]", Description= "Mostra as diferenças detalhadas entre o stash especificado e o estado atual do diretório de trabalho."},
-
-
     };
+
     public class CardContent()
     {
         public string Title = string.Empty;
         public string Command = string.Empty;
         public string Description = string.Empty;
     }
+
     public async Task CopyText(string command)
     {
         await JSRuntime.InvokeVoidAsync("copyToClipboard", command);

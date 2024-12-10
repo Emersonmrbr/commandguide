@@ -37,14 +37,15 @@
         new (){Title = "Configurações de Usuário", Command="git config --global user.name \"Seu Nome\"", Description= "Define o nome e o email que aparecerão nos commits feitos neste sistema. Essas configurações são essenciais para rastrear a autoria dos commits, associando-as aos commits sempre que o Git for usado neste computador."},
         new (){Title = "Configurações de Usuário", Command="git config --global user.email \"seuemail@exemplo.com\"", Description= "Define o nome e o email que aparecerão nos commits feitos neste sistema. Essas configurações são essenciais para rastrear a autoria dos commits, associando-as aos commits sempre que o Git for usado neste computador."},
         new (){Title = "Definir VSCode como Editor Padrão", Command="git config --global core.editor \"code --wait\"", Description= "Define o VSCode como editor padrão para editar mensagens de commit e outros conteúdos solicitados pelo Git. O argumento --wait instrui o Git a aguardar o fechamento do editor antes de prosseguir."},
-
     };
+
     public class CardContent()
     {
         public string Title = string.Empty;
         public string Command = string.Empty;
         public string Description = string.Empty;
     }
+
     public async Task CopyText(string command)
     {
         await JSRuntime.InvokeVoidAsync("copyToClipboard", command);

@@ -41,15 +41,15 @@
         new (){Title = "Forçar exclusão de uma branch", Command="git branch -D [nome-da-branch]", Description= "Força a exclusão da branch especificada, mesmo que haja commits não mesclados. Use com cuidado, pois isso pode levar à perda de trabalho."},
         new (){Title = "Renomear uma branch", Command="git branch -m [nome-atual] [novo-nome]", Description= "Renomeia a branch atual ou uma branch especificada para um novo nome."},
         new (){Title = "Mesclar uma branch", Command="git merge [nome-da-branch]", Description= "Mescla a branch especificada com a branch atual. Esse comando é usado para combinar o trabalho realizado em diferentes branches."},
-
-
     };
+
     public class CardContent()
     {
         public string Title = string.Empty;
         public string Command = string.Empty;
         public string Description = string.Empty;
     }
+
     public async Task CopyText(string command)
     {
         await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
