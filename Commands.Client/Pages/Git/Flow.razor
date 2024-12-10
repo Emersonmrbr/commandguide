@@ -178,18 +178,25 @@
 }
 
 @code {
-    List<CardContent> cardSequenciaGitFlow = new(){
-        new (){Title = "Inicializar o Git Flow no Repositório", Command="git flow init", Description= "Inicializa o Git Flow no repositório atual, configurando as branches principais (main e develop) e permitindo a personalização de nomes e parâmetros."},
-        new (){Title = "Criar uma Branch de Funcionalidade (Feature)", Command="git flow feature start [nome-da-feature]", Description= "Cria uma nova branch de funcionalidade a partir de develop para o desenvolvimento de novas funcionalidades."},
-        new (){Title = "Desenvolver a Funcionalidade", Command="", Description= "Faça todas as alterações necessárias na nova branch de funcionalidade criada. Isso pode incluir adição de novos arquivos, modificações de arquivos existentes e commits regulares para salvar o progresso."},
-        new (){Title = "Adicionar Arquivos ao Staging", Command="git add [arquivo]", Description= "Adiciona o arquivo especificado ao staging, preparando-o para o commit."},
-        new (){Title = "Comitar as Mudanças", Command="git commit -m \"Mensagem do commit explicando as mudanças\"", Description= "Cria um novo commit com os arquivos no staging, utilizando a mensagem fornecida."},
-        new (){Title = "Finalizar uma Branch de Funcionalidade (Feature)", Command="git flow feature finish [nome-da-feature]", Description= "Mescla a branch de funcionalidade de volta em develop e a deleta."},
-        new (){Title = "Atualizar o Repositório Remoto - Puxar", Command="git pull origin develop", Description= "Puxar as últimas mudanças do repositório remoto para garantir que seu branch de desenvolvimento esteja atualizado."},
-        new (){Title = "Atualizar o Repositório Remoto - Enviar", Command="git push origin develop", Description= "Enviar as mudanças para o repositório remoto, atualizando o branch de desenvolvimento no repositório remoto."},
-        new (){Title = "Adicionar uma Tag (Opcional)", Command="git tag -a [nome-da-tag] -m \"Descrição da tag\"", Description= "Cria uma tag para marcar essa versão no repositório."},
-        new (){Title = "Enviar a Tag para o Repositório Remoto", Command="git push origin [nome-da-tag]", Description= "Enviar a tag criada para o repositório remoto."},
-     };
+    List<CardContent> cardSequenciaGitFlow = new()
+    {
+        new (){Title = "Inicializar o Git Flow", Command="git flow init", Description= "Inicializa o Git Flow no repositório, configurando as branches padrão."},
+        new (){Title = "Criar uma nova feature", Command="git flow feature start minha-feature", Description= "Cria e muda para uma nova branch de feature."},
+        new (){Title = "Adicionar mudanças à feature", Command="git add .", Description= "Adiciona todas as mudanças ao estágio (staged) para commit."},
+        new (){Title = "Comitar mudanças na feature", Command="git commit -m \"Descrição das mudanças\"", Description= "Faz o commit das mudanças na branch de feature com uma mensagem descritiva."},
+        new (){Title = "Finalizar a feature", Command="git flow feature finish minha-feature", Description= "Finaliza a feature, mesclando na branch develop."},
+        new (){Title = "Criar uma release (opcional)", Command="git flow release start 1.0.0", Description= "Inicia uma nova release branch a partir da develop."},
+        new (){Title = "Adicionar mudanças à release", Command="git add .", Description= "Adiciona todas as mudanças ao estágio (staged) para commit na release."},
+        new (){Title = "Comitar mudanças na release", Command="git commit -m \"Ajustes para a release 1.0.0\"", Description= "Faz o commit dos ajustes na branch de release."},
+        new (){Title = "Finalizar a release", Command="git flow release finish 1.0.0", Description= "Finaliza a release, mesclando na develop e na main, criando uma tag."},
+        new (){Title = "Deploy do código", Command="git push origin main --tags", Description= "Envia os commits locais e tags para o repositório remoto, preparando para deploy."},
+        new (){Title = "Manter a branch develop atualizada", Command="git checkout develop\ngit pull origin develop", Description= "Sincroniza a branch develop com o repositório remoto após o deploy."},
+        new (){Title = "Criar um hotfix", Command="git flow hotfix start 1.0.1", Description= "Cria e muda para uma nova branch de hotfix."},
+        new (){Title = "Adicionar mudanças ao hotfix", Command="git add .", Description= "Adiciona todas as mudanças ao estágio (staged) para commit no hotfix."},
+        new (){Title = "Comitar mudanças no hotfix", Command="git commit -m \"Corrigido problema crítico\"", Description= "Faz o commit das correções na branch de hotfix."},
+        new (){Title = "Finalizar o hotfix", Command="git flow hotfix finish 1.0.1", Description= "Finaliza o hotfix, mesclando na develop e na main, criando uma tag."},
+        new (){Title = "Deploy do hotfix", Command="git push origin main --tags", Description= "Envia os commits locais e tags do hotfix para o repositório remoto."}
+    };
 
     List<CardContent> cardContents = new()
     {
