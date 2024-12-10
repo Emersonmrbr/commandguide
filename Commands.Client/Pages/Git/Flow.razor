@@ -153,9 +153,6 @@
     <MudDivider />
 }
 
-
-
-
 <MudAlert Severity="Severity.Info">
     Comandos do Git Flow
 </MudAlert>
@@ -216,14 +213,15 @@
         new (){Title = "Verificar o Status do Repositório", Command="git status", Description= "Exibe o status do diretório de trabalho e do staging, mostrando mudanças feitas e arquivos prontos para commit."},
         new (){Title = "Visualizar o Histórico de Commits", Command="git log", Description= "Exibe o histórico de commits do repositório, mostrando cada commit com seu hash, autor, data e mensagem de commit."},
         new (){Title = "Restaurar Arquivos Modificados para o Último Commit", Command="git checkout -- [arquivo]", Description= "Restaura o arquivo modificado para o estado do último commit, descartando todas as mudanças não commitadas."},
-
     };
+
     public class CardContent()
     {
         public string Title = string.Empty;
         public string Command = string.Empty;
         public string Description = string.Empty;
     }
+
     public async Task CopyText(string command)
     {
         await JSRuntime.InvokeVoidAsync("copyToClipboard", command);

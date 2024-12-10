@@ -35,15 +35,15 @@
         new (){Title = "Desfazer um commit recente", Command="git reset --soft HEAD~1", Description= "Desfaz o último commit, mas mantém as alterações no seu diretório de trabalho. Esse comando é útil se você deseja reverter rapidamente um commit, mas manter o conteúdo para ajustá-lo antes de refazer o commit."},
         new (){Title = "Desfazer um commit e suas alterações", Command="git reset --hard HEAD~1", Description= "Desfaz o último commit e todas as alterações feitas desde o commit. Use com cautela, pois as alterações serão perdidas."},
         new (){Title = "Reverter um commit específico", Command="git revert [commit-hash]", Description= "Cria um novo commit que desfaz as alterações de um commit específico. Esse comando não altera o histórico de commits, mas cria um novo commit de reversão."},
-
-
     };
+
     public class CardContent()
     {
         public string Title = string.Empty;
         public string Command = string.Empty;
         public string Description = string.Empty;
     }
+
     public async Task CopyText(string command)
     {
         await JSRuntime.InvokeVoidAsync("copyToClipboard", command);

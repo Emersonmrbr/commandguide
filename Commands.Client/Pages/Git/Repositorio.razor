@@ -93,7 +93,6 @@
         new (){Title = "Desfazer o Último Commit (Mantendo Alterações)", Command="git reset --soft HEAD~1", Description= "Desfaz o último commit, mas mantém as alterações no diretório de trabalho. Esse comando é útil se você deseja ajustar o commit anterior antes de refazê-lo."},
         new (){Title = "Desfazer o Último Commit (Descartando Alterações)", Command="git reset --hard HEAD~1", Description= "Desfaz o último commit e descarta todas as alterações feitas desde aquele commit. Use com cautela, pois as alterações serão perdidas."},
         new (){Title = "Alterar a Mensagem do Último Commit", Command="git commit --amend -m \"Nova mensagem do commit\"", Description= "Permite editar a mensagem do último commit. Use com cuidado, especialmente se o commit já foi enviado para um repositório remoto."}
-
     };
 
     List<CardContent> cardRepositorioRemoto = new()
@@ -105,8 +104,8 @@
         new (){Title = "Enviar Commits para o Repositório Remoto", Command="git push origin [branch]", Description= "Envia os commits da branch local especificada para o repositório remoto."},
         new (){Title = "Remover um Repositório Remoto", Command="git remote remove origin", Description= "Remove a configuração do repositório remoto especificado."},
         new (){Title = "Renomear um Repositório Remoto", Command="git remote rename old-name new-name", Description= "Renomeia o repositório remoto especificado."}
-
     };
+
     List<CardContent> cardGerenciamentoConflito = new()
     {
         new (){Title = "Verificar Diferenças de Conflitos", Command="git diff", Description= "Exibe as diferenças que causam conflitos durante um merge ou rebase."},
@@ -115,14 +114,15 @@
         new (){Title = "Abortar um Rebase em Caso de Conflitos", Command="git rebase --abort", Description= "Aborta um rebase em andamento, revertendo o diretório de trabalho ao estado anterior ao início do rebase."},
         new (){Title = "Abortar um Merge em Caso de Conflitos", Command="git merge --abort", Description= "Aborta um merge em andamento, revertendo o diretório de trabalho ao estado anterior ao início do merge."},
         new (){Title = "Verificar Arquivos com Conflitos", Command="git status", Description= "Exibe o status dos arquivos com conflitos que precisam ser resolvidos."},
-
     };
+
     public class CardContent()
     {
         public string Title = string.Empty;
         public string Command = string.Empty;
         public string Description = string.Empty;
     }
+
     public async Task CopyText(string command)
     {
         await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
