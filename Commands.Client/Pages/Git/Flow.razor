@@ -189,14 +189,17 @@
         new (){Title = "Adicionar mudanças à release", Command="git add .", Description= "Adiciona todas as mudanças ao estágio (staged) para commit na release."},
         new (){Title = "Comitar mudanças na release", Command="git commit -m \"Ajustes para a release 1.0.0\"", Description= "Faz o commit dos ajustes na branch de release."},
         new (){Title = "Finalizar a release", Command="git flow release finish 1.0.0", Description= "Finaliza a release, mesclando na develop e na main, criando uma tag."},
+        new (){Title = "Enviar mudanças da develop para o repositório remoto", Command="git push origin develop", Description= "Envia os commits locais da branch develop para o repositório remoto."},
+        new (){Title = "Alterar para a branch main", Command="git checkout main", Description= "Muda para a branch principal (main) do repositório."},
+        new (){Title = "Fazer merge da develop na main", Command="git merge develop", Description= "Faz o merge das mudanças da branch develop na branch main."},
         new (){Title = "Deploy do código", Command="git push origin main --tags", Description= "Envia os commits locais e tags para o repositório remoto, preparando para deploy."},
-        new (){Title = "Manter a branch develop atualizada", Command="git checkout develop\ngit pull origin develop", Description= "Sincroniza a branch develop com o repositório remoto após o deploy."},
         new (){Title = "Criar um hotfix", Command="git flow hotfix start 1.0.1", Description= "Cria e muda para uma nova branch de hotfix."},
         new (){Title = "Adicionar mudanças ao hotfix", Command="git add .", Description= "Adiciona todas as mudanças ao estágio (staged) para commit no hotfix."},
         new (){Title = "Comitar mudanças no hotfix", Command="git commit -m \"Corrigido problema crítico\"", Description= "Faz o commit das correções na branch de hotfix."},
         new (){Title = "Finalizar o hotfix", Command="git flow hotfix finish 1.0.1", Description= "Finaliza o hotfix, mesclando na develop e na main, criando uma tag."},
         new (){Title = "Deploy do hotfix", Command="git push origin main --tags", Description= "Envia os commits locais e tags do hotfix para o repositório remoto."}
     };
+
 
     List<CardContent> cardContents = new()
     {
