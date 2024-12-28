@@ -1,0 +1,64 @@
+﻿@page "/terminal/sistema"
+@inject IJSRuntime JSRuntime
+@inject ISnackbar Snackbar
+
+<MudAlert Severity="Severity.Info">
+    Comandos para Sistema
+</MudAlert>
+
+@foreach (var card in cardContents)
+{
+    <MudCard Elevation="25">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">@card.Title</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent Style="@($"color:{Colors.Gray.Darken4}; background:{Colors.Gray.Lighten5};")">
+            <MudIconButton Icon="@Icons.Material.Filled.FileCopy" Color="Color.Default" OnClick='()=>CopyText(card.Command)' />
+            <MudText HtmlTag="code">@card.Command</MudText>
+        </MudCardContent>
+        <MudCardContent>
+            <MudText Typo="Typo.body2">@card.Description</MudText>
+        </MudCardContent>
+        <MudSpacer />
+    </MudCard>
+
+    <MudDivider />
+}
+
+@code {
+
+    List<CardContent> cardContents = new()
+{
+   new (){Title = "Ver informações do sistema", Command="systeminfo", Description= "Use o comando para exibir informações detalhadas sobre o sistema."},
+   new (){Title = "Limpar tela", Command="cls", Description= "Use o comando para limpar a tela do terminal."},
+   new (){Title = "Ver tarefas em execução", Command="tasklist", Description= "Use o comando para exibir todas as tarefas em execução no sistema."},
+   new (){Title = "Finalizar tarefa", Command="taskkill /IM [nome-do-processo] /F", Description= "Use o comando para finalizar uma tarefa específica."},
+   new (){Title = "Verificar e reparar disco", Command="chkdsk", Description= "Use o comando para verificar e reparar erros no disco."},
+   new (){Title = "Formatar disco", Command="format [unidade:]", Description= "Use o comando para formatar um disco."},
+   new (){Title = "Abrir editor de registro", Command="regedit", Description= "Use o comando para abrir o Editor de Registro do Windows."},
+   new (){Title = "Abrir gerenciador de tarefas", Command="taskmgr", Description= "Use o comando para abrir o Gerenciador de Tarefas."},
+   new (){Title = "Ver versão do Windows", Command="ver", Description= "Use o comando para exibir a versão do Windows."},
+   new (){Title = "Desligar sistema", Command="shutdown /s", Description= "Use o comando para desligar o sistema."},
+   new (){Title = "Reiniciar sistema", Command="shutdown /r", Description= "Use o comando para reiniciar o sistema."},
+   new (){Title = "Gerenciar serviços", Command="sc", Description= "Use o comando para gerenciar serviços do Windows."},
+   new (){Title = "Ver propriedades do sistema", Command="msinfo32", Description= "Use o comando para abrir a janela de Propriedades do Sistema."}
+};
+
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopEnd;
+        Snackbar.Configuration.VisibleStateDuration = 1000;
+        Snackbar.Configuration.HideTransitionDuration = 100;
+        Snackbar.Configuration.ShowTransitionDuration = 1000;
+        Snackbar.Add($"[ {command} ] Copied!");
+    }
+}
