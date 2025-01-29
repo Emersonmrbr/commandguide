@@ -1,0 +1,63 @@
+﻿@page "/sql/DDL"
+@inject IJSRuntime JSRuntime
+@inject ISnackbar Snackbar
+
+<MudAlert Severity="Severity.Info">
+    DDL - Data Definition Language
+</MudAlert>
+
+@foreach (var card in cardContents)
+{
+    <MudCard Elevation="25">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">@card.Title</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent Style="@($"color:{Colors.Gray.Darken4}; background:{Colors.Gray.Lighten5};")">
+            <MudIconButton Icon="@Icons.Material.Filled.FileCopy" Color="Color.Default" OnClick='()=>CopyText(card.Command)' />
+            <MudText HtmlTag="code">@card.Command</MudText>
+        </MudCardContent>
+        <MudCardContent>
+            <MudText Typo="Typo.body2">@card.Description</MudText>
+        </MudCardContent>
+        <MudSpacer />
+    </MudCard>
+
+    <MudDivider />
+}
+
+@code {
+
+    List<CardContent> cardContents = new()
+{
+    new (){Title = "Criar Banco de Dados", Command="CREATE DATABASE nome_do_banco;", Description="Cria um novo banco de dados chamado 'nome_do_banco'."},
+    new (){Title = "Excluir Banco de Dados", Command="DROP DATABASE nome_do_banco;", Description="Remove o banco de dados 'nome_do_banco'."},
+    new (){Title = "Criar Tabela", Command="CREATE TABLE nome_da_tabela (id INT, nome_da_coluna1 VARCHAR(100), nome_da_coluna2 VARCHAR(100));", Description="Cria uma tabela chamada 'nome_da_tabela' com as colunas 'id', 'nome_da_coluna1' e 'nome_da_coluna2'."},
+    new (){Title = "Adicionar Coluna", Command="ALTER TABLE nome_da_tabela ADD nova_coluna VARCHAR(100);", Description="Adiciona uma nova coluna chamada 'nova_coluna' à tabela 'nome_da_tabela'."},
+    new (){Title = "Excluir Tabela", Command="DROP TABLE nome_da_tabela;", Description="Remove a tabela 'nome_da_tabela' do banco de dados."},
+    new (){Title = "Criar Índice", Command="CREATE INDEX nome_do_indice ON nome_da_tabela (nome_da_coluna);", Description="Cria um índice na coluna 'nome_da_coluna' da tabela 'nome_da_tabela' para melhorar a performance de consultas."},
+    new (){Title = "Excluir Índice", Command="DROP INDEX nome_do_indice ON nome_da_tabela;", Description="Remove o índice 'nome_do_indice' da tabela 'nome_da_tabela'."},
+    new (){Title = "Criar Visão (VIEW)", Command="CREATE VIEW nome_da_visao AS SELECT coluna1, coluna2 FROM nome_da_tabela WHERE condição;", Description="Cria uma visão chamada 'nome_da_visao' que armazena o resultado da consulta SELECT."},
+    new (){Title = "Excluir Visão (VIEW)", Command="DROP VIEW nome_da_visao;", Description="Remove a visão 'nome_da_visao' do banco de dados."},
+    new (){Title = "Criar Esquema", Command="CREATE SCHEMA nome_do_esquema;", Description="Cria um novo esquema chamado 'nome_do_esquema' no banco de dados."},
+    new (){Title = "Excluir Esquema", Command="DROP SCHEMA nome_do_esquema;", Description="Remove o esquema 'nome_do_esquema' do banco de dados."},
+};
+
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopEnd;
+        Snackbar.Configuration.VisibleStateDuration = 1000;
+        Snackbar.Configuration.HideTransitionDuration = 100;
+        Snackbar.Configuration.ShowTransitionDuration = 1000;
+        Snackbar.Add($"[ {command} ] Copied!");
+    }
+}

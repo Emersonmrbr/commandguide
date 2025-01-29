@@ -1,0 +1,54 @@
+﻿@page "/sql/backuprestauracao"
+@inject IJSRuntime JSRuntime
+@inject ISnackbar Snackbar
+
+<MudAlert Severity="Severity.Info">
+    Comandos de Backup e Restauração
+</MudAlert>
+
+@foreach (var card in cardContents)
+{
+    <MudCard Elevation="25">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">@card.Title</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent Style="@($"color:{Colors.Gray.Darken4}; background:{Colors.Gray.Lighten5};")">
+            <MudIconButton Icon="@Icons.Material.Filled.FileCopy" Color="Color.Default" OnClick='()=>CopyText(card.Command)' />
+            <MudText HtmlTag="code">@card.Command</MudText>
+        </MudCardContent>
+        <MudCardContent>
+            <MudText Typo="Typo.body2">@card.Description</MudText>
+        </MudCardContent>
+        <MudSpacer />
+    </MudCard>
+
+    <MudDivider />
+}
+
+@code {
+
+    List<CardContent> cardContents = new()
+{
+    new (){Title = "Fazer Backup do Banco de Dados", Command="BACKUP DATABASE nome_do_banco TO DISK = 'caminho/arquivo.bak';", Description="Cria um backup do banco de dados 'nome_do_banco' no caminho especificado."},
+    new (){Title = "Restaurar Banco de Dados", Command="RESTORE DATABASE nome_do_banco FROM DISK = 'caminho/arquivo.bak';", Description="Restaura o banco de dados 'nome_do_banco' a partir de um arquivo de backup."},
+};
+
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopEnd;
+        Snackbar.Configuration.VisibleStateDuration = 1000;
+        Snackbar.Configuration.HideTransitionDuration = 100;
+        Snackbar.Configuration.ShowTransitionDuration = 1000;
+        Snackbar.Add($"[ {command} ] Copied!");
+    }
+}

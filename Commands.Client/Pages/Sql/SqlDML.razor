@@ -1,0 +1,65 @@
+﻿@page "/sql/DML"
+@inject IJSRuntime JSRuntime
+@inject ISnackbar Snackbar
+
+<MudAlert Severity="Severity.Info">
+    DML - Data Manipulation Language
+</MudAlert>
+
+@foreach (var card in cardContents)
+{
+    <MudCard Elevation="25">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">@card.Title</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent Style="@($"color:{Colors.Gray.Darken4}; background:{Colors.Gray.Lighten5};")">
+            <MudIconButton Icon="@Icons.Material.Filled.FileCopy" Color="Color.Default" OnClick='()=>CopyText(card.Command)' />
+            <MudText HtmlTag="code">@card.Command</MudText>
+        </MudCardContent>
+        <MudCardContent>
+            <MudText Typo="Typo.body2">@card.Description</MudText>
+        </MudCardContent>
+        <MudSpacer />
+    </MudCard>
+
+    <MudDivider />
+}
+
+@code {
+
+    List<CardContent> cardContents = new()
+{
+    new (){Title = "Inserir Registro", Command="INSERT INTO nome_da_tabela (id, nome_da_coluna1, nome_da_coluna2) VALUES (1, 'valor1', 'valor2');", Description="Insere um registro na tabela 'nome_da_tabela' com id 1, 'nome_da_coluna1' com 'valor1' e 'nome_da_coluna2' com 'valor2'."},
+    new (){Title = "Atualizar Registro", Command="UPDATE nome_da_tabela SET nome_da_coluna = 'novo_valor' WHERE id = 1;", Description="Atualiza o valor de 'nome_da_coluna' para 'novo_valor' onde o id seja igual a 1."},
+    new (){Title = "Deletar Registro", Command="DELETE FROM nome_da_tabela WHERE nome_da_coluna = 'valor';", Description="Remove o registro da tabela 'nome_da_tabela' onde 'nome_da_coluna' é igual a 'valor'."},
+    new (){Title = "Limpar Todos os Registros", Command="TRUNCATE TABLE nome_da_tabela;", Description="Remove todos os registros da tabela 'nome_da_tabela', mas mantém sua estrutura intacta."},
+    new (){Title = "Selecionar Todos os Registros", Command="SELECT * FROM nome_da_tabela;", Description="Retorna todos os registros e colunas da tabela 'nome_da_tabela'."},
+    new (){Title = "Filtrar Registros por Valor Exato", Command="SELECT * FROM nome_da_tabela WHERE nome_da_coluna = 'valor';", Description="Retorna os registros da tabela 'nome_da_tabela' onde 'nome_da_coluna' é igual a 'valor'."},
+    new (){Title = "Pesquisar por Parte do Texto", Command="SELECT * FROM nome_da_tabela WHERE nome_da_coluna LIKE '%parte_do_texto%';", Description="Realiza uma busca na tabela 'nome_da_tabela' para registros onde 'nome_da_coluna' contém a sequência de texto 'parte_do_texto'."},
+    new (){Title = "Pesquisa Case-Insensitive com LOWER", Command="SELECT * FROM nome_da_tabela WHERE LOWER(nome_da_coluna) LIKE LOWER('%parte_do_texto%');", Description="Realiza uma busca case-insensitive na tabela 'nome_da_tabela' para registros onde 'nome_da_coluna' contém a sequência de texto 'parte_do_texto'."},
+    new (){Title = "Pesquisa Case-Insensitive com COLLATE", Command="SELECT * FROM nome_da_tabela WHERE nome_da_coluna COLLATE Latin1_General_CI LIKE '%parte_do_texto%';", Description="Realiza uma busca case-insensitive na tabela 'nome_da_tabela', válida para SQL Server."},
+    new (){Title = "Selecionar Coluna com COLLATE e LIKE", Command="SELECT nome_da_coluna FROM nome_da_tabela WHERE nome_da_coluna COLLATE Latin1_General_CI LIKE '%parte_do_texto%';", Description="Retorna apenas os valores de 'nome_da_coluna' da tabela 'nome_da_tabela' onde o conteúdo da coluna contém a sequência de texto 'parte_do_texto', ignorando diferenças entre maiúsculas e minúsculas."},
+    new (){Title = "Ordenar Resultados com COLLATE", Command="SELECT * FROM nome_da_tabela ORDER BY nome_da_coluna COLLATE Latin1_General_BIN;", Description="Ordena os registros da tabela 'nome_da_tabela' por 'nome_da_coluna' de forma case-sensitive."},
+    new (){Title = "Contar Registros Agrupados", Command="SELECT nome_da_coluna, COUNT(*) FROM nome_da_tabela GROUP BY nome_da_coluna;", Description="Agrupa os registros da tabela 'nome_da_tabela' por 'nome_da_coluna' e retorna o número de registros em cada grupo."},
+    new (){Title = "Filtrar Grupos com HAVING", Command="SELECT nome_da_coluna, COUNT(*) FROM nome_da_tabela GROUP BY nome_da_coluna HAVING COUNT(*) > 5;", Description="Retorna os grupos da tabela 'nome_da_tabela' onde o número de registros em 'nome_da_coluna' é maior que 5."},
+};
+
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopEnd;
+        Snackbar.Configuration.VisibleStateDuration = 1000;
+        Snackbar.Configuration.HideTransitionDuration = 100;
+        Snackbar.Configuration.ShowTransitionDuration = 1000;
+        Snackbar.Add($"[ {command} ] Copied!");
+    }
+}

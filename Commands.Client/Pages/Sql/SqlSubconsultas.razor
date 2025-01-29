@@ -1,0 +1,53 @@
+﻿@page "/sql/subconsultas"
+@inject IJSRuntime JSRuntime
+@inject ISnackbar Snackbar
+
+<MudAlert Severity="Severity.Info">
+    Comandos de Subconsultas
+</MudAlert>
+
+@foreach (var card in cardContents)
+{
+    <MudCard Elevation="25">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">@card.Title</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent Style="@($"color:{Colors.Gray.Darken4}; background:{Colors.Gray.Lighten5};")">
+            <MudIconButton Icon="@Icons.Material.Filled.FileCopy" Color="Color.Default" OnClick='()=>CopyText(card.Command)' />
+            <MudText HtmlTag="code">@card.Command</MudText>
+        </MudCardContent>
+        <MudCardContent>
+            <MudText Typo="Typo.body2">@card.Description</MudText>
+        </MudCardContent>
+        <MudSpacer />
+    </MudCard>
+
+    <MudDivider />
+}
+
+@code {
+
+    List<CardContent> cardContents = new()
+{
+    new (){Title = "Selecionar Dados com Subconsulta", Command="SELECT * FROM tabela1 WHERE coluna IN (SELECT coluna FROM tabela2 WHERE condição);", Description="Retorna registros da tabela1 onde a coluna corresponde a qualquer valor retornado pela subconsulta na tabela2."},
+};
+
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopEnd;
+        Snackbar.Configuration.VisibleStateDuration = 1000;
+        Snackbar.Configuration.HideTransitionDuration = 100;
+        Snackbar.Configuration.ShowTransitionDuration = 1000;
+        Snackbar.Add($"[ {command} ] Copied!");
+    }
+}
