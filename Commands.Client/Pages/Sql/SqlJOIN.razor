@@ -1,0 +1,47 @@
+﻿@page "/sql/JOIN"
+@inject IJSRuntime JSRuntime
+@inject IToastService ToastService
+
+<h2 Severity="Severity.Info">
+    Comandos de Junção (JOIN)
+</h2>
+
+@foreach (var card in cardContents)
+{
+    <FluentGrid Justify="JustifyContent.FlexStart" Style="background-color: var(--neutral-layer-3); padding: 24px;">
+        <FluentCard MinimalStyle="true" Height="auto">
+            <h4>@card.Title</h4>
+            <FluentGridItem Justify="JustifyContent.FlexStart" style="padding: 20px">
+                <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.Copy())" OnClick='()=>CopyText(card.Command)' />
+                <FluentBadge Appearance="Appearance.Neutral" OnClick='()=>CopyText(card.Command)'>
+                    @card.Command
+                </FluentBadge>
+            </FluentGridItem>
+            <p>@card.Description</p>
+        </FluentCard>
+    </FluentGrid>
+}
+
+@code {
+
+    List<CardContent> cardContents = new()
+{
+    new (){Title = "Selecionar Dados com Junção (JOIN)", Command="SELECT * FROM tabela1 INNER JOIN tabela2 ON tabela1.coluna = tabela2.coluna;", Description="Retorna registros que têm correspondência em ambas as tabelas, 'tabela1' e 'tabela2'."},
+    new (){Title = "Selecionar Dados com Junção à Esquerda (LEFT JOIN)", Command="SELECT * FROM tabela1 LEFT JOIN tabela2 ON tabela1.coluna = tabela2.coluna;", Description="Retorna todos os registros da tabela1 e os registros correspondentes da tabela2. Se não houver correspondência, os resultados da tabela2 serão nulos."},
+    new (){Title = "Selecionar Dados com Junção à Direita (RIGHT JOIN)", Command="SELECT * FROM tabela1 RIGHT JOIN tabela2 ON tabela1.coluna = tabela2.coluna;", Description="Retorna todos os registros da tabela2 e os registros correspondentes da tabela1. Se não houver correspondência, os resultados da tabela1 serão nulos."},
+    new (){Title = "Selecionar Dados com Junção Completa (FULL JOIN)", Command="SELECT * FROM tabela1 FULL JOIN tabela2 ON tabela1.coluna = tabela2.coluna;", Description="Retorna todos os registros quando há uma correspondência em tabela1 ou tabela2."},
+};
+
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        ToastService.ShowToast(ToastIntent.Success, $"[ {command} ] Copied!");
+    }
+}

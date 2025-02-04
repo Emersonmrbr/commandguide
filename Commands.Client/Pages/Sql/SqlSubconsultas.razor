@@ -1,0 +1,44 @@
+﻿@page "/sql/subconsultas"
+@inject IJSRuntime JSRuntime
+@inject IToastService ToastService
+
+<h2 Severity="Severity.Info">
+    Comandos de Subconsultas
+</h2>
+
+@foreach (var card in cardContents)
+{
+    <FluentGrid Justify="JustifyContent.FlexStart" Style="background-color: var(--neutral-layer-3); padding: 24px;">
+        <FluentCard MinimalStyle="true" Height="auto">
+            <h4>@card.Title</h4>
+            <FluentGridItem Justify="JustifyContent.FlexStart" style="padding: 20px">
+                <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.Copy())" OnClick='()=>CopyText(card.Command)' />
+                <FluentBadge Appearance="Appearance.Neutral" OnClick='()=>CopyText(card.Command)'>
+                    @card.Command
+                </FluentBadge>
+            </FluentGridItem>
+            <p>@card.Description</p>
+        </FluentCard>
+    </FluentGrid>
+}
+
+@code {
+
+    List<CardContent> cardContents = new()
+{
+    new (){Title = "Selecionar Dados com Subconsulta", Command="SELECT * FROM tabela1 WHERE coluna IN (SELECT coluna FROM tabela2 WHERE condição);", Description="Retorna registros da tabela1 onde a coluna corresponde a qualquer valor retornado pela subconsulta na tabela2."},
+};
+
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        ToastService.ShowToast(ToastIntent.Success, $"[ {command} ] Copied!");
+    }
+}

@@ -1,0 +1,74 @@
+﻿@page "/winget/basico"
+@inject IJSRuntime JSRuntime
+@inject IToastService ToastService
+
+<h2 Severity="Severity.Info">
+    Comandos Básicos
+</h2>
+
+@foreach (var card in cardContents)
+{
+    <FluentGrid Justify="JustifyContent.FlexStart" Style="background-color: var(--neutral-layer-3); padding: 24px;">
+        <FluentCard MinimalStyle="true" Height="auto">
+            <h4>@card.Title</h4>
+            <FluentGridItem Justify="JustifyContent.FlexStart" style="padding: 20px">
+                <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.Copy())" OnClick='()=>CopyText(card.Command)' />
+                <FluentBadge Appearance="Appearance.Neutral" OnClick='()=>CopyText(card.Command)'>
+                    @card.Command
+                </FluentBadge>
+            </FluentGridItem>
+            <p>@card.Description</p>
+        </FluentCard>
+    </FluentGrid>
+}
+
+@code {
+
+    List<CardContent> cardContents = new()
+    {
+        new (){Title = "Instalar um Aplicativo", Command="winget install [nome-do-aplicativo]", Description= "Use o comando para instalar um aplicativo especificado."},
+        new (){Title = "Atualizar um Aplicativo", Command="winget upgrade [nome-do-aplicativo]", Description= "Use o comando para atualizar um aplicativo especificado."},
+        new (){Title = "Listar Aplicativos Disponíveis para Atualização", Command="winget upgrade", Description= "Use o comando para listar todos os aplicativos que têm atualizações disponíveis."},
+        new (){Title = "Desinstalar um Aplicativo", Command="winget uninstall [nome-do-aplicativo]", Description= "Use o comando para desinstalar um aplicativo especificado."},
+        new (){Title = "Pesquisar um Aplicativo", Command="winget search [nome-do-aplicativo]", Description= "Use o comando para pesquisar um aplicativo disponível no repositório winget."},
+        new (){Title = "Exibir Informações de um Aplicativo", Command="winget show [nome-do-aplicativo]", Description= "Use o comando para exibir informações detalhadas sobre um aplicativo especificado."},
+        new (){Title = "Listar Todos os Aplicativos Instalados", Command="winget list", Description= "Use o comando para listar todos os aplicativos instalados no sistema."},
+        new (){Title = "Instalar Todos os Aplicativos Listados em um Arquivo", Command="winget import -i [arquivo]", Description= "Use o comando para instalar todos os aplicativos listados em um arquivo de importação."},
+        new (){Title = "Exportar Lista de Aplicativos Instalados", Command="winget export -o [arquivo]", Description= "Use o comando para exportar a lista de aplicativos instalados para um arquivo."},
+        new (){Title = "Adicionar uma Fonte de Pacotes", Command="winget source add -n [nome-da-fonte] -a [url-da-fonte]", Description= "Use o comando para adicionar uma nova fonte de pacotes ao winget."},
+        new (){Title = "Listar Fontes de Pacotes", Command="winget source list", Description= "Use o comando para listar todas as fontes de pacotes disponíveis."},
+        new (){Title = "Remover uma Fonte de Pacotes", Command="winget source remove -n [nome-da-fonte]", Description= "Use o comando para remover uma fonte de pacotes especificada."},
+        new (){Title = "Atualizar Fontes de Pacotes", Command="winget source update", Description= "Use o comando para atualizar todas as fontes de pacotes para obter as versões mais recentes dos pacotes."},
+        new (){Title = "Baixar um Instalador de Aplicativo", Command="winget install --id [ID-do-aplicativo] --silent", Description= "Use o comando para baixar e instalar um aplicativo de forma silenciosa usando seu ID."},
+        new (){Title = "Executar um Script de Instalação", Command="winget install --manifest [caminho-do-arquivo-yaml]", Description= "Use o comando para instalar aplicativos definidos em um arquivo de manifesto YAML."},
+        new (){Title = "Mostrar Ajuda do Winget", Command="winget --help", Description= "Use o comando para exibir a ajuda e a lista de comandos disponíveis no winget."},
+        new (){Title = "Mostrar Versão do Winget", Command="winget --version", Description= "Use o comando para exibir a versão do winget instalada no sistema."},
+        new (){Title = "Exibir Logs do Winget", Command="winget --verbose-logs", Description= "Use o comando para exibir logs detalhados das operações do winget."},
+        new (){Title = "Instalar um Aplicativo Específico de uma Fonte", Command="winget install -s [nome-da-fonte] [nome-do-aplicativo]", Description= "Use o comando para instalar um aplicativo específico de uma fonte de pacotes especificada."},
+        new (){Title = "Instalar um Aplicativo com ID", Command="winget install --id [ID-do-aplicativo]", Description= "Use o comando para instalar um aplicativo utilizando seu ID único no repositório winget."},
+        new (){Title = "Forçar a Reinstalação de um Aplicativo", Command="winget install --force [nome-do-aplicativo]", Description= "Use o comando para forçar a reinstalação de um aplicativo, mesmo que ele já esteja instalado."},
+        new (){Title = "Mostrar Detalhes de um Aplicativo", Command="winget show --id [ID-do-aplicativo]", Description= "Use o comando para mostrar detalhes de um aplicativo utilizando seu ID."},
+        new (){Title = "Listar Aplicativos com uma Certa Tag", Command="winget list --tag [tag]", Description= "Use o comando para listar aplicativos que contêm uma tag específica."},
+        new (){Title = "Filtrar Pesquisa por Publisher", Command="winget search --publisher [nome-do-publisher]", Description= "Use o comando para pesquisar aplicativos filtrando pelo nome do publisher."},
+        new (){Title = "Filtrar Pesquisa por Nome", Command="winget search --name [nome-do-aplicativo]", Description= "Use o comando para pesquisar aplicativos filtrando pelo nome."},
+        new (){Title = "Instalar Versão Específica de um Aplicativo", Command="winget install [nome-do-aplicativo] --version [versão]", Description= "Use o comando para instalar uma versão específica de um aplicativo."},
+        new (){Title = "Procurar Aplicativo com Arquitetura Específica", Command="winget search --architecture [x86|x64|arm]", Description= "Use o comando para procurar um aplicativo com uma arquitetura específica."},
+        new (){Title = "Obter Informações de um Manifesto", Command="winget show --manifest [ID-do-aplicativo]", Description= "Use o comando para obter informações detalhadas de um manifesto de aplicativo."},
+        new (){Title = "Instalar Aplicativo sem Intervenção do Usuário", Command="winget install --silent --accept-package-agreements [nome-do-aplicativo]", Description= "Use o comando para instalar um aplicativo de forma silenciosa, aceitando automaticamente os termos de uso."},
+
+
+    };
+
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        ToastService.ShowToast(ToastIntent.Success, $"[ {command} ] Copied!");
+    }
+}

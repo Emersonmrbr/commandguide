@@ -1,0 +1,79 @@
+﻿@page "/powershell/basico"
+@inject IJSRuntime JSRuntime
+@inject IToastService ToastService
+
+<h2 Severity="Severity.Info">
+    Comandos Básicos
+</h2>
+
+@foreach (var card in cardContents)
+{
+    <FluentGrid Justify="JustifyContent.FlexStart" Style="background-color: var(--neutral-layer-3); padding: 24px;">
+        <FluentCard MinimalStyle="true" Height="auto">
+            <h4>@card.Title</h4>
+            <FluentGridItem Justify="JustifyContent.FlexStart" style="padding: 20px">
+                <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.Copy())" OnClick='()=>CopyText(card.Command)' />
+                <FluentBadge Appearance="Appearance.Neutral" OnClick='()=>CopyText(card.Command)'>
+                    @card.Command
+                </FluentBadge>
+            </FluentGridItem>
+            <p>@card.Description</p>
+        </FluentCard>
+    </FluentGrid>
+}
+
+@code {
+
+    List<CardContent> cardContents = new()
+    {
+        new (){Title = "Listar Itens de um Diretório", Command="Get-ChildItem", Description= "Lista os itens de um diretório, semelhante ao comando 'dir' no cmd."},
+        new (){Title = "Mover um Item", Command="Move-Item -Path <source> -Destination <destination>", Description= "Move um item de um local para outro."},
+        new (){Title = "Copiar um Item", Command="Copy-Item -Path <source> -Destination <destination>", Description= "Copia um item de um local para outro."},
+        new (){Title = "Renomear um Item", Command="Rename-Item -Path <path> -NewName <new_name>", Description= "Renomeia um item existente."},
+        new (){Title = "Remover um Item", Command="Remove-Item -Path <path>", Description= "Remove um item (arquivo, diretório, etc.)."},
+        new (){Title = "Criar um Novo Item", Command="New-Item -Path <path> -ItemType <item_type>", Description= "Cria um novo item (arquivo, diretório, etc.)."},
+        new (){Title = "Exibir Conteúdo de Arquivo", Command="Get-Content -Path <path>", Description= "Exibe o conteúdo de um arquivo."},
+        new (){Title = "Modificar Propriedades de um Item", Command="Set-ItemProperty -Path <path> -Name <property> -Value <value>", Description= "Modifica as propriedades de um item."},
+        new (){Title = "Obter Propriedades de um Item", Command="Get-ItemProperty -Path <path>", Description= "Obtém as propriedades de um item."},
+        new (){Title = "Executar um Script", Command="& <script_path>", Description= "Executa um script PowerShell a partir do caminho especificado."},
+        new (){Title = "Obter Ajuda sobre um Comando", Command="Get-Help <command>", Description= "Obtém ajuda e informações detalhadas sobre um comando específico."},
+        new (){Title = "Obter Informações do Sistema", Command="Get-ComputerInfo", Description= "Obtém informações detalhadas sobre o sistema."},
+        new (){Title = "Parar um Processo", Command="Stop-Process -Name <process_name>", Description= "Para um processo em execução com base no nome."},
+        new (){Title = "Obter Processos em Execução", Command="Get-Process", Description= "Lista todos os processos em execução no sistema."},
+        new (){Title = "Obter Uso da CPU por Processo", Command="Get-Process | Sort-Object CPU -Descending", Description= "Lista os processos em execução ordenados pelo uso da CPU."},
+        new (){Title = "Verificar Espaço em Disco", Command="Get-PSDrive -PSProvider FileSystem", Description= "Verifica o espaço em disco das unidades do sistema."},
+        new (){Title = "Criar uma Nova Sessão", Command="New-PSSession -ComputerName <computer_name>", Description= "Cria uma nova sessão remota com outro computador."},
+        new (){Title = "Remover uma Sessão", Command="Remove-PSSession -Id <session_id>", Description= "Remove uma sessão remota existente."},
+        new (){Title = "Importar Módulo", Command="Import-Module <module_name>", Description= "Importa um módulo PowerShell para a sessão atual."},
+        new (){Title = "Exportar Módulo", Command="Export-ModuleMember -Function <function_name>", Description= "Exporta uma função ou variável de um módulo."},
+        new (){Title = "Obter Serviços do Sistema", Command="Get-Service", Description= "Obtém uma lista de todos os serviços do sistema e seu status."},
+        new (){Title = "Iniciar um Serviço", Command="Start-Service -Name <service_name>", Description= "Inicia um serviço do sistema com base no nome."},
+        new (){Title = "Parar um Serviço", Command="Stop-Service -Name <service_name>", Description= "Para um serviço do sistema com base no nome."},
+        new (){Title = "Reiniciar um Serviço", Command="Restart-Service -Name <service_name>", Description= "Reinicia um serviço do sistema com base no nome."},
+        new (){Title = "Configurar um Serviço", Command="Set-Service -Name <service_name> -StartupType <type>", Description= "Configura o tipo de inicialização de um serviço do sistema."},
+        new (){Title = "Instalar um Módulo do PowerShell Gallery", Command="Install-Module -Name <module_name>", Description= "Instala um módulo do PowerShell Gallery."},
+        new (){Title = "Verificar Versão do PowerShell", Command="$PSVersionTable.PSVersion", Description= "Verifica a versão do PowerShell instalada no sistema."},
+        new (){Title = "Conceder Acesso a Diretórios (Exemplo 1)", Command="$DogACL = Get-Acl -Path \"C:\\Dog.txt\"\nSet-Acl -Path \"C:\\Cat.txt\" -AclObject $DogACL", Description= "Abra o PowerShell como administrador e execute os comandos para conceder acesso a diretórios. Copia um descritor de segurança de um arquivo para outro."},
+        new (){Title = "Conceder Acesso a Diretórios (Exemplo 2)", Command="$Acl = Get-Acl -Path \"C:\\Users\\nucleomap\\OZ3_ServidorGeral\\Automacao - Eplan\\Parts\\MSSQL16.EPLAN\\MSSQL\"\nGet-ChildItem -Recurse -Force | Set-Acl -AclObject $Acl", Description= "Abra o PowerShell como administrador e execute os comandos para conceder acesso a diretórios. Copia um descritor de segurança para múltiplos arquivos."},
+        new (){Title = "Exibir Conteúdo de Arquivo", Command="type \"Filename.txt\"", Description= "Use o comando para exibir o conteúdo de um arquivo."},
+        new (){Title = "Comando Echo", Command="echo \"Inserir texto\" >> Filename.txt", Description= "Este comando insere um texto em um arquivo. Se o arquivo não existir, ele será criado. Caso já exista, o texto será adicionado ao final do arquivo."},
+        new (){Title = "Gerar Chave Pública (ed25519)", Command="ssh-keygen -t ed25519 -C \"your_email@exemplo.com\"", Description= "Para gerar uma chave SSH e adicioná-la ao GitHub, utilize o comando."},
+        new (){Title = "Gerar Chave Pública (RSA)", Command="ssh-keygen -t rsa -b 4096 -C \"your_email@exemplo.com\"", Description= "Para gerar uma chave SSH e adicioná-la ao GitHub, utilize o comando para gerar uma chave RSA."},
+
+
+
+    };
+
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        ToastService.ShowToast(ToastIntent.Success, $"[ {command} ] Copied!");
+    }
+}

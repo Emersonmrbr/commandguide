@@ -1,8 +1,0 @@
-C:\Users\emers\source\repos\Commands\Commands\wwwroot\app.css
-C:\Users\emers\source\repos\Commands\Commands\wwwroot\img\logo.svg
-C:\Users\emers\source\repos\Commands\Commands\wwwroot\js\index.js
-wwwroot\app.css
-wwwroot\favicon.png
-wwwroot\img\logo.png
-wwwroot\img\logo.svg
-wwwroot\js\index.js

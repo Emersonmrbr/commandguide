@@ -1,0 +1,52 @@
+﻿@page "/terminal/pastaarquivo"
+@inject IJSRuntime JSRuntime
+@inject IToastService ToastService
+
+<h2 Severity="Severity.Info">
+    Comandos para Pastas e Arquivos
+</h2>
+
+@foreach (var card in cardContents)
+{
+    <FluentGrid Justify="JustifyContent.FlexStart" Style="background-color: var(--neutral-layer-3); padding: 24px;">
+        <FluentCard MinimalStyle="true" Height="auto">
+            <h4>@card.Title</h4>
+            <FluentGridItem Justify="JustifyContent.FlexStart" style="padding: 20px">
+                <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.Copy())" OnClick='()=>CopyText(card.Command)' />
+                <FluentBadge Appearance="Appearance.Neutral" OnClick='()=>CopyText(card.Command)'>
+                    @card.Command
+                </FluentBadge>
+            </FluentGridItem>
+            <p>@card.Description</p>
+        </FluentCard>
+    </FluentGrid>
+}
+
+@code {
+
+    List<CardContent> cardContents = new()
+{
+    new (){Title = "Listar diretórios", Command="dir", Description= "Use o comando para listar todos os arquivos e pastas em um diretório."},
+    new (){Title = "Mudar diretório", Command="cd [nome-do-diretorio]", Description= "Use o comando para mudar para um diretório específico."},
+    new (){Title = "Copiar arquivos", Command="copy [arquivo-fonte] [destino]", Description= "Use o comando para copiar arquivos de um local para outro."},
+    new (){Title = "Mover arquivos", Command="move [arquivo-fonte] [destino]", Description= "Use o comando para mover arquivos de um local para outro."},
+    new (){Title = "Apagar arquivos", Command="del [nome-do-arquivo]", Description= "Use o comando para deletar arquivos."},
+    new (){Title = "Criar diretório", Command="mkdir [nome-do-diretorio]", Description= "Use o comando para criar um novo diretório."},
+    new (){Title = "Renomear arquivos", Command="ren [nome-antigo] [nome-novo]", Description= "Use o comando para renomear arquivos."},
+    new (){Title = "Compactar arquivos", Command="compact /c [arquivo]", Description= "Use o comando para compactar arquivos no NTFS."},
+    new (){Title = "Descompactar arquivos", Command="compact /u [arquivo]", Description= "Use o comando para descompactar arquivos no NTFS."}
+};
+
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        ToastService.ShowToast(ToastIntent.Success, $"[ {command} ] Copied!");
+    }
+}

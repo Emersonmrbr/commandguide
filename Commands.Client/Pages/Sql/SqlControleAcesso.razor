@@ -1,0 +1,51 @@
+﻿@page "/sql/controleacesso"
+@inject IJSRuntime JSRuntime
+@inject IToastService ToastService
+
+<h2 Severity="Severity.Info">
+    Comandos de Controle de Acesso e Permissões
+</h2>
+
+@foreach (var card in cardContents)
+{
+    <FluentGrid Justify="JustifyContent.FlexStart" Style="background-color: var(--neutral-layer-3); padding: 24px;">
+        <FluentCard MinimalStyle="true" Height="auto">
+            <h4>@card.Title</h4>
+            <FluentGridItem Justify="JustifyContent.FlexStart" style="padding: 20px">
+                <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.Copy())" OnClick='()=>CopyText(card.Command)' />
+                <FluentBadge Appearance="Appearance.Neutral" OnClick='()=>CopyText(card.Command)'>
+                    @card.Command
+                </FluentBadge>
+            </FluentGridItem>
+            <p>@card.Description</p>
+        </FluentCard>
+    </FluentGrid>
+}
+
+@code {
+
+    List<CardContent> cardContents = new()
+{
+    new (){Title = "Conceder Permissão de Leitura", Command="GRANT SELECT ON nome_da_tabela TO usuario;", Description="Concede permissão de leitura na tabela 'nome_da_tabela' para o usuário 'usuario'."},
+    new (){Title = "Revogar Permissão de Leitura", Command="REVOKE SELECT ON nome_da_tabela FROM usuario;", Description="Revoga a permissão de leitura na tabela 'nome_da_tabela' do usuário 'usuario'."},
+    new (){Title = "Conceder Todas as Permissões", Command="GRANT ALL PRIVILEGES ON nome_do_banco.* TO 'nome_do_usuario'@'localhost';", Description="Concede todas as permissões no banco de dados 'nome_do_banco' para o usuário 'nome_do_usuario'."},
+    new (){Title = "Revogar Todas as Permissões", Command="REVOKE ALL PRIVILEGES ON nome_do_banco.* FROM 'nome_do_usuario'@'localhost';", Description="Revoga todas as permissões no banco de dados 'nome_do_banco' do usuário 'nome_do_usuario'."},
+    new (){Title = "Mostrar Permissões do Usuário", Command="SHOW GRANTS FOR 'nome_do_usuario'@'localhost';", Description="Exibe as permissões concedidas ao usuário 'nome_do_usuario'."},
+    new (){Title = "Criar Usuário", Command="CREATE USER 'nome_do_usuario'@'localhost' IDENTIFIED BY 'senha';", Description="Cria um novo usuário chamado 'nome_do_usuario' com a senha especificada."},
+    new (){Title = "Alterar Senha do Usuário", Command="ALTER USER 'nome_do_usuario'@'localhost' IDENTIFIED BY 'nova_senha';", Description="Altera a senha do usuário 'nome_do_usuario'."},
+    new (){Title = "Excluir Usuário", Command="DROP USER 'nome_do_usuario'@'localhost';", Description="Remove o usuário 'nome_do_usuario' do banco de dados."},
+};
+
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        ToastService.ShowToast(ToastIntent.Success, $"[ {command} ] Copied!");
+    }
+}
