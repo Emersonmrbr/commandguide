@@ -1,69 +1,60 @@
 ﻿@page "/git/mergerebase"
 @inject IJSRuntime JSRuntime
-@inject ISnackbar Snackbar
+@inject IToastService ToastService
 
-<MudAlert Severity="Severity.Info">
+<h2 Severity="Severity.Info">
     Explicações dos Comandos <code>merge</code> e <code>rebase</code>
-</MudAlert>
+</h2>
 
 @foreach (var card in cardContents)
 {
-    <MudCard Elevation="25">
-        <MudCardHeader>
-            <CardHeaderContent>
-                <MudText Typo="Typo.h6">@card.Title</MudText>
-            </CardHeaderContent>
-        </MudCardHeader>
-        <MudCardContent Style="@($"color:{Colors.Gray.Darken4}; background:{Colors.Gray.Lighten5};")">
-            <MudIconButton Icon="@Icons.Material.Filled.FileCopy" Color="Color.Default" OnClick='()=>CopyText(card.Command)' />
-            <MudText HtmlTag="code">@card.Command</MudText>
-        </MudCardContent>
-        <MudCardContent>
-            <MudText Typo="Typo.body2">@card.Description</MudText>
-        </MudCardContent>
-        <MudSpacer />
-    </MudCard>
-
-    <MudDivider />
+    <FluentGrid Justify="JustifyContent.FlexStart" Style="background-color: var(--neutral-layer-3); padding: 24px;">
+        <FluentCard MinimalStyle="true" Height="auto">
+            <h4>@card.Title</h4>
+            <FluentGridItem Justify="JustifyContent.FlexStart" style="padding: 20px">
+                <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.Copy())" OnClick='()=>CopyText(card.Command)' />
+                <FluentBadge Appearance="Appearance.Neutral" OnClick='()=>CopyText(card.Command)'>
+                    @card.Command
+                </FluentBadge>
+            </FluentGridItem>
+            <p>@card.Description</p>
+        </FluentCard>
+    </FluentGrid>
 }
 
-<MudCard Elevation="25">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h6">Diferenças Entre <code>merge</code> e <code>rebase</code></MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
-    <MudCardContent>
-        <MudText Typo="Typo.body2">
-            <ul>
-                <li><strong><code>merge</code>:</strong> Mantém a história do commit intacta e cria um commit de merge.</li>
-                <li><strong><code>rebase</code>:</strong> Reescreve a história dos commits, aplicando-os em uma nova base, resultando em um histórico linear.</li>
-            </ul>
-        </MudText>
-    </MudCardContent>
-    <MudSpacer />
-</MudCard>
+<FluentAccordion ActiveId="@activeId" OnAccordionItemChange="HandleOnAccordionItemChange">
+    <FluentAccordionItem Expanded="true" Heading="Branches Principais">
+        <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.CloudFlow())" Color="@Color.Neutral" Slot="start" />
+        <dl>
+            <dt>
+                Diferenças Entre <code>merge</code> e <code>rebase</code>
+            </dt>
+            <dd>
+                <strong><code>merge</code>:</strong> Mantém a história do commit intacta e cria um commit de merge.
+            </dd>
+            <dd>
+                <strong><code>rebase</code>:</strong> Reescreve a história dos commits, aplicando-os em uma nova base, resultando em um histórico linear.
+            </dd>
+        </dl>
+    </FluentAccordionItem>
+</FluentAccordion>
 
-<MudDivider />
-
-<MudCard Elevation="25">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h6">Quando Usar Cada Comando</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
-    <MudCardContent>
-        <MudText Typo="Typo.body2">
-            <ul>
-                <li><strong>Use <code>merge</code></strong> quando a preservação da história do commit e dos commits de merge for importante.</li>
-                <li><strong>Use <code>rebase</code></strong> quando você deseja um histórico de commits mais limpo e linear, sem os commits de merge.</li>
-            </ul>
-        </MudText>
-    </MudCardContent>
-    <MudSpacer />
-</MudCard>
-
-<MudDivider />
+<FluentAccordion ActiveId="@activeId" OnAccordionItemChange="HandleOnAccordionItemChange">
+    <FluentAccordionItem Expanded="true" Heading="Branches Principais">
+        <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.CloudFlow())" Color="@Color.Neutral" Slot="start" />
+        <dl>
+            <dt>
+                Quando Usar Cada Comando
+            </dt>
+            <dd>
+                <strong>Use <code>merge</code></strong> quando a preservação da história do commit e dos commits de merge for importante.
+            </dd>
+            <dd>
+                <strong>Use <code>rebase</code></strong> quando você deseja um histórico de commits mais limpo e linear, sem os commits de merge.
+            </dd>
+        </dl>
+    </FluentAccordionItem>
+</FluentAccordion>
 
 @code {
 
@@ -91,10 +82,15 @@
     public async Task CopyText(string command)
     {
         await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
-        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopEnd;
-        Snackbar.Configuration.VisibleStateDuration = 1000;
-        Snackbar.Configuration.HideTransitionDuration = 100;
-        Snackbar.Configuration.ShowTransitionDuration = 1000;
-        Snackbar.Add($"[ {command} ] Copied!");
+        ToastService.ShowToast(ToastIntent.Success, $"[ {command} ] Copied!");
+    }
+
+    string activeId = "accordion-1";
+
+    FluentAccordionItem? changed;
+
+    private void HandleOnAccordionItemChange(FluentAccordionItem item)
+    {
+        changed = item;
     }
 }

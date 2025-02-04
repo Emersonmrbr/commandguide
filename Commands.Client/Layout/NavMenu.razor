@@ -1,47 +1,57 @@
-﻿<MudNavMenu>
-    <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
-    <MudNavGroup Title="GIT" Icon="@Icons.Custom.Brands.GitHub">
-        <MudNavLink Href="/git/inicio" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Início</MudNavLink>
-        <MudNavLink Href="/git/basico" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Básico</MudNavLink>
-        <MudNavLink Href="/git/branche" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Branches</MudNavLink>
-        <MudNavLink Href="/git/desfazer" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Desfazer</MudNavLink>
-        <MudNavLink Href="/git/flow" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Flow</MudNavLink>
-        <MudNavLink Href="/git/fork" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Fork</MudNavLink>
-        <MudNavLink Href="/git/gerenciamento" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Gerenciamento</MudNavLink>
-        <MudNavLink Href="/git/mergerebase" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Merge e Rebase</MudNavLink>
-        <MudNavLink Href="/git/repositorio" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Repositórios</MudNavLink>
-        <MudNavLink Href="/git/stash" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Stash</MudNavLink>
-        <MudNavLink Href="/git/tag" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Tags</MudNavLink>
-    </MudNavGroup>
-    <MudNavGroup Title="HYPERV" Icon="@Icons.Custom.Brands.MicrosoftAzure">
-        <MudNavLink Href="/hyperv/basico" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Básico</MudNavLink>
-    </MudNavGroup>
-    <MudNavGroup Title="POWERSHELL" Icon="@Icons.Custom.FileFormats.FileCode">
-        <MudNavLink Href="/powershell/basico" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Básico</MudNavLink>
-    </MudNavGroup>
-    <MudNavGroup Title="UBUNTU" Icon="@Icons.Custom.Brands.Linux">
-        <MudNavLink Href="/ubuntu/basico" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Básico</MudNavLink>
-    </MudNavGroup>
-    <MudNavGroup Title="SQL" Icon="@Icons.Material.Filled.DataObject">
-        <MudNavLink Href="/sql/basico" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Básico</MudNavLink>
-        <MudNavLink Href="/sql/backuprestauracao" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Backup e Restauração</MudNavLink>
-        <MudNavLink Href="/sql/consultainformacao" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Consulta e Informação</MudNavLink>
-        <MudNavLink Href="/sql/controleacesso" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Controle de Acesso e Permissões</MudNavLink>
-        <MudNavLink Href="/sql/controletransacao" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Controle de Transações</MudNavLink>
-        <MudNavLink Href="/sql/DDL" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">DDL - Data Definition Language</MudNavLink>
-        <MudNavLink Href="/sql/DML" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">DML - Data Manipulation Language</MudNavLink>
-        <MudNavLink Href="/sql/exportacaoimportacao" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Exportação e Importação de Dados</MudNavLink>
-        <MudNavLink Href="/sql/JOIN" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Junção (JOIN)</MudNavLink>
-        <MudNavLink Href="/sql/subconsultas" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Subconsultas</MudNavLink>
-    </MudNavGroup>
-    <MudNavGroup Title="TERMINAL" Icon="@Icons.Material.Filled.Terminal">
-        <MudNavLink Href="/terminal/pastaarquivo" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Pastas e arquivos</MudNavLink>
-        <MudNavLink Href="/terminal/rede" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Rede</MudNavLink>
-        <MudNavLink Href="/terminal/sistema" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Sistema</MudNavLink>
-    </MudNavGroup>
-    <MudNavGroup Title="WINGET" Icon="@Icons.Custom.Brands.MicrosoftWindows">
-        <MudNavLink Href="/winget/basico" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Label">Básico</MudNavLink>
-    </MudNavGroup>
-</MudNavMenu>
+﻿<div class="navmenu">
+    <input type="checkbox" title="Menu expand/collapse toggle" id="navmenu-toggle" class="navmenu-icon" />
+    <label for="navmenu-toggle" class="navmenu-icon"><FluentIcon Value="@(new Icons.Regular.Size24.Navigation())" Color="Color.Fill" /></label>
+    <nav class="sitenav" aria-labelledby="main-menu">
+        <FluentNavMenu @bind-Expanded="@Expanded" Width="250" Collapsible="true">
+            <FluentNavLink Href="/" Icon="@(new Icons.Regular.Size24.Home())" Tooltip="Home tooltip">HOME</FluentNavLink>
+            <FluentNavGroup Title="GIT" Tooltip="GIT tooltip" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.DesktopFlow())">
+                <FluentNavLink Href="/git/inicio" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Inicio tooltip">Início</FluentNavLink>
+                <FluentNavLink Href="/git/basico" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Basico tooltip">Básico</FluentNavLink>
+                <FluentNavLink Href="/git/branche" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Branches tooltip">Branches</FluentNavLink>
+                <FluentNavLink Href="/git/desfazer" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Desfazer tooltip">Desfazer</FluentNavLink>
+                <FluentNavLink Href="/git/flow" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Flow tooltip">Flow</FluentNavLink>
+                <FluentNavLink Href="/git/fork" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Fork tooltip">Fork</FluentNavLink>
+                <FluentNavLink Href="/git/gerenciamento" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Gerenciamento tooltip">Gerenciamento</FluentNavLink>
+                <FluentNavLink Href="/git/mergerebase" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="MergeRebaseo tooltip">Merge e Rebase</FluentNavLink>
+                <FluentNavLink Href="/git/repositorio" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Repositórios tooltip">Repositórios</FluentNavLink>
+                <FluentNavLink Href="/git/stash" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Stash tooltip">Stash</FluentNavLink>
+                <FluentNavLink Href="/git/tag" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Tags tooltip">Tags</FluentNavLink>
+            </FluentNavGroup>
+            <FluentNavGroup Title="HYPERV" Tooltip="HyperV tooltip" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.BuildingDesktop())">
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Desktop())" Href="/hyperv/basico" Tooltip="Basico tooltip">Básico</FluentNavLink>
+            </FluentNavGroup>
+            <FluentNavGroup Title="POWERSHELL" Tooltip="POWERSHELL tooltip" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.DesktopEdit())">
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Script())" Href="/powershell/basico" Tooltip="Basico tooltip">Básico</FluentNavLink>
+            </FluentNavGroup>
+            <FluentNavGroup Title="UBUNTU" Tooltip="UBUNTU tooltip" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.WindowDevTools())">
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Code())" Href="/ubuntu/basico" Tooltip="Basico tooltip">Básico</FluentNavLink>
+            </FluentNavGroup>
+            <FluentNavGroup Title="SQL" Tooltip="SQL tooltip" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.WindowDatabase())">
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/basico" Tooltip="Basico tooltip">Básico</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/backuprestauracao" Tooltip="BackupRestauracao tooltip">Backup e Restauração</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/consultainformacao" Tooltip="ConsultaInformacao tooltip">Consulta e Informação</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/controleacesso" Tooltip="ControleAcessoPermissoes tooltip">Controle de Acesso e Permissões</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/controletransacao" Tooltip="ControleTransacoes tooltip">Controle de Transações</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/DDL" Tooltip="DDL tooltip">DDL - Data Definition Language</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/DML" Tooltip="DML tooltip">DML - Data Manipulation Language</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/exportacaoimportacao" Tooltip="ExportacaoImportacao de Dado tooltip">Consulta e Informação</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/JOIN" Tooltip="JOIN tooltip">Junção (JOIN)</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/subconsultas" Tooltip="Subconsultas tooltip">Subconsultas</FluentNavLink>
+            </FluentNavGroup>
+            <FluentNavGroup Title="TERMINAL" Tooltip="TERMINAL tooltip" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.DesktopToolbox())">
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Prompt())" Href="/terminal/pastaarquivo" Tooltip="PastasArquivos tooltip">Pastas e arquivos</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Prompt())" Href="/terminal/rede" Tooltip="Rede tooltip">Rede</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Prompt())" Href="/terminal/sistema" Tooltip="Sistema tooltip">Sistema</FluentNavLink>
+            </FluentNavGroup>
+            <FluentNavGroup Title="WINGET" Tooltip="WINGET tooltip" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.WindowApps())">
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Apps())" Href="/winget/basico" Tooltip="Basico tooltip">Básico</FluentNavLink>
+            </FluentNavGroup>
+        </FluentNavMenu>
+    </nav>
+</div>
 
 
+@code
+{
+    bool Expanded = true;
+}

@@ -1,0 +1,89 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net9.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = Commands.Client
+build_property.RootNamespace = Commands.Client
+build_property.ProjectDir = C:\Users\emers\source\repos\Commands\Commands.Client\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = false
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\emers\source\repos\Commands\Commands.Client
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 9.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/emers/source/repos/Commands/Commands.Client/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/emers/source/repos/Commands/Commands.Client/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/emers/source/repos/Commands/Commands.Client/Pages/Git/Branche.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2l0XEJyYW5jaGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/emers/source/repos/Commands/Commands.Client/Pages/Git/Desfazer.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2l0XERlc2ZhemVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/emers/source/repos/Commands/Commands.Client/Pages/Git/Flow.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2l0XEZsb3cucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/emers/source/repos/Commands/Commands.Client/Pages/Git/Fork.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2l0XEZvcmsucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/emers/source/repos/Commands/Commands.Client/Pages/Git/Gerenciamento.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2l0XEdlcmVuY2lhbWVudG8ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/emers/source/repos/Commands/Commands.Client/Pages/Git/GitBasico.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2l0XEdpdEJhc2ljby5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/emers/source/repos/Commands/Commands.Client/Pages/Git/MergeRebase.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2l0XE1lcmdlUmViYXNlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/emers/source/repos/Commands/Commands.Client/Pages/Git/Repositorio.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2l0XFJlcG9zaXRvcmlvLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/emers/source/repos/Commands/Commands.Client/Pages/Git/Start.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2l0XFN0YXJ0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/emers/source/repos/Commands/Commands.Client/Pages/Git/Stash.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2l0XFN0YXNoLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/emers/source/repos/Commands/Commands.Client/Pages/Git/Tag.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2l0XFRhZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/emers/source/repos/Commands/Commands.Client/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/emers/source/repos/Commands/Commands.Client/Routes.razor]
+build_metadata.AdditionalFiles.TargetPath = Um91dGVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/emers/source/repos/Commands/Commands.Client/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
