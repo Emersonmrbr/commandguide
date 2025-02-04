@@ -1,52 +1,58 @@
 ﻿@page "/"
 
 <PageTitle>HOME</PageTitle>
-
-<FluentLabel Typo="Typography.H3">Repositório de Guias de Comando</FluentLabel>
-<p class="mb-8">
-    Este repositório fornece guias básicos de comandos para diversas ferramentas e plataformas, incluindo
-    <strong>Git</strong>, <strong>PowerShell</strong>,
-    <strong>PowerShell Hyper-V</strong> e <strong>Ubuntu</strong>. Cada guia está disponível como um arquivo HTML
-    separado para facilitar o acesso e a
-    usabilidade. Para acessar a documentação completa, abra o arquivo <code>index.html</code> que está na raiz do
-    repositório. Esse arquivo contém um índice
-    que leva aos outros arquivos de guias correspondentes.
-</p>
-
-<FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
-             VerticalAlignment="@VerticalAlignment.Center"
-             Style="height: 48px; padding-inline-end: 10px;">
-    <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.Apps())" Color="@Color.Error" />
-    <FluentLabel Typo="Typography.H4">
-        Estrutura do Repositório
+<FluentCard Height="auto" Style="border: solid 0.5px var(--neutral-layer-1)">
+    <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+                 VerticalAlignment="@VerticalAlignment.Center"
+                 Style="height: 48px; padding-inline-end: 10px;">
+        <FluentLabel Typo="Typography.H3">Repositório de Guias de Comando</FluentLabel>
+    </FluentStack>
+    <FluentLabel Typo="Typography.Body">
+        Este repositório fornece guias básicos de comandos para diversas ferramentas e plataformas, incluindo
+        <strong>Git</strong>, <strong>PowerShell</strong>,
+        <strong>PowerShell Hyper-V</strong> e <strong>Ubuntu</strong>. Cada guia está disponível como um arquivo HTML
+        separado para facilitar o acesso e a
+        usabilidade. Para acessar a documentação completa, abra o arquivo <code>index.html</code> que está na raiz do
+        repositório. Esse arquivo contém um índice
+        que leva aos outros arquivos de guias correspondentes.
     </FluentLabel>
-</FluentStack>
-<ul>
-    <li>
-        <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
-                     VerticalAlignment="@VerticalAlignment.Center"
-                     Style="height: 48px; padding-inline-end: 10px;">
-            <FluentLabel Typo="Typography.H5">
-                O repositório está organizado nos seguintes arquivos:
-            </FluentLabel>
-        </FluentStack>
-    </li>
-    @foreach (var content in structureContents)
-    {
+</FluentCard>
+<FluentCard Height="auto" Style="border: solid 0.5px var(--neutral-layer-1)">
+    <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+                 VerticalAlignment="@VerticalAlignment.Center"
+                 Style="height: 48px; padding-inline-end: 10px;">
+        <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.Apps())" Color="@Color.Error" />
+        <FluentLabel Typo="Typography.H4">
+            Estrutura do Repositório
+        </FluentLabel>
+    </FluentStack>
+    <ul>
         <li>
             <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
                          VerticalAlignment="@VerticalAlignment.Center"
                          Style="height: 48px; padding-inline-end: 10px;">
-                <FluentIcon Value=@content.IconType ColorType=@content.ColorType />
-                <FluentLabel Typo="Typography.H6">
-                    @content.Title
+                <FluentLabel Typo="Typography.H5">
+                    O repositório está organizado nos seguintes arquivos:
                 </FluentLabel>
-                <FluentNavLink Href="@content.Link" Target="_blank"><b>@content.Description</b></FluentNavLink>
             </FluentStack>
         </li>
-        <FluentDivider></FluentDivider>
-    }
-</ul>
+        @foreach (var content in structureContents)
+        {
+            <li>
+                <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+                             VerticalAlignment="@VerticalAlignment.Center"
+                             Style="height: 48px; padding-inline-end: 10px;">
+                    <FluentIcon Value=@content.IconType ColorType=@content.ColorType />
+                    <FluentLabel Typo="Typography.H6">
+                        @content.Title
+                    </FluentLabel>
+                    <FluentNavLink Href="@content.Link" Target="_blank"><b>@content.Description</b></FluentNavLink>
+                </FluentStack>
+            </li>
+            <FluentDivider></FluentDivider>
+        }
+    </ul>
+</FluentCard>
 
 <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
              VerticalAlignment="@VerticalAlignment.Center"
@@ -67,9 +73,15 @@
                 <FluentLabel Typo="Typography.H5">
                     @content.Title
                 </FluentLabel>
-                @content.Command
-                <FluentDivider></FluentDivider>
             </FluentStack>
+            <ul>
+                <li>
+                    <FluentLabel Typo="Typography.Body">
+                        @content.Command
+                    </FluentLabel>
+                </li>
+            </ul>
+            <FluentDivider></FluentDivider>
         </li>
     }
 </ul>
@@ -128,10 +140,16 @@
         Contribuindo
     </FluentLabel>
 </FluentStack>
-<p>Contribuições são bem-vindas! Para sugerir alterações ou adicionar novos guias:</p>
-<FluentLabel Typo="Typography.H5">
-    Faça um fork do repositório.
+<FluentLabel Typo="Typography.Body">
+    Contribuições são bem-vindas! Para sugerir alterações ou adicionar novos guias:
 </FluentLabel>
+<FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+             VerticalAlignment="@VerticalAlignment.Center"
+             Style="height: 48px; padding-inline-end: 10px;">
+    <FluentLabel Typo="Typography.H5">
+        Faça um fork do repositório.
+    </FluentLabel>
+</FluentStack>
 <ul>
     @foreach (var content in guideForkContents)
     {
@@ -145,7 +163,11 @@
                 </FluentLabel>
             </FluentStack>
             <ul>
-                <li><p>@content.Command</p></li>
+                <li>
+                    <FluentLabel Typo="Typography.Body">
+                        @content.Command
+                    </FluentLabel>
+                </li>
             </ul>
             <FluentDivider></FluentDivider>
         </li>
@@ -160,13 +182,13 @@
         Licença
     </FluentLabel>
 </FluentStack>
-<p class="mb-8">
+<FluentLabel Typo="Typography.Body">
     Este repositório está licenciado sob a
     <FluentNavLink Href="https://github.com/Emersonmrbr/Commands/blob/main/LICENSE" Target="_blank">
         <b>LICENCE</b>
     </FluentNavLink>
     Sinta-se à vontade para usar, modificar e distribuir o conteúdo conforme necessário.
-</p>
+</FluentLabel>
 
 <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
              VerticalAlignment="@VerticalAlignment.Center"
@@ -176,12 +198,12 @@
         Contato
     </FluentLabel>
 </FluentStack>
-<p class="mb-8">
+<FluentLabel Typo="Typography.Body">
     Para dúvidas ou feedback, abra uma issue no repositório ou entre em contato através do e-mail
     <FluentNavLink Href="mailto:emerson@nucleomap.com.br" Target="_blank">
         <b>emerson@nucleomap.com.br</b>
     </FluentNavLink>
-</p>
+</FluentLabel>>
 
 @code {
 
