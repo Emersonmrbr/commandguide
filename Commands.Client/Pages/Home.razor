@@ -64,18 +64,14 @@
 @foreach (var guide in guides)
 {
     <h5>
-        @guide.Title
-        <FluentNavLink Href="@guide.Link" Target="_blank">
-            <b>@guide.LinkText</b>
-        </FluentNavLink>
+        @guide.Title  <FluentNavLink Href="@guide.Link" Target="_blank">  <b>@guide.LinkText</b>  </FluentNavLink>
     </h5>
     <ul>
         <li>Este guia inclui:</li>
         @foreach (var content in guide.Contents)
         {
             <li>
-                <FluentIcon Value=@content.IconType ColorType=@content.ColorType />
-                @content.Title
+                <FluentIcon Value=@content.IconType ColorType=@content.ColorType /> @content.Title
                 <ul>
                     <li>@content.Command</li>
                 </ul>
