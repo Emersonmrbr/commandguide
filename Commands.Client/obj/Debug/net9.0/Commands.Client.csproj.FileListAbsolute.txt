@@ -1,7 +1,7 @@
 C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\blazor.boot.json
 C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\blazor.webassembly.js
-C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\Commands.Client.4qcgusl3u1.pdb
-C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\Commands.Client.jzhbef2fki.wasm
+C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\Commands.Client.oxxy8pi3kk.pdb
+C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\Commands.Client.6yzsbztind.wasm
 C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\dotnet.js
 C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\dotnet.js.map
 C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\dotnet.native.8o8n7iomrf.js
@@ -252,7 +252,7 @@ C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_f
 C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\Microsoft.Extensions.Options.ConfigurationExtensions.fanky0at9h.wasm.gz
 C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\System.Runtime.9idl43ts3r.wasm.gz
 C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\System.Diagnostics.StackTrace.7f3f9acuyj.wasm.gz
-C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\Commands.Client.jzhbef2fki.wasm.gz
+C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\Commands.Client.6yzsbztind.wasm.gz
 C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\System.Threading.Overlapped.vhe0cauobg.wasm.gz
 C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\System.Net.ServicePoint.fb4vl6a7xv.wasm.gz
 C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\System.Private.Uri.h9vk2avn0v.wasm.gz
@@ -359,7 +359,7 @@ C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_f
 C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\Microsoft.Extensions.Diagnostics.Abstractions.p6uikc63bw.wasm.gz
 C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\System.ComponentModel.EventBasedAsync.ra9xq384hx.wasm.gz
 C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\System.IO.a8lovankol.wasm.gz
-C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\Commands.Client.4qcgusl3u1.pdb.gz
+C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\Commands.Client.oxxy8pi3kk.pdb.gz
 C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\System.Runtime.Serialization.6caw9o814c.wasm.gz
 C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\System.ComponentModel.TypeConverter.z2oi73nl5l.wasm.gz
 C:\Users\emers\source\repos\Commands\Commands.Client\bin\Debug\net9.0\wwwroot\_framework\System.Xml.XmlDocument.hh2c0bum76.wasm.gz
@@ -1106,9 +1106,9 @@ C:\Users\emers\source\repos\Commands\Commands.Client\obj\Debug\net9.0\compressed
 C:\Users\emers\source\repos\Commands\Commands.Client\obj\Debug\net9.0\compressed\iplv5562tn-tjcz0u77k5.gz
 C:\Users\emers\source\repos\Commands\Commands.Client\obj\Debug\net9.0\compressed\yrs703wzq9-tptq2av103.gz
 C:\Users\emers\source\repos\Commands\Commands.Client\obj\Debug\net9.0\compressed\b1j4h1bl0r-lfu7j35m59.gz
-C:\Users\emers\source\repos\Commands\Commands.Client\obj\Debug\net9.0\compressed\7d20adjlrv-jzhbef2fki.gz
-C:\Users\emers\source\repos\Commands\Commands.Client\obj\Debug\net9.0\compressed\olt7q65vpv-4qcgusl3u1.gz
-C:\Users\emers\source\repos\Commands\Commands.Client\obj\Debug\net9.0\compressed\1g0x9qvuqr-tq5eiuwuxv.gz
+C:\Users\emers\source\repos\Commands\Commands.Client\obj\Debug\net9.0\compressed\7d20adjlrv-6yzsbztind.gz
+C:\Users\emers\source\repos\Commands\Commands.Client\obj\Debug\net9.0\compressed\olt7q65vpv-oxxy8pi3kk.gz
+C:\Users\emers\source\repos\Commands\Commands.Client\obj\Debug\net9.0\compressed\1g0x9qvuqr-c29a6htfwd.gz
 C:\Users\emers\source\repos\Commands\Commands.Client\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\emers\source\repos\Commands\Commands.Client\obj\Debug\net9.0\staticwebassets.development.json
 C:\Users\emers\source\repos\Commands\Commands.Client\obj\Debug\net9.0\staticwebassets.build.endpoints.json

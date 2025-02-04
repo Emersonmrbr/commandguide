@@ -74,7 +74,7 @@ C:\Users\emers\source\repos\Commands\Commands\obj\Debug\net9.0\compressed\ruk4ib
 C:\Users\emers\source\repos\Commands\Commands\obj\Debug\net9.0\compressed\kwrall9b0s-y92cxfqtgl.gz
 C:\Users\emers\source\repos\Commands\Commands\obj\Debug\net9.0\compressed\m3ffqup1h6-kz8gc8cxma.gz
 C:\Users\emers\source\repos\Commands\Commands\obj\Debug\net9.0\compressed\3emkb5z5ma-8j22j5h3b2.gz
-C:\Users\emers\source\repos\Commands\Commands\obj\Debug\net9.0\compressed\4v4v1c3es0-7a1bqehz3u.gz
+C:\Users\emers\source\repos\Commands\Commands\obj\Debug\net9.0\compressed\4v4v1c3es0-j32uwsqpk3.gz
 C:\Users\emers\source\repos\Commands\Commands\obj\Debug\net9.0\compressed\hhjhkw7ebs-7yrwqt1eqj.gz
 C:\Users\emers\source\repos\Commands\Commands\obj\Debug\net9.0\compressed\jzi9v356th-y5q4b2agd2.gz
 C:\Users\emers\source\repos\Commands\Commands\obj\Debug\net9.0\compressed\xip8ed9whi-uhfllo7vmv.gz

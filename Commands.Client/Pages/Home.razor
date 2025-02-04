@@ -1,8 +1,8 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+<PageTitle>HOME</PageTitle>
 
-<h3>Repositório de Guias de Comandos</h3>
+<FluentLabel Typo="Typography.H3">Repositório de Guias de Comando</FluentLabel>
 <p class="mb-8">
     Este repositório fornece guias básicos de comandos para diversas ferramentas e plataformas, incluindo
     <strong>Git</strong>, <strong>PowerShell</strong>,
@@ -13,98 +13,153 @@
     que leva aos outros arquivos de guias correspondentes.
 </p>
 
-<h4>
+<FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+             VerticalAlignment="@VerticalAlignment.Center"
+             Style="height: 48px; padding-inline-end: 10px;">
     <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.Apps())" Color="@Color.Error" />
-    Estrutura do Repositório
-</h4>
+    <FluentLabel Typo="Typography.H4">
+        Estrutura do Repositório
+    </FluentLabel>
+</FluentStack>
 <ul>
     <li>
-        <h5>O repositório está organizado nos seguintes arquivos:</h5>
+        <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+                     VerticalAlignment="@VerticalAlignment.Center"
+                     Style="height: 48px; padding-inline-end: 10px;">
+            <FluentLabel Typo="Typography.H5">
+                O repositório está organizado nos seguintes arquivos:
+            </FluentLabel>
+        </FluentStack>
     </li>
     @foreach (var content in structureContents)
     {
         <li>
-            <FluentIcon Value=@content.IconType ColorType=@content.ColorType />
-            @content.Title
-            <ul>
-                <li>
-                    <FluentNavLink Href="@content.Link" Target="_blank">
-                        @content.Description
-                    </FluentNavLink>
-                </li>
-            </ul>
-            <FluentDivider></FluentDivider>
+            <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+                         VerticalAlignment="@VerticalAlignment.Center"
+                         Style="height: 48px; padding-inline-end: 10px;">
+                <FluentIcon Value=@content.IconType ColorType=@content.ColorType />
+                <FluentLabel Typo="Typography.H6">
+                    @content.Title
+                </FluentLabel>
+                <FluentNavLink Href="@content.Link" Target="_blank"><b>@content.Description</b></FluentNavLink>
+            </FluentStack>
         </li>
+        <FluentDivider></FluentDivider>
     }
 </ul>
 
-<h4>
+<FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+             VerticalAlignment="@VerticalAlignment.Center"
+             Style="height: 48px; padding-inline-end: 10px;">
     <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.CheckmarkCircle())" Color="@Color.Error" />
-    Como Usar
-</h4>
+    <FluentLabel Typo="Typography.H4">
+        Como Usar
+    </FluentLabel>
+</FluentStack>
 <ul>
     @foreach (var content in howUseContents)
     {
         <li>
-            <FluentIcon Value=@content.IconType ColorType=@content.ColorType />
-            @content.Title
-            <ul>
-                <li>@content.Command</li>
-            </ul>
-            <FluentDivider></FluentDivider>
+            <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+                         VerticalAlignment="@VerticalAlignment.Center"
+                         Style="height: 48px; padding-inline-end: 10px;">
+                <FluentIcon Value=@content.IconType ColorType=@content.ColorType />
+                <FluentLabel Typo="Typography.H5">
+                    @content.Title
+                </FluentLabel>
+                @content.Command
+                <FluentDivider></FluentDivider>
+            </FluentStack>
         </li>
     }
 </ul>
 
-<h4>
+<FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+             VerticalAlignment="@VerticalAlignment.Center"
+             Style="height: 48px; padding-inline-end: 10px;">
     <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.ClipboardTextEdit())" Color="@Color.Warning" />
-    Visão Geral dos Guias
-</h4>
+    <FluentLabel Typo="Typography.H4">
+        Visão Geral dos Guias
+    </FluentLabel>
+</FluentStack>
 
 @foreach (var guide in guides)
 {
-    <h5>
-        @guide.Title  <FluentNavLink Href="@guide.Link" Target="_blank">  <b>@guide.LinkText</b>  </FluentNavLink>
-    </h5>
+    <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+                 VerticalAlignment="@VerticalAlignment.Center"
+                 Style="height: 48px; padding-inline-end: 10px; border: solid 1px var(--success)">
+        <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size32.CheckmarkCircle())" Color="@Color.Success" />
+        <FluentLabel Typo="Typography.H5">
+            <FluentNavLink Href="@guide.Link" Target="_blank"> @guide.Title <b>@guide.LinkText</b>  </FluentNavLink>
+        </FluentLabel>
+    </FluentStack>
     <ul>
-        <li>Este guia inclui:</li>
+        <li>
+            <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+                         VerticalAlignment="@VerticalAlignment.Center"
+                         Style="height: 48px; padding-inline-end: 10px;">
+                <FluentLabel Typo="Typography.H5">
+                    Este guia inclui:
+                </FluentLabel>
+            </FluentStack>
+        </li>
+        <FluentDivider></FluentDivider>
         @foreach (var content in guide.Contents)
         {
             <li>
-                <FluentIcon Value=@content.IconType ColorType=@content.ColorType /> @content.Title
-                <ul>
-                    <li>@content.Command</li>
-                </ul>
+                <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+                             VerticalAlignment="@VerticalAlignment.Center"
+                             Style="height: 48px; padding-inline-end: 10px;">
+                    <FluentIcon Value=@content.IconType ColorType=@content.ColorType />
+                    <FluentLabel Typo="Typography.H5">
+                        @content.Title
+                    </FluentLabel>
+                </FluentStack>
                 <FluentDivider></FluentDivider>
             </li>
         }
     </ul>
 }
-
-<h4>
+<FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+             VerticalAlignment="@VerticalAlignment.Center"
+             Style="height: 48px; padding-inline-end: 10px;">
     <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.ApprovalsApp())" Color="@Color.Error" />
-    Contribuindo
-</h4>
+    <FluentLabel Typo="Typography.H4">
+        Contribuindo
+    </FluentLabel>
+</FluentStack>
 <p>Contribuições são bem-vindas! Para sugerir alterações ou adicionar novos guias:</p>
-<h5>Faça um fork do repositório.</h5>
+<FluentLabel Typo="Typography.H5">
+    Faça um fork do repositório.
+</FluentLabel>
 <ul>
     @foreach (var content in guideForkContents)
     {
         <li>
-            <FluentIcon Value=@content.IconType ColorType=@content.ColorType />
-            @content.Title
+            <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+                         VerticalAlignment="@VerticalAlignment.Center"
+                         Style="height: 48px; padding-inline-end: 10px;">
+                <FluentIcon Value=@content.IconType ColorType=@content.ColorType />
+                <FluentLabel Typo="Typography.H6">
+                    @content.Title
+                </FluentLabel>
+            </FluentStack>
             <ul>
-                <li>@content.Command</li>
+                <li><p>@content.Command</p></li>
             </ul>
             <FluentDivider></FluentDivider>
         </li>
     }
 </ul>
 
-<h4>
+<FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+             VerticalAlignment="@VerticalAlignment.Center"
+             Style="height: 48px; padding-inline-end: 10px;">
     <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.ClipboardTextEdit())" Color="@Color.Warning" />
-    Licença
-</h4>
+    <FluentLabel Typo="Typography.H4">
+        Licença
+    </FluentLabel>
+</FluentStack>
 <p class="mb-8">
     Este repositório está licenciado sob a
     <FluentNavLink Href="https://github.com/Emersonmrbr/Commands/blob/main/LICENSE" Target="_blank">
@@ -113,10 +168,14 @@
     Sinta-se à vontade para usar, modificar e distribuir o conteúdo conforme necessário.
 </p>
 
-<h4>
+<FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+             VerticalAlignment="@VerticalAlignment.Center"
+             Style="height: 48px; padding-inline-end: 10px;">
     <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.Mail())" Color="@Color.Warning" />
-    Contato
-</h4>
+    <FluentLabel Typo="Typography.H4">
+        Contato
+    </FluentLabel>
+</FluentStack>
 <p class="mb-8">
     Para dúvidas ou feedback, abra uma issue no repositório ou entre em contato através do e-mail
     <FluentNavLink Href="mailto:emerson@nucleomap.com.br" Target="_blank">
@@ -146,25 +205,25 @@
 
     List<Content> structureContents = new()
     {
-        new (){Title="Git: Contém comandos básicos para usar o Git.",Description ="github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Git",Link="https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Git",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size16.Apps(),ColorType=Color.Error},
-        new (){Title="PowerShell: Abrange comandos essenciais do PowerShell.",Description ="github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Powershell",Link="https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Powershell",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size16.Apps(),ColorType=Color.Error},
-        new (){Title="PowerShell Hyper-V: Inclui comandos específicos para gerenciar o Hyper-V através do PowerShell.",Description ="github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/HyperV",Link="https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/HyperV",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size16.Apps(),ColorType=Color.Error},
-        new (){Title=" Ubuntu: Lista comandos comuns para trabalhar com o Ubuntu",Description ="github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Ubuntu",Link="https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Ubuntu",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size16.Apps(),ColorType=Color.Error},
-        new (){Title="Terminal: Lista comandos comuns para trabalhar com o Terminal do Windows",Description ="github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Terminal",Link="https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Terminal",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size16.Apps(),ColorType=Color.Error},
+        new (){Title="Git: Contém comandos básicos para usar o Git.",Description ="github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Git",Link="https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Git",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Error},
+        new (){Title="PowerShell: Abrange comandos essenciais do PowerShell.",Description ="github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Powershell",Link="https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Powershell",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Error},
+        new (){Title="PowerShell Hyper-V: Inclui comandos específicos para gerenciar o Hyper-V através do PowerShell.",Description ="github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/HyperV",Link="https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/HyperV",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Error},
+        new (){Title=" Ubuntu: Lista comandos comuns para trabalhar com o Ubuntu",Description ="github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Ubuntu",Link="https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Ubuntu",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Error},
+        new (){Title="Terminal: Lista comandos comuns para trabalhar com o Terminal do Windows",Description ="github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Terminal",Link="https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Terminal",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Error},
     };
 
     List<Content> howUseContents = new()
     {
-        new (){Title="Clone o repositório para sua máquina local:",Command ="git clone git@github.com:Emersonmrbr/Commands.git",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size16.CheckmarkCircle(),ColorType=Color.Error},
-        new (){Title="Abra o arquivo HTML desejado em um navegador para visualizar o guia:",Command ="open index.html",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size16.CheckmarkCircle(),ColorType=Color.Error},
+        new (){Title="Clone o repositório para sua máquina local:",Command ="git clone git@github.com:Emersonmrbr/Commands.git",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Error},
+        new (){Title="Abra o arquivo HTML desejado em um navegador para visualizar o guia:",Command ="open index.html",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Error},
     };
 
     List<Content> guideForkContents = new()
     {
-        new (){Title="Crie uma nova branch:",Command="git checkout -b nova-branch",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size16.ApprovalsApp(),ColorType=Color.Warning},
-        new (){Title="Faça suas alterações e commit:",Command="git commit -m 'Descrição das alterações'",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size16.ApprovalsApp(),ColorType=Color.Warning},
-        new (){Title="Envie para sua branch:",Command="git push origin nova-branch",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size16.ApprovalsApp(),ColorType=Color.Warning},
-        new (){Title="Abra um pull request.",Command="Abra um pull request no GitHub",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size16.ApprovalsApp(),ColorType=Color.Warning},
+        new (){Title="Crie uma nova branch:",Command="git checkout -b nova-branch",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+        new (){Title="Faça suas alterações e commit:",Command="git commit -m 'Descrição das alterações'",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+        new (){Title="Envie para sua branch:",Command="git push origin nova-branch",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+        new (){Title="Abra um pull request.",Command="Abra um pull request no GitHub",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
     };
 
     List<Guide> guides = new()
@@ -176,10 +235,10 @@
             LinkText = "github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Git",
             Contents = new List<Content>
             {
-                new (){Title="Comandos básicos para configurar repositórios.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size20.ClipboardTextEdit(),ColorType=Color.Warning},
-                new (){Title="Gerenciamento de branches.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size20.ClipboardTextEdit(),ColorType=Color.Warning},
-                new (){Title="Estágio e commit de alterações.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size20.ClipboardTextEdit(),ColorType=Color.Warning},
-                new (){Title="Resolução de conflitos.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size20.ClipboardTextEdit(),ColorType=Color.Warning},
+                new (){Title="Comandos básicos para configurar repositórios.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+                new (){Title="Gerenciamento de branches.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+                new (){Title="Estágio e commit de alterações.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+                new (){Title="Resolução de conflitos.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
             }
         },
         new Guide
@@ -188,9 +247,9 @@
             Link = "https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Powershell",
             LinkText = "github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Powershell",
             Contents = new List<Content>  {
-            new (){Title="Navegação e gerenciamento de arquivos.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size20.ClipboardTextEdit(),ColorType=Color.Warning},
-            new (){Title="Trabalhando com scripts.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size20.ClipboardTextEdit(),ColorType=Color.Warning},
-            new (){Title="Comandos de monitoramento do sistema.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size20.ClipboardTextEdit(),ColorType=Color.Warning},
+            new (){Title="Navegação e gerenciamento de arquivos.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            new (){Title="Trabalhando com scripts.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            new (){Title="Comandos de monitoramento do sistema.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
             }
         },
         new Guide
@@ -199,9 +258,9 @@
             Link = "https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/HyperV",
             LinkText = "github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/HyperV",
             Contents = new List<Content>  {
-            new (){Title="Gerenciamento de máquinas virtuais (VMs).",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size20.ClipboardTextEdit(),ColorType=Color.Warning},
-            new (){Title="Configuração de redes.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size20.ClipboardTextEdit(),ColorType=Color.Warning},
-            new (){Title="Alocação de recursos para VMs",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size20.ClipboardTextEdit(),ColorType=Color.Warning},
+            new (){Title="Gerenciamento de máquinas virtuais (VMs).",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            new (){Title="Configuração de redes.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            new (){Title="Alocação de recursos para VMs",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
             }
 
         },
@@ -211,9 +270,9 @@
             Link = "https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Ubuntu",
             LinkText = "github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Ubuntu",
             Contents = new List<Content>  {
-            new (){Title="Gerenciamento básico de pacotes com apt",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size20.ClipboardTextEdit(),ColorType=Color.Warning},
-            new (){Title="Permissões de arquivos e gerenciamento de usuários.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size20.ClipboardTextEdit(),ColorType=Color.Warning},
-            new (){Title="Comandos de rede e monitoramento do sistema.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size20.ClipboardTextEdit(),ColorType=Color.Warning},
+            new (){Title="Gerenciamento básico de pacotes com apt",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            new (){Title="Permissões de arquivos e gerenciamento de usuários.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            new (){Title="Comandos de rede e monitoramento do sistema.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
             }
         },
         new Guide
@@ -222,10 +281,10 @@
             Link = "https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Terminal",
             LinkText = "github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Terminal",
             Contents = new List<Content>  {
-            new (){Title="Navegação e gerenciamento de arquivos.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size20.ClipboardTextEdit(),ColorType=Color.Warning},
-            new (){Title="Gerenciamento de processos.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size20.ClipboardTextEdit(),ColorType=Color.Warning},
-            new (){Title="Configuração de rede.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size20.ClipboardTextEdit(),ColorType=Color.Warning},
-            new (){Title="Automatização de tarefas com scripts batch.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size20.ClipboardTextEdit(),ColorType=Color.Warning},
+            new (){Title="Navegação e gerenciamento de arquivos.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            new (){Title="Gerenciamento de processos.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            new (){Title="Configuração de rede.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            new (){Title="Automatização de tarefas com scripts batch.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
             }
         }
     };

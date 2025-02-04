@@ -1,10 +1,14 @@
 ﻿@inherits LayoutComponentBase
 
 <FluentLayout>
+    <FluentDesignTheme @bind-Mode="@Mode" @bind-OfficeColor="@OfficeColor" StorageName="theme" />
     <FluentHeader>
-        <h1>COMANDOS</h1>
+        <FluentLabel Typo="Typography.H2">Comandos</FluentLabel>
+
         <FluentSpacer />
-        <img src="img\logo.svg" width="250"/>
+        <img src="img\logo.svg" width="250" />
+        <FluentSpacer Width="30" />
+        <FluentIcon Value=@IconTheme Color="@Color.Neutral" OnClick="ChangeTheme" />
     </FluentHeader>
     <FluentStack Class="main" Orientation="Orientation.Horizontal" Width="100%">
         <NavMenu />
@@ -13,7 +17,7 @@
                 @Body
             </div>
         </FluentBodyContent>
-        <FluentToastProvider MaxToastCount="10" Position="ToastPosition.TopRight" Timeout="1500"/>
+        <FluentToastProvider MaxToastCount="10" Position="ToastPosition.TopRight" Timeout="1500" />
     </FluentStack>
     <FluentFooter>
         <a href="http://www.nucleomap.com.br" target="_blank">Núcleo MAP</a>
@@ -27,3 +31,26 @@
     <a href="." class="reload">Reload</a>
     <span class="dismiss">🗙</span>
 </div>
+@code {
+    public DesignThemeModes Mode { get; set; }
+    public OfficeColor? OfficeColor { get; set; }
+    public Icon IconTheme = new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size28.WeatherMoon();
+    void OnLoaded(LoadedEventArgs e)
+    {
+        Mode = DesignThemeModes.Dark;
+    }
+    void ChangeTheme()
+    {
+        if (DesignThemeModes.Dark == Mode)
+        {
+            Mode = DesignThemeModes.Light;
+            IconTheme = new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size28.ArrowClockwiseDashesSettings();
+        }
+        else
+        {
+            Mode = DesignThemeModes.Dark;
+            IconTheme = new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.DarkTheme();
+        }
+    }
+
+}

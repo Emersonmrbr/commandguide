@@ -5,6 +5,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{CD2090EB-989E-4B3D-B2C5-50F301DB6263}|Commands.Client\\Commands.Client.csproj|c:\\users\\emers\\source\\repos\\commands\\commands.client\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{CD2090EB-989E-4B3D-B2C5-50F301DB6263}|Commands.Client\\Commands.Client.csproj|solutionrelative:commands.client\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD2090EB-989E-4B3D-B2C5-50F301DB6263}|Commands.Client\\Commands.Client.csproj|c:\\users\\emers\\source\\repos\\commands\\commands.client\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CD2090EB-989E-4B3D-B2C5-50F301DB6263}|Commands.Client\\Commands.Client.csproj|solutionrelative:commands.client\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD2090EB-989E-4B3D-B2C5-50F301DB6263}|Commands.Client\\Commands.Client.csproj|c:\\users\\emers\\source\\repos\\commands\\commands.client\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CD2090EB-989E-4B3D-B2C5-50F301DB6263}|Commands.Client\\Commands.Client.csproj|solutionrelative:commands.client\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,12 +22,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 224,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -28,9 +32,35 @@
               "RelativeDocumentMoniker": "Commands.Client\\Pages\\Home.razor",
               "ToolTip": "C:\\Users\\emers\\source\\repos\\Commands\\Commands.Client\\Pages\\Home.razor",
               "RelativeToolTip": "Commands.Client\\Pages\\Home.razor",
-              "ViewState": "AgIAADYAAAAAAAAAAAAAAEoAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAJMAAAAAAAAAAAAAAK0AAAB7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-04T03:01:38.383Z",
+              "WhenOpened": "2025-02-04T08:14:29.736Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "C:\\Users\\emers\\source\\repos\\Commands\\Commands.Client\\Layout\\MainLayout.razor",
+              "RelativeDocumentMoniker": "Commands.Client\\Layout\\MainLayout.razor",
+              "ToolTip": "C:\\Users\\emers\\source\\repos\\Commands\\Commands.Client\\Layout\\MainLayout.razor",
+              "RelativeToolTip": "Commands.Client\\Layout\\MainLayout.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-04T06:21:10.405Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "C:\\Users\\emers\\source\\repos\\Commands\\Commands.Client\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "Commands.Client\\Layout\\NavMenu.razor",
+              "ToolTip": "C:\\Users\\emers\\source\\repos\\Commands\\Commands.Client\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "Commands.Client\\Layout\\NavMenu.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-04T06:21:06.236Z",
               "EditorCaption": ""
             }
           ]

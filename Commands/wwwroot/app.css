@@ -134,6 +134,10 @@ li {
     margin: 0;
 }
 
+b {
+    color: cornflowerblue;
+}
+
 @media (max-width: 600px) {
     .header-gutters {
         margin: 0.5rem 3rem 0.5rem 1.5rem !important;
