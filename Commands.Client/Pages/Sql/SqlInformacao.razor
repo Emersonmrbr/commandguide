@@ -1,0 +1,57 @@
+﻿@page "/sql/informacao"
+@inject IJSRuntime JSRuntime
+@inject IToastService ToastService
+
+<h2 Severity="Severity.Info">
+    Comandos de Informação
+</h2>
+
+@foreach (var card in cardContents)
+{
+    <FluentGrid Justify="JustifyContent.FlexStart" Style="background-color: var(--neutral-layer-3); padding: 24px;">
+        <FluentCard MinimalStyle="true" Height="auto">
+            <h4>@card.Title</h4>
+            <FluentGridItem Justify="JustifyContent.FlexStart" style="padding: 20px">
+                <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.Copy())" OnClick='()=>CopyText(card.Command)' />
+                <FluentBadge Appearance="Appearance.Neutral" OnClick='()=>CopyText(card.Command)'>
+                    @card.Command
+                </FluentBadge>
+            </FluentGridItem>
+            <p>@card.Description</p>
+        </FluentCard>
+    </FluentGrid>
+}
+
+@code {
+
+    List<CardContent> cardContents = new()
+{
+    new (){Title = "Matar Processo", Command="KILL id_do_processo;", Description="Finaliza o processo com o ID especificado no servidor de banco de dados."},
+    new (){Title = "Mostrar Versão do MySQL", Command="SELECT VERSION();", Description="Retorna a versão do MySQL instalada no servidor."},
+    new (){Title = "Mostrar Privilégios do Usuário", Command="SHOW GRANTS FOR usuario;", Description="Exibe os privilégios concedidos ao usuário especificado."},
+    new (){Title = "Mostrar Chaves Estrangeiras", Command="SHOW CREATE TABLE nome_da_tabela;", Description="Exibe a estrutura da tabela, incluindo chaves estrangeiras."},
+    new (){Title = "Mostrar Índices de uma Tabela", Command="SHOW INDEX FROM nome_da_tabela;", Description="Exibe os índices da tabela especificada."},
+    new (){Title = "Mostrar Logs de Erros", Command="SHOW ERRORS;", Description="Exibe os últimos erros registrados no servidor de banco de dados."},
+    new (){Title = "Mostrar Logs de Avisos", Command="SHOW WARNINGS;", Description="Exibe os últimos avisos registrados no servidor de banco de dados."},
+    new (){Title = "Mostrar Configurações de Armazenamento", Command="SHOW STORAGE ENGINES;", Description="Exibe os mecanismos de armazenamento suportados pelo servidor de banco de dados."},
+    new (){Title = "Mostrar Estrutura da Tabela", Command="DESCRIBE nome_da_tabela;", Description="Mostra a estrutura da tabela 'nome_da_tabela', incluindo colunas, tipos de dados e restrições."},
+    new (){Title = "Exibir Tabelas", Command="SHOW TABLES;", Description="Exibe todas as tabelas disponíveis no banco de dados atual."},
+    new (){Title = "Mostrar Bancos de Dados", Command="SHOW DATABASES;", Description="Exibe todos os bancos de dados disponíveis no servidor."},
+    new (){Title = "Mostrar Variáveis do Sistema", Command="SHOW VARIABLES;", Description="Exibe as variáveis de configuração do sistema do banco de dados."},
+    new (){Title = "Mostrar Status do Servidor", Command="SHOW STATUS;", Description="Exibe o status atual do servidor de banco de dados."},
+    new (){Title = "Mostrar Processos em Execução", Command="SHOW PROCESSLIST;", Description="Exibe os processos atualmente em execução no servidor de banco de dados."},
+};
+
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        ToastService.ShowToast(ToastIntent.Success, $"[ {command} ] Copied!");
+    }
+}
