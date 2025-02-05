@@ -2,54 +2,54 @@
     <input type="checkbox" title="Menu expand/collapse toggle" id="navmenu-toggle" class="navmenu-icon" />
     <label for="navmenu-toggle" class="navmenu-icon"><FluentIcon Value="@(new Icons.Regular.Size24.Navigation())" Color="Color.Fill" /></label>
     <nav class="sitenav" aria-labelledby="main-menu">
-        <FluentNavMenu @bind-Expanded="@Expanded" Width="250" Collapsible="true">
-            <FluentNavLink Href="/" Icon="@(new Icons.Regular.Size24.Home())" Tooltip="Home tooltip">HOME</FluentNavLink>
-            <FluentNavGroup Title="GIT" Tooltip="GIT tooltip" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.DesktopFlow())">
-                <FluentNavLink Href="/git/inicio" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Inicio tooltip">Início</FluentNavLink>
-                <FluentNavLink Href="/git/basico" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Basico tooltip">Básico</FluentNavLink>
-                <FluentNavLink Href="/git/branche" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Branches tooltip">Branches</FluentNavLink>
-                <FluentNavLink Href="/git/desfazer" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Desfazer tooltip">Desfazer</FluentNavLink>
-                <FluentNavLink Href="/git/flow" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Flow tooltip">Flow</FluentNavLink>
-                <FluentNavLink Href="/git/fork" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Fork tooltip">Fork</FluentNavLink>
-                <FluentNavLink Href="/git/gerenciamento" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Gerenciamento tooltip">Gerenciamento</FluentNavLink>
-                <FluentNavLink Href="/git/mergerebase" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="MergeRebaseo tooltip">Merge e Rebase</FluentNavLink>
-                <FluentNavLink Href="/git/repositorio" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Repositórios tooltip">Repositórios</FluentNavLink>
-                <FluentNavLink Href="/git/stash" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Stash tooltip">Stash</FluentNavLink>
-                <FluentNavLink Href="/git/tag" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Tags tooltip">Tags</FluentNavLink>
+        <FluentNavMenu @bind-Expanded="@Expanded" Width="350" Collapsible="true">
+            <FluentNavLink Href="/" Icon="@(new Icons.Regular.Size24.Home())" Tooltip="Home">HOME</FluentNavLink>
+            <FluentNavGroup Title="GIT" Tooltip="GIT" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.DesktopFlow())">
+                <FluentNavLink Href="/git/inicio" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Início">Início</FluentNavLink>
+                <FluentNavLink Href="/git/basico" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Básico">Básico</FluentNavLink>
+                <FluentNavLink Href="/git/branches" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Branches">Branches</FluentNavLink>
+                <FluentNavLink Href="/git/desfazer" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Desfazer">Desfazer</FluentNavLink>
+                <FluentNavLink Href="/git/flow" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Flow">Flow</FluentNavLink>
+                <FluentNavLink Href="/git/fork" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Fork">Fork</FluentNavLink>
+                <FluentNavLink Href="/git/gerenciamento" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Gerenciamento">Gerenciamento</FluentNavLink>
+                <FluentNavLink Href="/git/mergerebase" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Merge e Rebase">Merge e Rebase</FluentNavLink>
+                <FluentNavLink Href="/git/repositorios" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Repositórios">Repositórios</FluentNavLink>
+                <FluentNavLink Href="/git/stash" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Stash">Stash</FluentNavLink>
+                <FluentNavLink Href="/git/tags" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Tags">Tags</FluentNavLink>
             </FluentNavGroup>
-            <FluentNavGroup Title="HYPERV" Tooltip="HyperV tooltip" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.BuildingDesktop())">
-                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Desktop())" Href="/hyperv/basico" Tooltip="Basico tooltip">Básico</FluentNavLink>
+            <FluentNavGroup Title="HYPERV" Tooltip="Hyper-V" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.BuildingDesktop())">
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Desktop())" Href="/hyperv/basico" Tooltip="Básico">Básico</FluentNavLink>
             </FluentNavGroup>
-            <FluentNavGroup Title="POWERSHELL" Tooltip="POWERSHELL tooltip" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.DesktopEdit())">
-                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Script())" Href="/powershell/basico" Tooltip="Basico tooltip">Básico</FluentNavLink>
+            <FluentNavGroup Title="POWERSHELL" Tooltip="POWERSHELL" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.DesktopEdit())">
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Script())" Href="/powershell/basico" Tooltip="Básico">Básico</FluentNavLink>
             </FluentNavGroup>
-            <FluentNavGroup Title="UBUNTU" Tooltip="UBUNTU tooltip" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.WindowDevTools())">
-                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Code())" Href="/ubuntu/basico" Tooltip="Basico tooltip">Básico</FluentNavLink>
+            <FluentNavGroup Title="UBUNTU" Tooltip="UBUNTU" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.WindowDevTools())">
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Code())" Href="/ubuntu/basico" Tooltip="Básico">Básico</FluentNavLink>
             </FluentNavGroup>
-            <FluentNavGroup Title="SQL" Tooltip="SQL tooltip" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.WindowDatabase())">
-                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/basico" Tooltip="Basico tooltip">Básico</FluentNavLink>
-                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/backuprestauracao" Tooltip="BackupRestauracao tooltip">Backup e Restauração</FluentNavLink>
-                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/consultainformacao" Tooltip="ConsultaInformacao tooltip">Consulta e Informação</FluentNavLink>
-                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/controleacesso" Tooltip="ControleAcessoPermissoes tooltip">Controle de Acesso e Permissões</FluentNavLink>
-                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/controletransacao" Tooltip="ControleTransacoes tooltip">Controle de Transações</FluentNavLink>
-                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/DDL" Tooltip="DDL tooltip">DDL - Data Definition Language</FluentNavLink>
-                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/DML" Tooltip="DML tooltip">DML - Data Manipulation Language</FluentNavLink>
-                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/exportacaoimportacao" Tooltip="ExportacaoImportacao de Dado tooltip">Consulta e Informação</FluentNavLink>
-                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/JOIN" Tooltip="JOIN tooltip">Junção (JOIN)</FluentNavLink>
-                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/subconsultas" Tooltip="Subconsultas tooltip">Subconsultas</FluentNavLink>
+            <FluentNavGroup Title="SQL" Tooltip="SQL" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.WindowDatabase())">
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/basico" Tooltip="Básico">Básico</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/backuprestauracao" Tooltip="Backup e Restauração">Backup e Restauração</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/consulta" Tooltip="Consulta">Consulta</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/controleacesso" Tooltip="Controle de Acesso e Permissões">Controle de Acesso e Permissões</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/controletransacao" Tooltip="Controle de Transações">Controle de Transações</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/DDL" Tooltip="DDL - Data Definition Language">DDL - Data Definition Language</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/DML" Tooltip="DML - Data Manipulation Language">DML - Data Manipulation Language</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/exportacaoimportacao" Tooltip="Exportação e Importação de Dados">Exportação e Importação de Dados</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/informacao" Tooltip="Informação">Informação</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/JOIN" Tooltip="Junção (JOIN)">Junção (JOIN)</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/sql/subconsultas" Tooltip="Subconsultas">Subconsultas</FluentNavLink>
             </FluentNavGroup>
-            <FluentNavGroup Title="TERMINAL" Tooltip="TERMINAL tooltip" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.DesktopToolbox())">
-                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Prompt())" Href="/terminal/pastaarquivo" Tooltip="PastasArquivos tooltip">Pastas e arquivos</FluentNavLink>
-                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Prompt())" Href="/terminal/rede" Tooltip="Rede tooltip">Rede</FluentNavLink>
-                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Prompt())" Href="/terminal/sistema" Tooltip="Sistema tooltip">Sistema</FluentNavLink>
+            <FluentNavGroup Title="TERMINAL" Tooltip="TERMINAL" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.DesktopToolbox())">
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Prompt())" Href="/terminal/pastaarquivo" Tooltip="Pastas e arquivos">Pastas e arquivos</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Prompt())" Href="/terminal/rede" Tooltip="Rede">Rede</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Prompt())" Href="/terminal/sistema" Tooltip="Sistema">Sistema</FluentNavLink>
             </FluentNavGroup>
-            <FluentNavGroup Title="WINGET" Tooltip="WINGET tooltip" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.WindowApps())">
-                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Apps())" Href="/winget/basico" Tooltip="Basico tooltip">Básico</FluentNavLink>
+            <FluentNavGroup Title="WINGET" Tooltip="WINGET" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.WindowApps())">
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Apps())" Href="/winget/basico" Tooltip="Básico tooltip">Básico</FluentNavLink>
             </FluentNavGroup>
         </FluentNavMenu>
     </nav>
 </div>
-
 
 @code
 {

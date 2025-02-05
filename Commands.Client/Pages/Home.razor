@@ -1,6 +1,7 @@
 ﻿@page "/"
 
 <PageTitle>HOME</PageTitle>
+
 <FluentCard Height="auto" Style="border: solid 0.5px var(--neutral-layer-1)">
     <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
                  VerticalAlignment="@VerticalAlignment.Center"
@@ -8,15 +9,15 @@
         <FluentLabel Typo="Typography.H3">Repositório de Guias de Comando</FluentLabel>
     </FluentStack>
     <FluentLabel Typo="Typography.Body">
-        Este repositório fornece guias básicos de comandos para diversas ferramentas e plataformas, incluindo
-        <strong>Git</strong>, <strong>PowerShell</strong>,
-        <strong>PowerShell Hyper-V</strong> e <strong>Ubuntu</strong>. Cada guia está disponível como um arquivo HTML
-        separado para facilitar o acesso e a
-        usabilidade. Para acessar a documentação completa, abra o arquivo <code>index.html</code> que está na raiz do
-        repositório. Esse arquivo contém um índice
-        que leva aos outros arquivos de guias correspondentes.
+        Este repositório fornece guias básicos de comandos para diversas ferramentas e plataformas,
+        incluindo <strong>Git</strong>, <strong>Hyper-V</strong>, <strong>PowerShell</strong>, <strong>SQL</strong> e <strong>Ubuntu</strong>.
+        Cada guia está disponível como uma página dentro do aplicativo Blazor Web App para facilitar o acesso e a usabilidade.
+        Para acessar a documentação completa, clone o repositório para sua máquina local e execute o aplicativo Blazor Web App.
+        O aplicativo contém um índice que leva aos outros arquivos de guias correspondentes.
+
     </FluentLabel>
 </FluentCard>
+
 <FluentCard Height="auto" Style="border: solid 0.5px var(--neutral-layer-1)">
     <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
                  VerticalAlignment="@VerticalAlignment.Center"
@@ -54,69 +55,17 @@
     </ul>
 </FluentCard>
 
-<FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
-             VerticalAlignment="@VerticalAlignment.Center"
-             Style="height: 48px; padding-inline-end: 10px;">
-    <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.CheckmarkCircle())" Color="@Color.Error" />
-    <FluentLabel Typo="Typography.H4">
-        Como Usar
-    </FluentLabel>
-</FluentStack>
-<ul>
-    @foreach (var content in howUseContents)
-    {
-        <li>
-            <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
-                         VerticalAlignment="@VerticalAlignment.Center"
-                         Style="height: 48px; padding-inline-end: 10px;">
-                <FluentIcon Value=@content.IconType ColorType=@content.ColorType />
-                <FluentLabel Typo="Typography.H5">
-                    @content.Title
-                </FluentLabel>
-            </FluentStack>
-            <ul>
-                <li>
-                    <FluentLabel Typo="Typography.Body">
-                        @content.Command
-                    </FluentLabel>
-                </li>
-            </ul>
-            <FluentDivider></FluentDivider>
-        </li>
-    }
-</ul>
-
-<FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
-             VerticalAlignment="@VerticalAlignment.Center"
-             Style="height: 48px; padding-inline-end: 10px;">
-    <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.ClipboardTextEdit())" Color="@Color.Warning" />
-    <FluentLabel Typo="Typography.H4">
-        Visão Geral dos Guias
-    </FluentLabel>
-</FluentStack>
-
-@foreach (var guide in guides)
-{
+<FluentCard Height="auto" Style="border: solid 0.5px var(--neutral-layer-1)">
     <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
                  VerticalAlignment="@VerticalAlignment.Center"
-                 Style="height: 48px; padding-inline-end: 10px; border: solid 1px var(--success)">
-        <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size32.CheckmarkCircle())" Color="@Color.Success" />
-        <FluentLabel Typo="Typography.H5">
-            <FluentNavLink Href="@guide.Link" Target="_blank"> @guide.Title <b>@guide.LinkText</b>  </FluentNavLink>
+                 Style="height: 48px; padding-inline-end: 10px;">
+        <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.CheckmarkCircle())" Color="@Color.Error" />
+        <FluentLabel Typo="Typography.H4">
+            Como Usar
         </FluentLabel>
     </FluentStack>
     <ul>
-        <li>
-            <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
-                         VerticalAlignment="@VerticalAlignment.Center"
-                         Style="height: 48px; padding-inline-end: 10px;">
-                <FluentLabel Typo="Typography.H5">
-                    Este guia inclui:
-                </FluentLabel>
-            </FluentStack>
-        </li>
-        <FluentDivider></FluentDivider>
-        @foreach (var content in guide.Contents)
+        @foreach (var content in howUseContents)
         {
             <li>
                 <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
@@ -127,83 +76,144 @@
                         @content.Title
                     </FluentLabel>
                 </FluentStack>
+                <ul>
+                    <li>
+                        <FluentLabel Typo="Typography.Body">
+                            @content.Command
+                        </FluentLabel>
+                    </li>
+                </ul>
                 <FluentDivider></FluentDivider>
             </li>
         }
     </ul>
-}
-<FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
-             VerticalAlignment="@VerticalAlignment.Center"
-             Style="height: 48px; padding-inline-end: 10px;">
-    <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.ApprovalsApp())" Color="@Color.Error" />
-    <FluentLabel Typo="Typography.H4">
-        Contribuindo
-    </FluentLabel>
-</FluentStack>
-<FluentLabel Typo="Typography.Body">
-    Contribuições são bem-vindas! Para sugerir alterações ou adicionar novos guias:
-</FluentLabel>
-<FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
-             VerticalAlignment="@VerticalAlignment.Center"
-             Style="height: 48px; padding-inline-end: 10px;">
-    <FluentLabel Typo="Typography.H5">
-        Faça um fork do repositório.
-    </FluentLabel>
-</FluentStack>
-<ul>
-    @foreach (var content in guideForkContents)
+</FluentCard>
+
+<FluentCard Height="auto" Style="border: solid 0.5px var(--neutral-layer-1)">
+    <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+                 VerticalAlignment="@VerticalAlignment.Center"
+                 Style="height: 48px; padding-inline-end: 10px;">
+        <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.ClipboardTextEdit())" Color="@Color.Warning" />
+        <FluentLabel Typo="Typography.H4">
+            Visão Geral dos Guias
+        </FluentLabel>
+    </FluentStack>
+
+    @foreach (var guide in guides)
     {
-        <li>
-            <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
-                         VerticalAlignment="@VerticalAlignment.Center"
-                         Style="height: 48px; padding-inline-end: 10px;">
-                <FluentIcon Value=@content.IconType ColorType=@content.ColorType />
-                <FluentLabel Typo="Typography.H6">
-                    @content.Title
-                </FluentLabel>
-            </FluentStack>
-            <ul>
-                <li>
-                    <FluentLabel Typo="Typography.Body">
-                        @content.Command
+        <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+                     VerticalAlignment="@VerticalAlignment.Center"
+                     Style="height: 48px; padding-inline-end: 10px; border: solid 1px var(--success)">
+            <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size32.CheckmarkCircle())" Color="@Color.Success" />
+            <FluentLabel Typo="Typography.H5">
+                <FluentNavLink Href="@guide.Link" Target="_blank"> @guide.Title <b>@guide.LinkText</b>  </FluentNavLink>
+            </FluentLabel>
+        </FluentStack>
+        <ul>
+            <li>
+                <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+                             VerticalAlignment="@VerticalAlignment.Center"
+                             Style="height: 48px; padding-inline-end: 10px;">
+                    <FluentLabel Typo="Typography.H5">
+                        Este guia inclui:
                     </FluentLabel>
-                </li>
-            </ul>
+                </FluentStack>
+            </li>
             <FluentDivider></FluentDivider>
-        </li>
+            @foreach (var content in guide.Contents)
+            {
+                <li>
+                    <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+                                 VerticalAlignment="@VerticalAlignment.Center"
+                                 Style="height: 48px; padding-inline-end: 10px;">
+                        <FluentIcon Value=@content.IconType ColorType=@content.ColorType />
+                        <FluentLabel Typo="Typography.H5">
+                            @content.Title
+                        </FluentLabel>
+                    </FluentStack>
+                    <FluentDivider></FluentDivider>
+                </li>
+            }
+        </ul>
     }
-</ul>
+</FluentCard>
 
-<FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
-             VerticalAlignment="@VerticalAlignment.Center"
-             Style="height: 48px; padding-inline-end: 10px;">
-    <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.ClipboardTextEdit())" Color="@Color.Warning" />
-    <FluentLabel Typo="Typography.H4">
-        Licença
+<FluentCard Height="auto" Style="border: solid 0.5px var(--neutral-layer-1)">
+    <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+                 VerticalAlignment="@VerticalAlignment.Center"
+                 Style="height: 48px; padding-inline-end: 10px;">
+        <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.ApprovalsApp())" Color="@Color.Error" />
+        <FluentLabel Typo="Typography.H4">
+            Contribuindo
+        </FluentLabel>
+    </FluentStack>
+    <FluentLabel Typo="Typography.Body">
+        Contribuições são bem-vindas! Para sugerir alterações ou adicionar novos guias:
     </FluentLabel>
-</FluentStack>
-<FluentLabel Typo="Typography.Body">
-    Este repositório está licenciado sob a
-    <FluentNavLink Href="https://github.com/Emersonmrbr/Commands/blob/main/LICENSE" Target="_blank">
-        <b>LICENCE</b>
-    </FluentNavLink>
-    Sinta-se à vontade para usar, modificar e distribuir o conteúdo conforme necessário.
-</FluentLabel>
+    <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+                 VerticalAlignment="@VerticalAlignment.Center"
+                 Style="height: 48px; padding-inline-end: 10px;">
+        <FluentLabel Typo="Typography.H5">
+            Faça um fork do repositório.
+        </FluentLabel>
+    </FluentStack>
+    <ul>
+        @foreach (var content in guideForkContents)
+        {
+            <li>
+                <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+                             VerticalAlignment="@VerticalAlignment.Center"
+                             Style="height: 48px; padding-inline-end: 10px;">
+                    <FluentIcon Value=@content.IconType ColorType=@content.ColorType />
+                    <FluentLabel Typo="Typography.H6">
+                        @content.Title
+                    </FluentLabel>
+                </FluentStack>
+                <ul>
+                    <li>
+                        <FluentLabel Typo="Typography.Body">
+                            @content.Command
+                        </FluentLabel>
+                    </li>
+                </ul>
+                <FluentDivider></FluentDivider>
+            </li>
+        }
+    </ul>
+</FluentCard>
 
-<FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
-             VerticalAlignment="@VerticalAlignment.Center"
-             Style="height: 48px; padding-inline-end: 10px;">
-    <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.Mail())" Color="@Color.Warning" />
-    <FluentLabel Typo="Typography.H4">
-        Contato
+<FluentCard Height="auto" Style="border: solid 0.5px var(--neutral-layer-1)">
+    <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+                 VerticalAlignment="@VerticalAlignment.Center"
+                 Style="height: 48px; padding-inline-end: 10px;">
+        <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.ClipboardTextEdit())" Color="@Color.Warning" />
+        <FluentLabel Typo="Typography.H4">
+            Licença
+        </FluentLabel>
+    </FluentStack>
+    <FluentLabel Typo="Typography.Body">
+        Este repositório está licenciado sob a
+        <FluentNavLink Href="https://github.com/Emersonmrbr/Commands/blob/main/LICENSE" Target="_blank">
+            <b>LICENCE</b>
+        </FluentNavLink>
+        Sinta-se à vontade para usar, modificar e distribuir o conteúdo conforme necessário.
     </FluentLabel>
-</FluentStack>
-<FluentLabel Typo="Typography.Body">
-    Para dúvidas ou feedback, abra uma issue no repositório ou entre em contato através do e-mail
-    <FluentNavLink Href="mailto:emerson@nucleomap.com.br" Target="_blank">
-        <b>emerson@nucleomap.com.br</b>
-    </FluentNavLink>
-</FluentLabel>>
+
+    <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
+                 VerticalAlignment="@VerticalAlignment.Center"
+                 Style="height: 48px; padding-inline-end: 10px;">
+        <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.Mail())" Color="@Color.Warning" />
+        <FluentLabel Typo="Typography.H4">
+            Contato
+        </FluentLabel>
+    </FluentStack>
+    <FluentLabel Typo="Typography.Body">
+        Para dúvidas ou feedback, abra uma issue no repositório ou entre em contato através do e-mail
+        <FluentNavLink Href="mailto:emerson@nucleomap.com.br" Target="_blank">
+            <b>emerson@nucleomap.com.br</b>
+        </FluentNavLink>
+    </FluentLabel>
+</FluentCard>
 
 @code {
 
@@ -228,8 +238,9 @@
     List<Content> structureContents = new()
     {
         new (){Title="Git: Contém comandos básicos para usar o Git.",Description ="github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Git",Link="https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Git",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Error},
+        new (){Title="Hyper-V: Inclui comandos específicos para gerenciar o Hyper-V através do PowerShell.",Description ="github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/HyperV",Link="https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/HyperV",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Error},
         new (){Title="PowerShell: Abrange comandos essenciais do PowerShell.",Description ="github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Powershell",Link="https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Powershell",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Error},
-        new (){Title="PowerShell Hyper-V: Inclui comandos específicos para gerenciar o Hyper-V através do PowerShell.",Description ="github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/HyperV",Link="https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/HyperV",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Error},
+        new (){Title="SQL: Abrange comandos essenciais do SQL.",Description ="github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Sql",Link="https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Sql",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Error},
         new (){Title=" Ubuntu: Lista comandos comuns para trabalhar com o Ubuntu",Description ="github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Ubuntu",Link="https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Ubuntu",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Error},
         new (){Title="Terminal: Lista comandos comuns para trabalhar com o Terminal do Windows",Description ="github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Terminal",Link="https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Terminal",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Error},
     };
@@ -237,8 +248,10 @@
     List<Content> howUseContents = new()
     {
         new (){Title="Clone o repositório para sua máquina local:",Command ="git clone git@github.com:Emersonmrbr/Commands.git",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Error},
-        new (){Title="Abra o arquivo HTML desejado em um navegador para visualizar o guia:",Command ="open index.html",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Error},
+        new (){Title="Navegue até o diretório do projeto:",Command ="cd Commands",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Error},
+        new (){Title="Execute o aplicativo Blazor Web App:",Command ="dotnet run",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Error},
     };
+
 
     List<Content> guideForkContents = new()
     {
@@ -265,18 +278,7 @@
         },
         new Guide
         {
-            Title = "Guia de PowerShell",
-            Link = "https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Powershell",
-            LinkText = "github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Powershell",
-            Contents = new List<Content>  {
-            new (){Title="Navegação e gerenciamento de arquivos.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
-            new (){Title="Trabalhando com scripts.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
-            new (){Title="Comandos de monitoramento do sistema.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
-            }
-        },
-        new Guide
-        {
-            Title = "Guia de PowerShell Hyper-V",
+            Title = "Guia de Hyper-V",
             Link = "https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/HyperV",
             LinkText = "github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/HyperV",
             Contents = new List<Content>  {
@@ -286,6 +288,36 @@
             }
 
         },
+        new Guide
+        {
+            Title = "Guia de PowerShell",
+            Link = "https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Powershell",
+            LinkText = "github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Powershell",
+            Contents = new List<Content>  {
+            new (){Title="Navegação e gerenciamento de arquivos.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            new (){Title="Trabalhando com scripts.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            new (){Title="Comandos de monitoramento do sistema.",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            }
+                },
+          new Guide
+        {
+            Title = "Guia de SQL",
+            Link = "https://github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Sql",
+            LinkText = "github.com/Emersonmrbr/Commands/tree/main/Commands.Client/Pages/Sql",
+            Contents = new List<Content> {
+            new (){Title="/sql/backuprestauracao",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            new (){Title="/sql/basico",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            new (){Title="/sql/consultainformacao",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            new (){Title="/sql/controleacesso",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            new (){Title="/sql/controletransacao",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            new (){Title="/sql/DDL",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            new (){Title="/sql/DML",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            new (){Title="/sql/exportacaoimportacao",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            new (){Title="/sql/JOIN",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            new (){Title="/sql/subconsultas",IconType=new Microsoft.FluentUI.AspNetCore.Components.Icons.Filled.Size32.Star(),ColorType=Color.Warning},
+            }
+        },
+
         new Guide
         {
             Title = "Guia de Ubuntu",

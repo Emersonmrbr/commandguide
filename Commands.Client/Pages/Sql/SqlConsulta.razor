@@ -1,0 +1,75 @@
+﻿@page "/sql/consulta"
+@inject IJSRuntime JSRuntime
+@inject IToastService ToastService
+
+<h2 Severity="Severity.Info">
+    Comandos de Consulta
+</h2>
+
+@foreach (var card in cardContents)
+{
+    <FluentGrid Justify="JustifyContent.FlexStart" Style="background-color: var(--neutral-layer-3); padding: 24px;">
+        <FluentCard MinimalStyle="true" Height="auto">
+            <h4>@card.Title</h4>
+            <FluentGridItem Justify="JustifyContent.FlexStart" style="padding: 20px">
+                <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.Copy())" OnClick='()=>CopyText(card.Command)' />
+                <FluentBadge Appearance="Appearance.Neutral" OnClick='()=>CopyText(card.Command)'>
+                    @card.Command
+                </FluentBadge>
+            </FluentGridItem>
+            <p>@card.Description</p>
+        </FluentCard>
+    </FluentGrid>
+}
+
+@code {
+
+    List<CardContent> cardContents = new()
+{
+    new (){Title = "Selecionar Todos os Registros", Command="SELECT * FROM nome_da_tabela;", Description="Retorna todos os registros e colunas da tabela 'nome_da_tabela'."},
+    new (){Title = "Selecionar Todos os Dados de uma Tabela", Command="SELECT coluna1, coluna2, coluna3 FROM nome_da_tabela;", Description="Retorna os registros da tabela 'nome_da_tabela' mostrando as colunas 'coluna1', 'coluna2' e 'coluna3'."},
+    new (){Title = "Selecionar Colunas Específicas", Command="SELECT coluna1, coluna2 FROM nome_da_tabela;", Description="Retorna apenas as colunas 'coluna1' e 'coluna2' da tabela 'nome_da_tabela'."},
+    new (){Title = "Filtrar Dados com WHERE", Command="SELECT coluna1, coluna2 FROM nome_da_tabela WHERE coluna3 = 'valor';", Description="Retorna os registros filtrados da tabela 'nome_da_tabela' mostrando as colunas 'coluna1' e 'coluna2'."},
+    new (){Title = "Ordenar Dados com ORDER BY", Command="SELECT coluna1, coluna2, coluna3 FROM nome_da_tabela ORDER BY coluna3 DESC;", Description="Retorna os registros ordenados pelo valor da coluna 'coluna3' em ordem decrescente."},
+    new (){Title = "Ordenar por Múltiplas Colunas", Command="SELECT coluna1, coluna2 FROM nome_da_tabela ORDER BY coluna1 ASC, coluna2 DESC;", Description="Ordena os registros primeiro por 'coluna1' em ordem crescente e depois por 'coluna2' em ordem decrescente."},
+    new (){Title = "Ordenar com ORDER BY e LIMIT", Command="SELECT coluna1, coluna2 FROM nome_da_tabela ORDER BY coluna1 DESC LIMIT valor;", Description="Retorna um número limitado de registros ordenados de forma decrescente pela 'coluna1'."},
+    new (){Title = "Contar Registros com COUNT", Command="SELECT COUNT(coluna1) FROM nome_da_tabela;", Description="Retorna o número total de registros na tabela 'nome_da_tabela'."},
+    new (){Title = "Agrupar Dados com GROUP BY", Command="SELECT coluna1, COUNT(coluna2) FROM nome_da_tabela GROUP BY coluna1;", Description="Retorna o número de registros agrupados por 'coluna1'."},
+    new (){Title = "Agrupar e Ordenar Dados", Command="SELECT coluna1, COUNT(coluna2) FROM nome_da_tabela GROUP BY coluna1 ORDER BY COUNT(coluna2) DESC;", Description="Agrupa os registros por 'coluna1' e ordena pelo número de ocorrências em ordem decrescente."},
+    new (){Title = "Agrupar e Filtrar com HAVING", Command="SELECT coluna1, COUNT(coluna2) FROM nome_da_tabela GROUP BY coluna1 HAVING COUNT(coluna2) > valor;", Description="Retorna apenas os grupos onde a contagem da 'coluna2' é maior que um determinado valor."},
+    new (){Title = "Selecionar Dados Distintos com DISTINCT", Command="SELECT DISTINCT coluna1 FROM nome_da_tabela;", Description="Retorna uma lista de valores únicos da coluna 'coluna1' na tabela 'nome_da_tabela'."},
+    new (){Title = "Limitar Resultados com LIMIT", Command="SELECT coluna1, coluna2 FROM nome_da_tabela LIMIT valor;", Description="Retorna apenas os primeiros registros limitados pelo valor especificado."},
+    new (){Title = "Juntar Tabelas com INNER JOIN", Command="SELECT t1.coluna1, t2.coluna2 FROM nome_da_tabela1 t1 INNER JOIN nome_da_tabela2 t2 ON t1.coluna_chave = t2.coluna_chave;", Description="Retorna os dados combinados de duas tabelas baseando-se na correspondência de 'coluna_chave'."},
+    new (){Title = "Agrupar Média com GROUP BY", Command="SELECT coluna1, AVG(coluna2) FROM nome_da_tabela GROUP BY coluna1;", Description="Retorna a média dos valores na 'coluna2' agrupados por 'coluna1'."},
+    new (){Title = "Agrupar e Somar Valores", Command="SELECT coluna1, SUM(coluna2) FROM nome_da_tabela GROUP BY coluna1;", Description="Retorna a soma dos valores da 'coluna2' agrupados por 'coluna1'."},
+    new (){Title = "Ordenar Soma de Valores", Command="SELECT coluna1, SUM(coluna2) FROM nome_da_tabela GROUP BY coluna1 ORDER BY SUM(coluna2) DESC;", Description="Agrupa os registros por 'coluna1', calcula a soma de 'coluna2' e ordena do maior para o menor."},
+    new (){Title = "Filtrar Grupos com HAVING", Command="SELECT coluna1, COUNT(coluna2) FROM nome_da_tabela GROUP BY coluna1 HAVING COUNT(coluna2) > valor;", Description="Retorna apenas os grupos onde a contagem da 'coluna2' é maior que um determinado valor."},
+    new (){Title = "Selecionar Dados Distintos com DISTINCT", Command="SELECT DISTINCT coluna1 FROM nome_da_tabela;", Description="Retorna uma lista de valores únicos da coluna 'coluna1' na tabela 'nome_da_tabela'."},
+    new (){Title = "Limitar Resultados com LIMIT", Command="SELECT coluna1, coluna2 FROM nome_da_tabela LIMIT valor;", Description="Retorna apenas os primeiros registros limitados pelo valor especificado."},
+    new (){Title = "Juntar Tabelas com INNER JOIN", Command="SELECT t1.coluna1, t2.coluna2 FROM nome_da_tabela1 t1 INNER JOIN nome_da_tabela2 t2 ON t1.coluna_chave = t2.coluna_chave;", Description="Retorna os dados combinados de duas tabelas baseando-se na correspondência de 'coluna_chave'."},
+    new (){Title = "Juntar Tabelas com LEFT JOIN", Command="SELECT t1.coluna1, t2.coluna2 FROM nome_da_tabela1 t1 LEFT JOIN nome_da_tabela2 t2 ON t1.coluna_chave = t2.coluna_chave;", Description="Retorna todos os registros da primeira tabela e os correspondentes da segunda tabela."},
+    new (){Title = "Juntar Tabelas com RIGHT JOIN", Command="SELECT t1.coluna1, t2.coluna2 FROM nome_da_tabela1 t1 RIGHT JOIN nome_da_tabela2 t2 ON t1.coluna_chave = t2.coluna_chave;", Description="Retorna todos os registros da segunda tabela e os correspondentes da primeira tabela."},
+    new (){Title = "Unir Resultados com UNION", Command="SELECT coluna1 FROM nome_da_tabela1 UNION SELECT coluna1 FROM nome_da_tabela2;", Description="Retorna uma lista única de valores de 'coluna1' provenientes de ambas as tabelas."},
+    new (){Title = "Subconsultas com IN", Command="SELECT coluna1, coluna2 FROM nome_da_tabela WHERE coluna3 IN (SELECT coluna3 FROM nome_da_tabela2 WHERE coluna4 > valor);", Description="Retorna os registros de 'nome_da_tabela' cujos valores de 'coluna3' estão na subconsulta."},
+    new (){Title = "Subconsultas com EXISTS", Command="SELECT coluna1, coluna2 FROM nome_da_tabela WHERE EXISTS (SELECT 1 FROM nome_da_tabela2 WHERE nome_da_tabela.coluna_chave = nome_da_tabela2.coluna_chave);", Description="Retorna os registros da primeira tabela que possuem correspondência na segunda tabela."},
+    new (){Title = "Concatenar Colunas", Command="SELECT coluna1, CONCAT(coluna2, ' - ', coluna3) AS coluna_resultado FROM nome_da_tabela;", Description="Retorna os valores de 'coluna2' e 'coluna3' concatenados em uma única coluna chamada 'coluna_resultado'."},
+    new (){Title = "Calcular Média com AVG", Command="SELECT AVG(coluna1) FROM nome_da_tabela;", Description="Retorna a média dos valores na coluna 'coluna1'."},
+    new (){Title = "Somar Valores com SUM", Command="SELECT SUM(coluna1) FROM nome_da_tabela;", Description="Retorna a soma total dos valores na coluna 'coluna1'."},
+    new (){Title = "Encontrar Valor Máximo com MAX", Command="SELECT MAX(coluna1) FROM nome_da_tabela;", Description="Retorna o maior valor presente na coluna 'coluna1'."},
+    new (){Title = "Encontrar Valor Mínimo com MIN", Command="SELECT MIN(coluna1) FROM nome_da_tabela;", Description="Retorna o menor valor presente na coluna 'coluna1'."},
+    new (){Title = "Selecionar com Condição CASE", Command="SELECT coluna1, CASE WHEN coluna2 < valor THEN 'Menor' ELSE 'Maior' END AS coluna_resultado FROM nome_da_tabela;", Description="Classifica os registros como 'Menor' ou 'Maior' com base no valor de 'coluna2'."},
+};
+
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        ToastService.ShowToast(ToastIntent.Success, $"[ {command} ] Copied!");
+    }
+}
