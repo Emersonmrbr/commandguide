@@ -1,205 +1,208 @@
 ﻿@page "/git/flow"
 @inject IJSRuntime JSRuntime
-@inject ISnackbar Snackbar
+@inject IToastService ToastService
 
-<MudAlert Severity="Severity.Info">
+<h2 Severity="Severity.Info">
     Estratégia Git Flow / Componentes do Git Flow
-</MudAlert>
+</h2>
 
 
-<MudCard Elevation="25">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h6">Branches Principais</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
-    <MudCardContent>
-        <MudList T="string" ReadOnly="true">
-            <MudListItem>
-                <strong>main</strong>: Branch principal contendo o código estável e pronto para produção.
-            </MudListItem>
-            <MudListItem>
-                <strong>develop</strong>: Branch de desenvolvimento com o código mais recente para integração e testes. É a base para novas funcionalidades.
-            </MudListItem>
-        </MudList>
-    </MudCardContent>
-    <MudSpacer />
-</MudCard>
+<FluentAccordion ActiveId="@activeId" OnAccordionItemChange="HandleOnAccordionItemChange">
+    <FluentAccordionItem Expanded="true" Heading="Branches Principais">
+        <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.CloudFlow())" Color="@Color.Neutral" Slot="start" />
+        <dl>
+            <dt>
+                <strong>main</strong>:
+            </dt>
+            <dd>
+                Branch principal contendo o código estável e pronto para produção.
+            </dd>
+            <dt>
+                <strong>develop</strong>:
+            </dt>
+            <dd>
+                Branch de desenvolvimento com o código mais recente para integração e testes. É a base para novas funcionalidades.
+            </dd>
+        </dl>
+    </FluentAccordionItem>
 
-<MudCard Elevation="25">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h6">Branches de Suporte</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
-    <MudCardContent>
-        <MudList T="string" ReadOnly="true">
-            <MudListItem>
-                <strong>Feature Branches:</strong> Destinadas ao desenvolvimento de novas funcionalidades, partem de <code>develop</code> e, ao final, são mescladas de volta em <code>develop</code>.
-            </MudListItem>
-            <MudListItem>
-                <strong>Release Branches:</strong> Utilizadas para preparação de versões de produção. Partem de <code>develop</code> e, quando prontas, são mescladas em <code>main</code> e <code>develop</code>.
-            </MudListItem>
-            <MudListItem>
-                <strong>Hotfix Branches:</strong> Criadas para corrigir bugs críticos em produção. Partem de <code>main</code> e, ao final, são mescladas em <code>main</code> e <code>develop</code>.
-            </MudListItem>
-        </MudList>
-    </MudCardContent>
-    <MudSpacer />
-</MudCard>
+    <FluentAccordionItem Expanded="true" Heading="Branches de Suporte">
+        <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.CloudFlow())" Color="@Color.Neutral" Slot="start" />
+        <dl>
+            <dt>
+                <strong>Feature Branches:</strong>
+            </dt>
+            <dl>
+                Destinadas ao desenvolvimento de novas funcionalidades, partem de
+                <code>develop</code> e, ao final, são mescladas de volta em
+                <code>develop</code>.
+            </dl>
+            <dt>
+                <strong>Release Branches:</strong>
+            </dt>
+            <dl>
+                Utilizadas para preparação de versões de produção. Partem de
+                <code>develop</code> e, quando prontas, são mescladas em
+                <code>main</code> e
+                <code>develop</code>.
+            </dl>
+            <dt>
+                <strong>Hotfix Branches:</strong>
+            </dt>
+            <dl>
+                Criadas para corrigir bugs críticos em produção. Partem de
+                <code>main</code> e, ao final, são mescladas em
+                <code>main</code> e
+                <code>develop</code>.
+            </dl>
+        </dl>
+    </FluentAccordionItem>
 
-<MudAlert Severity="Severity.Info">
-    Sequencia do Git Flow
-</MudAlert>
+    <FluentAccordionItem Expanded="true" HeadingLevel="1" Heading=" Sequencia do Git Flow">
+        <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.CloudFlow())" Color="@Color.Neutral" Slot="start" />
+        <dl>
+            <dt>
+                <span> 1. Inicialização do Git Flow</span>
+            </dt>
+            <dd>
+                Inicializa o Git Flow no repositório configurando as branches principais (<code>main</code> e <code>develop</code>). Essa etapa é crucial para estruturar o repositório para uso do Git Flow.
+            </dd>
+            <dt>
+                <span>2. Desenvolvimento de Funcionalidade (Feature)</span>
+            </dt>
+            <dd>
+                <strong>Criação da Branch de Funcionalidade:</strong> Crie uma nova branch de funcionalidade a partir da branch <code>develop</code>. Esta nova branch é utilizada exclusivamente para desenvolver uma nova funcionalidade.
+            </dd>
+            <dd>
+                <strong>Desenvolvimento e Commits:</strong> Realize o desenvolvimento da funcionalidade, fazendo commits regulares para salvar o progresso. Isso mantém as alterações organizadas e rastreáveis.
+            </dd>
+            <dd>
+                <strong>Finalização da Funcionalidade:</strong> Quando a funcionalidade estiver completa e testada, finalize a branch de funcionalidade, mesclando-a de volta em <code>develop</code> e deletando a branch de funcionalidade.
+            </dd>
+            <dt>
+                <span>3. Preparação de Release</span>
+            </dt>
+            <dd>
+                <strong>Criação da Branch de Release:</strong> Quando uma série de funcionalidades estiver pronta para lançamento, crie uma branch de release a partir de <code>develop</code>. Esta branch é usada para ajustes finais e testes.
+            </dd>
+            <dd>
+                <strong>Ajustes e Testes:</strong> Realize ajustes necessários, correções de bugs e testes para garantir que a release esteja pronta para produção.
+            </dd>
+            <dd>
+                <strong>Finalização da Release:</strong> Quando a release estiver pronta, finalize-a, mesclando a branch de release em <code>main</code> e <code>develop</code>, marcando uma tag de versão em <code>main</code> e deletando a branch de release.
+            </dd>
+            <dt>
+                <span>4. Correções de Bug de Produção (Hotfix)</span>
+            </dt>
+            <dd>
+                <strong>Criação da Branch de Hotfix:</strong> Quando um bug crítico é encontrado em produção, crie uma branch de hotfix a partir de <code>main</code>. Isso permite que a correção seja desenvolvida e lançada rapidamente.
+            </dd>
+            <dd>
+                <strong>Desenvolvimento e Commits:</strong> Realize a correção do bug, fazendo commits regulares para salvar o progresso.
+            </dd>
+            <dd>
+                <strong>Finalização da Hotfix:</strong> Quando a correção estiver completa, finalize a branch de hotfix, mesclando-a em <code>main</code> e <code>develop</code>, marcando uma tag de versão em <code>main</code> e deletando a branch de hotfix.
+            </dd>
+        </dl>
 
-<MudCard Elevation="25">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h6">1. Inicialização do Git Flow</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
-    <MudCardContent>
-        <MudText Typo="Typo.body2">Inicializa o Git Flow no repositório configurando as branches principais (<code>main</code> e <code>develop</code>). Essa etapa é crucial para estruturar o repositório para uso do Git Flow.</MudText>
-    </MudCardContent>
-    <MudSpacer />
-</MudCard>
+    </FluentAccordionItem>
 
-<MudCard Elevation="25">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h6">2. Desenvolvimento de Funcionalidade (Feature)</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
-    <MudCardContent>
-        <MudText Typo="Typo.body2"><strong>Criação da Branch de Funcionalidade:</strong> Crie uma nova branch de funcionalidade a partir da branch <code>develop</code>. Esta nova branch é utilizada exclusivamente para desenvolver uma nova funcionalidade.</MudText>
-        <MudText Typo="Typo.body2"><strong>Desenvolvimento e Commits:</strong> Realize o desenvolvimento da funcionalidade, fazendo commits regulares para salvar o progresso. Isso mantém as alterações organizadas e rastreáveis.</MudText>
-        <MudText Typo="Typo.body2"><strong>Finalização da Funcionalidade:</strong> Quando a funcionalidade estiver completa e testada, finalize a branch de funcionalidade, mesclando-a de volta em <code>develop</code> e deletando a branch de funcionalidade.</MudText>
-    </MudCardContent>
-    <MudSpacer />
-</MudCard>
+    <FluentAccordionItem Expanded="true" Heading="Ciclo Contínuo">
+        <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.CloudFlow())" Color="@Color.Neutral" Slot="start" />
+        <dl>
+            <dt>
+                <strong>Repetição do Ciclo:</strong>
+            </dt>
+            <dd>
+                O ciclo de desenvolvimento do Git Flow é repetitivo e contínuo. Após a finalização de uma release ou hotfix, o ciclo reinicia com a criação de novas funcionalidades, seguido de preparação de novas releases e correções de bugs conforme necessário.
+            </dd>
+        </dl>
+    </FluentAccordionItem>
 
-<MudCard Elevation="25">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h6">3. Preparação de Release</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
-    <MudCardContent>
-        <MudText Typo="Typo.body2"><strong>Criação da Branch de Release:</strong> Quando uma série de funcionalidades estiver pronta para lançamento, crie uma branch de release a partir de <code>develop</code>. Esta branch é usada para ajustes finais e testes.</MudText>
-        <MudText Typo="Typo.body2"><strong>Ajustes e Testes:</strong> Realize ajustes necessários, correções de bugs e testes para garantir que a release esteja pronta para produção.</MudText>
-        <MudText Typo="Typo.body2"><strong>Finalização da Release:</strong> Quando a release estiver pronta, finalize-a, mesclando a branch de release em <code>main</code> e <code>develop</code>, marcando uma tag de versão em <code>main</code> e deletando a branch de release.</MudText>
-    </MudCardContent>
-    <MudSpacer />
-</MudCard>
+    <FluentAccordionItem Expanded="true" Heading="Benefícios do Git Flow">
+        <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.CloudFlow())" Color="@Color.Neutral" Slot="start" />
+        <dl>
+            <dt>
 
-<MudCard Elevation="25">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h6">4. Correções de Bug de Produção (Hotfix)</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
-    <MudCardContent>
-        <MudText Typo="Typo.body2"><strong>Criação da Branch de Hotfix:</strong> Quando um bug crítico é encontrado em produção, crie uma branch de hotfix a partir de <code>main</code>. Isso permite que a correção seja desenvolvida e lançada rapidamente.</MudText>
-        <MudText Typo="Typo.body2"><strong>Desenvolvimento e Commits:</strong> Realize a correção do bug, fazendo commits regulares para salvar o progresso.</MudText>
-        <MudText Typo="Typo.body2"><strong>Finalização da Hotfix:</strong> Quando a correção estiver completa, finalize a branch de hotfix, mesclando-a em <code>main</code> e <code>develop</code>, marcando uma tag de versão em <code>main</code> e deletando a branch de hotfix.</MudText>
-    </MudCardContent>
-    <MudSpacer />
-</MudCard>
+                <strong>Organização:</strong>
+            </dt>
+            <dd>
+                Mantém o desenvolvimento organizado com branches claras e definidas para diferentes etapas do ciclo de vida do software.
+            </dd>
+            <dt>
+                <strong>Isolamento:</strong>
+            </dt>
+            <dd>
+                Garante que novas funcionalidades e correções de bugs sejam desenvolvidas de forma isolada, minimizando conflitos de merge e mantendo a estabilidade do código.
+            </dd>
+            <dt>
+                <strong>Histórico Claro:</strong>
+            </dt>
+            <dd>
+                Facilita a visualização do histórico de desenvolvimento com commits e tags bem definidos, permitindo um acompanhamento preciso do progresso do projeto.
+            </dd>
+        </dl>
+    </FluentAccordionItem>
 
-<MudCard Elevation="25">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h6">Ciclo Contínuo</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
-    <MudCardContent>
-        <MudText Typo="Typo.body2"><strong>Repetição do Ciclo:</strong> O ciclo de desenvolvimento do Git Flow é repetitivo e contínuo. Após a finalização de uma release ou hotfix, o ciclo reinicia com a criação de novas funcionalidades, seguido de preparação de novas releases e correções de bugs conforme necessário.</MudText>
-    </MudCardContent>
-    <MudSpacer />
-</MudCard>
+</FluentAccordion>
 
-<MudCard Elevation="25">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h6">Benefícios do Git Flow</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
-    <MudCardContent>
-        <MudText Typo="Typo.body2"><strong>Organização:</strong> Mantém o desenvolvimento organizado com branches claras e definidas para diferentes etapas do ciclo de vida do software.</MudText>
-        <MudText Typo="Typo.body2"><strong>Isolamento:</strong> Garante que novas funcionalidades e correções de bugs sejam desenvolvidas de forma isolada, minimizando conflitos de merge e mantendo a estabilidade do código.</MudText>
-        <MudText Typo="Typo.body2"><strong>Histórico Claro:</strong> Facilita a visualização do histórico de desenvolvimento com commits e tags bem definidos, permitindo um acompanhamento preciso do progresso do projeto.</MudText>
-    </MudCardContent>
-    <MudSpacer />
-</MudCard>
+<h2 Severity="Severity.Info">
+    Iniciar Git Flow
+</h2>
 
 @foreach (var card in cardSequenciaGitFlow)
 {
-    <MudCard Elevation="25">
-        <MudCardHeader>
-            <CardHeaderContent>
-                <MudText Typo="Typo.h6">@card.Title</MudText>
-            </CardHeaderContent>
-        </MudCardHeader>
-        <MudCardContent Style="@($"color:{Colors.Gray.Darken4}; background:{Colors.Gray.Lighten5};")">
-            <MudIconButton Icon="@Icons.Material.Filled.FileCopy" Color="Color.Default" OnClick='()=>CopyText(card.Command)' />
-            <MudText HtmlTag="code">@card.Command</MudText>
-        </MudCardContent>
-        <MudCardContent>
-            <MudText Typo="Typo.body2">@card.Description</MudText>
-        </MudCardContent>
-        <MudSpacer />
-    </MudCard>
-
-    <MudDivider />
+    <FluentGrid Justify="JustifyContent.FlexStart" Style="background-color: var(--neutral-layer-3); padding: 24px;">
+        <FluentCard MinimalStyle="true" Height="auto">
+            <h4>@card.Title</h4>
+            <FluentGridItem Justify="JustifyContent.FlexStart" style="padding: 20px">
+                <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.Copy())" OnClick='()=>CopyText(card.Command)' />
+                <FluentBadge Appearance="Appearance.Neutral" OnClick='()=>CopyText(card.Command)'>
+                    @card.Command
+                </FluentBadge>
+            </FluentGridItem>
+            <p>@card.Description</p>
+        </FluentCard>
+    </FluentGrid>
 }
 
-<MudAlert Severity="Severity.Info">
+<h2 Severity="Severity.Info">
     Criar um Hotfix
-</MudAlert>
+</h2>
 
 @foreach (var card in cardSequenciaGitFlowHotFix)
 {
-    <MudCard Elevation="25">
-        <MudCardHeader>
-            <CardHeaderContent>
-                <MudText Typo="Typo.h6">@card.Title</MudText>
-            </CardHeaderContent>
-        </MudCardHeader>
-        <MudCardContent Style="@($"color:{Colors.Gray.Darken4}; background:{Colors.Gray.Lighten5};")">
-            <MudIconButton Icon="@Icons.Material.Filled.FileCopy" Color="Color.Default" OnClick='()=>CopyText(card.Command)' />
-            <MudText HtmlTag="code">@card.Command</MudText>
-        </MudCardContent>
-        <MudCardContent>
-            <MudText Typo="Typo.body2">@card.Description</MudText>
-        </MudCardContent>
-        <MudSpacer />
-    </MudCard>
-
-    <MudDivider />
+    <FluentGrid Justify="JustifyContent.FlexStart" Style="background-color: var(--neutral-layer-3); padding: 24px;">
+        <FluentCard MinimalStyle="true" Height="auto">
+            <h4>@card.Title</h4>
+            <FluentGridItem Justify="JustifyContent.FlexStart" style="padding: 20px">
+                <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.Copy())" OnClick='()=>CopyText(card.Command)' />
+                <FluentBadge Appearance="Appearance.Neutral" OnClick='()=>CopyText(card.Command)'>
+                    @card.Command
+                </FluentBadge>
+            </FluentGridItem>
+            <p>@card.Description</p>
+        </FluentCard>
+    </FluentGrid>
 }
 
-<MudAlert Severity="Severity.Info">
+<h2 Severity="Severity.Info">
     Comandos do Git Flow
-</MudAlert>
+</h2>
 @foreach (var card in cardContents)
 {
-    <MudCard Elevation="25">
-        <MudCardHeader>
-            <CardHeaderContent>
-                <MudText Typo="Typo.h6">@card.Title</MudText>
-            </CardHeaderContent>
-        </MudCardHeader>
-        <MudCardContent Style="@($"color:{Colors.Gray.Darken4}; background:{Colors.Gray.Lighten5};")">
-            <MudIconButton Icon="@Icons.Material.Filled.FileCopy" Color="Color.Default" OnClick='()=>CopyText(card.Command)' />
-            <MudText HtmlTag="code">@card.Command</MudText>
-        </MudCardContent>
-        <MudCardContent>
-            <MudText Typo="Typo.body2">@card.Description</MudText>
-        </MudCardContent>
-        <MudSpacer />
-    </MudCard>
-
-    <MudDivider />
+    <FluentGrid Justify="JustifyContent.FlexStart" Style="background-color: var(--neutral-layer-3); padding: 24px;">
+        <FluentCard MinimalStyle="true" Height="auto">
+            <h4>@card.Title</h4>
+            <FluentGridItem Justify="JustifyContent.FlexStart" style="padding: 20px">
+                <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.Copy())" OnClick='()=>CopyText(card.Command)' />
+                <FluentBadge Appearance="Appearance.Neutral" OnClick='()=>CopyText(card.Command)'>
+                    @card.Command
+                </FluentBadge>
+            </FluentGridItem>
+            <p>@card.Description</p>
+        </FluentCard>
+    </FluentGrid>
 }
 
 @code {
@@ -262,10 +265,15 @@
     public async Task CopyText(string command)
     {
         await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
-        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopEnd;
-        Snackbar.Configuration.VisibleStateDuration = 1000;
-        Snackbar.Configuration.HideTransitionDuration = 100;
-        Snackbar.Configuration.ShowTransitionDuration = 1000;
-        Snackbar.Add($"[ {command} ] Copied!");
+        ToastService.ShowToast(ToastIntent.Success, $"[ {command} ] Copied!");
+    }
+
+    string activeId = "accordion-1";
+
+    FluentAccordionItem? changed;
+
+    private void HandleOnAccordionItemChange(FluentAccordionItem item)
+    {
+        changed = item;
     }
 }
