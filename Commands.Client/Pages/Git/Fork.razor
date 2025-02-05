@@ -1,74 +1,54 @@
 ﻿@page "/git/fork"
 @inject IJSRuntime JSRuntime
-@inject ISnackbar Snackbar
+@inject IToastService ToastService
 
-<MudAlert Severity="Severity.Info">
+<h2 Severity="Severity.Info">
     Comando fork
-</MudAlert>
+</h2>
 
-<MudCard Elevation="25">
-    <MudCardContent>
-        <MudText Typo="Typo.body1">
-            O <code>fork</code> não é um comando Git propriamente dito, mas sim uma funcionalidade oferecida por plataformas como GitHub, GitLab e Bitbucket. Ele permite criar uma cópia de um repositório de outro usuário na sua conta, mantendo o vínculo com o repositório original.
-        </MudText>
-    </MudCardContent>
-    <MudSpacer />
-</MudCard>
+<FluentAccordion ActiveId="@activeId" OnAccordionItemChange="HandleOnAccordionItemChange">
+    <FluentAccordionItem Expanded="true" Heading="Fork">
+        <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.CloudFlow())" Color="@Color.Neutral" Slot="start" />
+        <dl>
+            <dd>
+                O <code>fork</code> não é um comando Git propriamente dito, mas sim uma funcionalidade oferecida por plataformas como GitHub, GitLab e Bitbucket. Ele permite criar uma cópia de um repositório de outro usuário na sua conta, mantendo o vínculo com o repositório original.
+            </dd>
+            <dt>
+                <strong>Quando usar?</strong>:
+            </dt>
+            <dd>
+                Quando você deseja contribuir para um projeto de terceiros sem acesso direto de escrita.
+            </dd>
+            <dd>
+                Para iniciar uma versão personalizada de um projeto, mantendo uma conexão com o repositório original para possíveis futuras sincronizações.
+            </dd>
+        </dl>
+    </FluentAccordionItem>
+</FluentAccordion>
 
-<MudDivider />
-
-<MudCard Elevation="25">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h6">Quando usar?</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
-    <MudCardContent>
-        <MudText Typo="Typo.body2">Quando você deseja contribuir para um projeto de terceiros sem acesso direto de escrita.</MudText>
-    </MudCardContent>
-    <MudCardContent>
-        <MudText Typo="Typo.body2">Para iniciar uma versão personalizada de um projeto, mantendo uma conexão com o repositório original para possíveis futuras sincronizações.</MudText>
-    </MudCardContent>
-    <MudSpacer />
-</MudCard>
-
-<MudDivider />
-
-<MudText Typo="Typo.h6">
+<h4 Severity="Severity.Info">
     <strong>Passos comuns após realizar o fork:</strong>
-</MudText>
+</h4>
 @foreach (var card in cardContents)
 {
-    <MudCard Elevation="25">
-        <MudCardHeader>
-            <CardHeaderContent>
-                <MudText Typo="Typo.h6">@card.Title</MudText>
-            </CardHeaderContent>
-        </MudCardHeader>
-        <MudCardContent Style="@($"color:{Colors.Gray.Darken4}; background:{Colors.Gray.Lighten5};")">
-            <MudIconButton Icon="@Icons.Material.Filled.FileCopy" Color="Color.Default" OnClick='()=>CopyText(card.Command)' />
-            <MudText HtmlTag="code">@card.Command</MudText>
-        </MudCardContent>
-        <MudCardContent>
-            <MudText Typo="Typo.body2">@card.Description</MudText>
-        </MudCardContent>
-        <MudSpacer />
-    </MudCard>
+    <FluentGrid Justify="JustifyContent.FlexStart" Style="background-color: var(--neutral-layer-3); padding: 24px;">
+        <FluentCard MinimalStyle="true" Height="auto">
+            <h4>@card.Title</h4>
+            <FluentGridItem Justify="JustifyContent.FlexStart" style="padding: 20px">
+                <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.Copy())" OnClick='()=>CopyText(card.Command)' />
+                <FluentBadge Appearance="Appearance.Neutral" OnClick='()=>CopyText(card.Command)'>
+                    @card.Command
+                </FluentBadge>
+            </FluentGridItem>
+            <p>@card.Description</p>
+        </FluentCard>
+    </FluentGrid>
 
-    <MudDivider />
-
-    <MudCard Elevation="25">
-        <MudCardHeader>
-            <CardHeaderContent>
-                <MudText Typo="Typo.h6">Abrir um Pull Request</MudText>
-            </CardHeaderContent>
-        </MudCardHeader>
-        <MudCardContent>
-            <MudText Typo="Typo.body2">No GitHub, abra um pull request do seu repositório fork para o repositório original, solicitando a integração das suas alterações.</MudText>
-        </MudCardContent>
-        <MudSpacer />
-    </MudCard>
 }
+<h2 Severity="Severity.Info">
+    Abrir um Pull Request
+</h2>
+<p>No GitHub, abra um pull request do seu repositório fork para o repositório original, solicitando a integração das suas alterações.</p>
 
 @code {
 
@@ -94,10 +74,15 @@
     public async Task CopyText(string command)
     {
         await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
-        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopEnd;
-        Snackbar.Configuration.VisibleStateDuration = 1000;
-        Snackbar.Configuration.HideTransitionDuration = 100;
-        Snackbar.Configuration.ShowTransitionDuration = 1000;
-        Snackbar.Add($"[ {command} ] Copied!");
+        ToastService.ShowToast(ToastIntent.Success, $"[ {command} ] Copied!");
+    }
+
+    string activeId = "accordion-1";
+
+    FluentAccordionItem? changed;
+
+    private void HandleOnAccordionItemChange(FluentAccordionItem item)
+    {
+        changed = item;
     }
 }

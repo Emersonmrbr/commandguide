@@ -1,83 +1,61 @@
 ﻿@page "/git/stash"
 @inject IJSRuntime JSRuntime
-@inject ISnackbar Snackbar
+@inject IToastService ToastService
 
-<MudAlert Severity="Severity.Info">
+<h2 Severity="Severity.Info">
     Comando git stash
-</MudAlert>
+</h2>
 
-<MudCard Elevation="25">
-    <MudCardContent>
-        <MudText Typo="Typo.body1">
-            O comando <code>git stash</code> é usado para armazenar temporariamente alterações no seu diretório de trabalho (working directory) que ainda não foram commitadas. Ele permite que você "guarde" essas mudanças em uma "pilha" (stash) para que você possa retornar a um estado limpo do repositório e, mais tarde, recuperar essas alterações quando necessário.
-        </MudText>
-    </MudCardContent>
-    <MudSpacer />
-</MudCard>
 
-<MudCard Elevation="25">
-    <MudCardHeader>
-        <CardHeaderContent>
-            <MudText Typo="Typo.h6">Quando Usar <code>git stash</code>?</MudText>
-        </CardHeaderContent>
-    </MudCardHeader>
-    <MudCardContent>
-        <MudText Typo="Typo.body2">
-            É útil quando você está trabalhando em uma funcionalidade ou correção de bug, mas precisa interromper seu trabalho temporariamente (por exemplo, para mudar de branch ou atualizar seu repositório local), mas não quer fazer um commit ainda. O <code>git stash</code> permite que você volte para um estado limpo do repositório e depois recupere as alterações quando for conveniente.
-        </MudText>
-    </MudCardContent>
-    <MudSpacer />
-</MudCard>
+<p>
+    O comando <code>git stash</code> é usado para armazenar temporariamente alterações no seu diretório de trabalho (working directory) que ainda não foram commitadas. Ele permite que você "guarde" essas mudanças em uma "pilha" (stash) para que você possa retornar a um estado limpo do repositório e, mais tarde, recuperar essas alterações quando necessário.
+</p>
 
-<MudText Typo="Typo.h6">
+<h2 Severity="Severity.Info">Quando Usar <code>git stash</code>?</h2>
+<p>
+    É útil quando você está trabalhando em uma funcionalidade ou correção de bug, mas precisa interromper seu trabalho temporariamente (por exemplo, para mudar de branch ou atualizar seu repositório local), mas não quer fazer um commit ainda. O <code>git stash</code> permite que você volte para um estado limpo do repositório e depois recupere as alterações quando for conveniente.
+</p>
+
+<h2 Severity="Severity.Info">
     Como Funciona o <code>git stash</code>?
-</MudText>
+</h2>
 
 @foreach (var card in cardContents)
 {
-    <MudCard Elevation="25">
-        <MudCardHeader>
-            <CardHeaderContent>
-                <MudText Typo="Typo.h6">@card.Title</MudText>
-            </CardHeaderContent>
-        </MudCardHeader>
-        <MudCardContent Style="@($"color:{Colors.Gray.Darken4}; background:{Colors.Gray.Lighten5};")">
-            <MudIconButton Icon="@Icons.Material.Filled.FileCopy" Color="Color.Default" OnClick='()=>CopyText(card.Command)' />
-            <MudText HtmlTag="code">@card.Command</MudText>
-        </MudCardContent>
-        <MudCardContent>
-            <MudText Typo="Typo.body2">@card.Description</MudText>
-        </MudCardContent>
-        <MudSpacer />
-    </MudCard>
-
-    <MudDivider />
+    <FluentGrid Justify="JustifyContent.FlexStart" Style="background-color: var(--neutral-layer-3); padding: 24px;">
+        <FluentCard MinimalStyle="true" Height="auto">
+            <h4>@card.Title</h4>
+            <FluentGridItem Justify="JustifyContent.FlexStart" style="padding: 20px">
+                <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.Copy())" OnClick='()=>CopyText(card.Command)' />
+                <FluentBadge Appearance="Appearance.Neutral" OnClick='()=>CopyText(card.Command)'>
+                    @card.Command
+                </FluentBadge>
+            </FluentGridItem>
+            <p>@card.Description</p>
+        </FluentCard>
+    </FluentGrid>
 }
 
-<MudText Typo="Typo.h6">
+<h2 Severity="Severity.Info">
     Exemplo de Fluxo de Trabalho com <code>git stash</code>:
-</MudText>
+</h2>
 
-<MudList T="string" ReadOnly="true">
-    <MudListItem Text="Você está em uma branch de desenvolvimento e fez algumas alterações que ainda não quer commitar." Icon="@Icons.Material.Filled.StarRate" />
-    <MudDivider />
-    <MudText Typo="Typo.body1">
-        Você precisa mudar para outra branch rapidamente, então usa:
-        <pre><code>git stash</code></pre>
-    </MudText>
-    <MudDivider />
+<p>
+    Você precisa mudar para outra branch rapidamente, então usa:
+    <pre><code>git stash</code></pre>
+</p>
 
-    <MudListItem Text="Após terminar o trabalho na outra branch, você pode retornar à branch original e aplicar as mudanças armazenadas:" Icon="@Icons.Material.Filled.StarRate" />
-    <MudDivider />
-    <MudText Typo="Typo.body1">
-        <pre><code>git stash pop</code></pre>
-    </MudText>
-    <MudDivider />
-</MudList>
+<h2 Severity="Severity.Info">
+    Após terminar o trabalho na outra branch, você pode retornar à branch original e aplicar as mudanças armazenadas:"
+</h2>
+<p>
+    <pre><code>git stash pop</code></pre>
+</p>
 
-<MudText Typo="Typo.body1">
+
+<p>
     O <code>git stash</code> é uma ferramenta poderosa para gerenciar mudanças temporárias, permitindo que você seja flexível e trabalhe de maneira mais eficiente sem perder seu progresso em andamento.
-</MudText>
+</p>
 
 @code {
 
@@ -108,10 +86,6 @@
     public async Task CopyText(string command)
     {
         await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
-        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopEnd;
-        Snackbar.Configuration.VisibleStateDuration = 1000;
-        Snackbar.Configuration.HideTransitionDuration = 100;
-        Snackbar.Configuration.ShowTransitionDuration = 1000;
-        Snackbar.Add($"[ {command} ] Copied!");
+        ToastService.ShowToast(ToastIntent.Success, $"[ {command} ] Copied!");
     }
 }
