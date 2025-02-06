@@ -5,13 +5,11 @@
     <FluentHeader>
         <FluentLabel Typo="Typography.H2">Comandos</FluentLabel>
         <FluentSpacer />
-        <FluentLabel Typo="Typography.H2">
-            <picture class="c-logo" >
-                <source media="(min-width: 800px)" srcset="img\logoLarge.svg">
-                <source media="(max-width: 600px)" srcset="img\logoSmall.svg">
-                <img src="img\logoLarge.svg" alt="Núcleo MAP brand" class="c-logo__image">
-            </picture>
-        </FluentLabel>
+        <picture class="c-logo">
+            <source media="(min-width: 800px)" srcset="img\logoLarge.svg" type="image/svg+xml">
+            <source media="(max-width: 800px)" srcset="img\logoSmall.svg" type="image/svg+xml">
+            <img src="img\logoLarge.svg" alt="Núcleo MAP brand" class="c-logo__image">
+        </picture>
         <FluentSpacer Width="30" />
         <FluentIcon Value=@IconTheme Color="@Color.Neutral" OnClick="ChangeTheme" />
     </FluentHeader>
@@ -39,23 +37,22 @@
 @code {
     public DesignThemeModes Mode { get; set; }
     public OfficeColor? OfficeColor { get; set; }
-    public Icon IconTheme = new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.DarkTheme();
+    public Icon IconTheme = new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.WeatherMoon();
     void OnLoaded(LoadedEventArgs e)
     {
         Mode = DesignThemeModes.System;
-        Icon IconTheme = new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.DarkTheme();
     }
     void ChangeTheme()
     {
         if (DesignThemeModes.Dark == Mode)
         {
             Mode = DesignThemeModes.Light;
-            IconTheme = new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size28.ArrowClockwiseDashesSettings();
+            IconTheme = new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size32.WeatherSunny();
         }
         else
         {
             Mode = DesignThemeModes.Dark;
-            IconTheme = new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.DarkTheme();
+            IconTheme = new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.WeatherMoon();
         }
     }
 
