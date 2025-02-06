@@ -37,6 +37,7 @@ bld/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
+/.vs
 # Uncomment if you have tasks that create the project's static files in wwwroot
 #wwwroot/
 
@@ -482,22 +483,3 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
-/.vs/Commands/CopilotIndices/17.12.53.23981/SemanticSymbols.db-shm
-/.vs/Commands/CopilotIndices/17.12.53.23981/CodeChunks.db
-/.vs/Commands/CopilotIndices/17.12.53.23981/SemanticSymbols.db-wal
-/.vs/Commands/v17/.futdcache.v2
-/.vs/Commands/v17/.suo
-/.vs/Commands/v17/DocumentLayout.backup.json
-/.vs/Commands/v17/DocumentLayout.json
-/Commands/obj/Debug/net9.0/apphost.exe
-/Commands/obj/Debug/net9.0/staticwebassets.references.upToDateCheck.txt
-/Commands.Client/obj/Debug/net9.0/tmp-webcil/Commands.Client.wasm
-/Commands.Client/obj/Debug/net9.0/Commands.Client.csproj.FileListAbsolute.txt
-<<<<<<< HEAD
-/Commands/obj/Debug/net9.0/Commands.csproj.FileListAbsolute.txt
-=======
-/Commands/obj/Debug/net9.0/Commands.csproj.FileListAbsolute.txt
-/.vs
-/Commands/obj/Debug/net9.0/Commands.assets.cache
-/Commands.Client/obj/Debug/net9.0/Commands.Client.assets.cache
->>>>>>> feature/wasm
