@@ -4,9 +4,14 @@
     <FluentDesignTheme @bind-Mode="@Mode" @bind-OfficeColor="@OfficeColor" StorageName="theme" />
     <FluentHeader>
         <FluentLabel Typo="Typography.H2">Comandos</FluentLabel>
-
         <FluentSpacer />
-        <img src="img\logo.svg" width="250" />
+        <FluentLabel Typo="Typography.H2">
+            <picture class="c-logo" >
+                <source media="(min-width: 800px)" srcset="img\logoLarge.svg">
+                <source media="(max-width: 600px)" srcset="img\logoSmall.svg">
+                <img src="img\logoLarge.svg" alt="Núcleo MAP brand" class="c-logo__image">
+            </picture>
+        </FluentLabel>
         <FluentSpacer Width="30" />
         <FluentIcon Value=@IconTheme Color="@Color.Neutral" OnClick="ChangeTheme" />
     </FluentHeader>
@@ -34,10 +39,11 @@
 @code {
     public DesignThemeModes Mode { get; set; }
     public OfficeColor? OfficeColor { get; set; }
-    public Icon IconTheme = new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size28.WeatherMoon();
+    public Icon IconTheme = new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.DarkTheme();
     void OnLoaded(LoadedEventArgs e)
     {
         Mode = DesignThemeModes.System;
+        Icon IconTheme = new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.DarkTheme();
     }
     void ChangeTheme()
     {
