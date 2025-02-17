@@ -2,8 +2,8 @@
     <input type="checkbox" title="Menu expand/collapse toggle" id="navmenu-toggle" class="navmenu-icon" />
     <label for="navmenu-toggle" class="navmenu-icon"><FluentIcon Value="@(new Icons.Regular.Size24.Navigation())" Color="Color.Fill" /></label>
     <nav class="sitenav" aria-labelledby="main-menu">
-        <FluentNavMenu @bind-Expanded="@Expanded" Width="350" Collapsible="true" Title="Menu principal">
-            <FluentNavLink Href="/" Icon="@(new Icons.Regular.Size24.Home())" Tooltip="Home">HOME</FluentNavLink>
+        <FluentNavMenu @bind-Expanded="@expanded" Width="350" Collapsible="true" Title="Menu principal">
+            <FluentNavLink Href="/" Icon="@(new Icons.Regular.Size24.Home())" Tooltip="Home">Home</FluentNavLink>
             <FluentNavGroup Title="GIT" Tooltip="GIT" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.DesktopFlow())">
                 <FluentNavLink Href="/git/inicio" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Início">Início</FluentNavLink>
                 <FluentNavLink Href="/git/basico" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Flow())" Tooltip="Básico">Básico</FluentNavLink>
@@ -22,6 +22,8 @@
             </FluentNavGroup>
             <FluentNavGroup Title="POWERSHELL" Tooltip="POWERSHELL" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.DesktopEdit())">
                 <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Script())" Href="/powershell/basico" Tooltip="Básico">Básico</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Script())" Href="/powershell/pastasearquivos" Tooltip="Pastas e arquivos">Pastas e arquivos</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Script())" Href="/powershell/regex" Tooltip="REGEX">REGEX</FluentNavLink>
             </FluentNavGroup>
             <FluentNavGroup Title="UBUNTU" Tooltip="UBUNTU" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.WindowDevTools())">
                 <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Code())" Href="/ubuntu/basico" Tooltip="Básico">Básico</FluentNavLink>
@@ -53,5 +55,5 @@
 
 @code
 {
-    bool Expanded = true;
+   private bool expanded = true;
 }

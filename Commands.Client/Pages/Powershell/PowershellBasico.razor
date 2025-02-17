@@ -53,15 +53,12 @@
         new (){Title = "Configurar um Serviço", Command="Set-Service -Name <service_name> -StartupType <type>", Description= "Configura o tipo de inicialização de um serviço do sistema."},
         new (){Title = "Instalar um Módulo do PowerShell Gallery", Command="Install-Module -Name <module_name>", Description= "Instala um módulo do PowerShell Gallery."},
         new (){Title = "Verificar Versão do PowerShell", Command="$PSVersionTable.PSVersion", Description= "Verifica a versão do PowerShell instalada no sistema."},
-        new (){Title = "Conceder Acesso a Diretórios (Exemplo 1)", Command="$DogACL = Get-Acl -Path \"C:\\Dog.txt\"\nSet-Acl -Path \"C:\\Cat.txt\" -AclObject $DogACL", Description= "Abra o PowerShell como administrador e execute os comandos para conceder acesso a diretórios. Copia um descritor de segurança de um arquivo para outro."},
-        new (){Title = "Conceder Acesso a Diretórios (Exemplo 2)", Command="$Acl = Get-Acl -Path \"C:\\Users\\nucleomap\\OZ3_ServidorGeral\\Automacao - Eplan\\Parts\\MSSQL16.EPLAN\\MSSQL\"\nGet-ChildItem -Recurse -Force | Set-Acl -AclObject $Acl", Description= "Abra o PowerShell como administrador e execute os comandos para conceder acesso a diretórios. Copia um descritor de segurança para múltiplos arquivos."},
-        new (){Title = "Exibir Conteúdo de Arquivo", Command="type \"Filename.txt\"", Description= "Use o comando para exibir o conteúdo de um arquivo."},
-        new (){Title = "Comando Echo", Command="echo \"Inserir texto\" >> Filename.txt", Description= "Este comando insere um texto em um arquivo. Se o arquivo não existir, ele será criado. Caso já exista, o texto será adicionado ao final do arquivo."},
-        new (){Title = "Gerar Chave Pública (ed25519)", Command="ssh-keygen -t ed25519 -C \"your_email@exemplo.com\"", Description= "Para gerar uma chave SSH e adicioná-la ao GitHub, utilize o comando."},
-        new (){Title = "Gerar Chave Pública (RSA)", Command="ssh-keygen -t rsa -b 4096 -C \"your_email@exemplo.com\"", Description= "Para gerar uma chave SSH e adicioná-la ao GitHub, utilize o comando para gerar uma chave RSA."},
-
-
-
+        new (){Title = "Conceder Acesso a Diretórios (Exemplo 1)", Command="$DogACL = Get-Acl -Path 'C:\\Dog.txt'\nSet-Acl -Path 'C:\\Cat.txt' -AclObject $DogACL", Description= "Abra o PowerShell como administrador e execute os comandos para conceder acesso a diretórios. Copia um descritor de segurança de um arquivo para outro."},
+        new (){Title = "Conceder Acesso a Diretórios (Exemplo 2)", Command="$Acl = Get-Acl -Path 'C:\\Users\\nucleomap\\OZ3_ServidorGeral\\Automacao - Eplan\\Parts\\MSSQL16.EPLAN\\MSSQL'\nGet-ChildItem -Recurse -Force | Set-Acl -AclObject $Acl", Description= "Abra o PowerShell como administrador e execute os comandos para conceder acesso a diretórios. Copia um descritor de segurança para múltiplos arquivos."},
+        new (){Title = "Exibir Conteúdo de Arquivo", Command="type 'Filename.txt'", Description= "Use o comando para exibir o conteúdo de um arquivo."},
+        new (){Title = "Comando Echo", Command="echo 'Inserir texto' >> Filename.txt", Description= "Este comando insere um texto em um arquivo. Se o arquivo não existir, ele será criado. Caso já exista, o texto será adicionado ao final do arquivo."},
+        new (){Title = "Gerar Chave Pública (ed25519)", Command="ssh-keygen -t ed25519 -C 'your_email@exemplo.com'", Description= "Para gerar uma chave SSH e adicioná-la ao GitHub, utilize o comando."},
+        new (){Title = "Gerar Chave Pública (RSA)", Command="ssh-keygen -t rsa -b 4096 -C 'your_email@exemplo.com'", Description= "Para gerar uma chave SSH e adicioná-la ao GitHub, utilize o comando para gerar uma chave RSA."},
     };
 
     public class CardContent()

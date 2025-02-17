@@ -1,0 +1,70 @@
+﻿@page "/powershell/regex"
+@inject IJSRuntime JSRuntime
+@inject IToastService ToastService
+
+<h2 Severity="Severity.Info">
+    Comandos REGEX
+</h2>
+
+@foreach (var card in cardContents)
+{
+    <FluentGrid Justify="JustifyContent.FlexStart" Style="background-color: var(--neutral-layer-3); padding: 24px;">
+        <FluentCard MinimalStyle="true" Height="auto">
+            <h4>@card.Title</h4>
+            <FluentGridItem Justify="JustifyContent.FlexStart" style="padding: 20px">
+                <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.Copy())" OnClick='()=>CopyText(card.Command)' />
+                <FluentBadge Appearance="Appearance.Neutral" OnClick='()=>CopyText(card.Command)'>
+                    @card.Command
+                </FluentBadge>
+            </FluentGridItem>
+            <p>@card.Description</p>
+        </FluentCard>
+    </FluentGrid>
+}
+
+@code {
+    List<CardContent> cardContents = new()
+{
+    new (){Title = "Correspondência no Início da Linha", Command="^abc", Description= "Corresponde à string 'abc' apenas se estiver no início da linha."},
+    new (){Title = "Correspondência no Fim da Linha", Command="abc$", Description= "Corresponde à string 'abc' apenas se estiver no final da linha."},
+    new (){Title = "Qualquer Caractere Entre Dois Caracteres", Command="a.b", Description= "Corresponde a qualquer caractere entre 'a' e 'b' (ex: 'acb', 'a1b', 'a_b')."},
+    new (){Title = "Dígito Numérico", Command="\\d", Description= "Corresponde a qualquer dígito (0-9)."},
+    new (){Title = "Não Dígito", Command="\\D", Description= "Corresponde a qualquer caractere que não seja um dígito."},
+    new (){Title = "Caractere de Palavra", Command="\\w", Description= "Corresponde a qualquer caractere de palavra (letras, números e '_')."},
+    new (){Title = "Não Caractere de Palavra", Command="\\W", Description= "Corresponde a qualquer caractere que não seja de palavra."},
+    new (){Title = "Espaço em Branco", Command="\\s", Description= "Corresponde a qualquer espaço em branco (espaço, tabulação, quebra de linha)."},
+    new (){Title = "Não Espaço em Branco", Command="\\S", Description= "Corresponde a qualquer caractere que não seja espaço em branco."},
+    new (){Title = "Um ou Mais Repetições", Command="a+", Description= "Corresponde à letra 'a' uma ou mais vezes."},
+    new (){Title = "Zero ou Mais Repetições", Command="a*", Description= "Corresponde à letra 'a' zero ou mais vezes."},
+    new (){Title = "Zero ou Uma Repetição", Command="a?", Description= "Corresponde à letra 'a' zero ou uma vez."},
+    new (){Title = "Número Exato de Repetições", Command="a{3}", Description= "Corresponde exatamente a três ocorrências de 'a'."},
+    new (){Title = "Intervalo de Repetições", Command="a{2,5}", Description= "Corresponde à letra 'a' entre 2 e 5 vezes."},
+    new (){Title = "Grupo de Captura", Command="(ab)+", Description= "Corresponde à sequência 'ab' uma ou mais vezes."},
+    new (){Title = "Alternância", Command="(a|b)", Description= "Corresponde a 'a' ou 'b'."},
+    new (){Title = "Âncora no Início da Linha", Command="^", Description= "Indica o início da linha."},
+    new (){Title = "Âncora no Fim da Linha", Command="$", Description= "Indica o final da linha."},
+    new (){Title = "Limite de Palavra", Command="\\b", Description= "Corresponde ao limite de uma palavra."},
+    new (){Title = "Não Limite de Palavra", Command="\\B", Description= "Corresponde a uma posição que não é um limite de palavra."},
+    new (){Title = "Lookahead Positivo", Command="(?=abc)", Description= "Verifica se 'abc' está à frente, mas não o captura."},
+    new (){Title = "Lookahead Negativo", Command="(?!abc)", Description= "Verifica se 'abc' **não** está à frente."},
+    new (){Title = "Lookbehind Positivo", Command="(?<=abc)", Description= "Verifica se 'abc' está antes, mas não o captura."},
+    new (){Title = "Lookbehind Negativo", Command="(?<!abc)", Description= "Verifica se 'abc' **não** está antes."},
+    new (){Title = "Validar E-mail", Command="\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b", Description= "Expressão regular para validar endereços de e-mail."},
+    new (){Title = "Validar Número de Telefone (BR)", Command="\\(\\d{2}\\) \\d{4,5}-\\d{4}", Description= "Expressão regular para validar números de telefone no Brasil."},
+    new (){Title = "Validar Endereço IP", Command="\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b", Description= "Expressão regular para validar endereços IPv4."},
+    new (){Title = "Validar Data (dd/mm/yyyy)", Command="\\b\\d{2}/\\d{2}/\\d{4}\\b", Description= "Expressão regular para validar datas no formato dd/mm/yyyy."}
+};
+
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        ToastService.ShowToast(ToastIntent.Success, $"[ {command} ] Copied!");
+    }
+}

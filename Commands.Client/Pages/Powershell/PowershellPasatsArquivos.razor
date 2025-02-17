@@ -1,0 +1,73 @@
+﻿@page "/powershell/pastasearquivos"
+@inject IJSRuntime JSRuntime
+@inject IToastService ToastService
+
+<h2 Severity="Severity.Info">
+    Comandos Básicos
+</h2>
+
+@foreach (var card in cardContents)
+{
+    <FluentGrid Justify="JustifyContent.FlexStart" Style="background-color: var(--neutral-layer-3); padding: 24px;">
+        <FluentCard MinimalStyle="true" Height="auto">
+            <h4>@card.Title</h4>
+            <FluentGridItem Justify="JustifyContent.FlexStart" style="padding: 20px">
+                <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.Copy())" OnClick='()=>CopyText(card.Command)' />
+                <FluentBadge Appearance="Appearance.Neutral" OnClick='()=>CopyText(card.Command)'>
+                    @card.Command
+                </FluentBadge>
+            </FluentGridItem>
+            <p>@card.Description</p>
+        </FluentCard>
+    </FluentGrid>
+}
+
+@code {
+    List<CardContent> cardContents = new()
+    {
+
+    new (){Title = "Criar um Arquivo", Command="New-Item -Path 'C:\\Temp\\arquivo.txt' -ItemType File -Force", Description= "Cria um arquivo chamado 'arquivo.txt' na pasta 'C:\\Temp'. O parâmetro -Force garante que o arquivo seja criado mesmo que já exista."},
+    new (){Title = "Escrever em um Arquivo", Command="Set-Content -Path 'C:\\Temp\\arquivo.txt' -Value 'Este é o conteúdo do arquivo.' -Force", Description= "Escreve um conteúdo no arquivo, sobrescrevendo qualquer conteúdo existente."},
+    new (){Title = "Adicionar Conteúdo a um Arquivo", Command="Add-Content -Path 'C:\\Temp\\arquivo.txt' -Value 'Nova linha adicionada.'", Description= "Adiciona uma nova linha ao final do arquivo, preservando o conteúdo anterior."},
+    new (){Title = "Ler o Conteúdo de um Arquivo", Command="Get-Content -Path 'C:\\Temp\\arquivo.txt'", Description= "Exibe o conteúdo do arquivo no console."},
+    new (){Title = "Renomear um Arquivo", Command="Rename-Item -Path 'C:\\Temp\\arquivo.txt' -NewName 'novo_arquivo.txt' -Force", Description= "Renomeia 'arquivo.txt' para 'novo_arquivo.txt'. O parâmetro -Force permite substituir um arquivo existente."},
+    new (){Title = "Copiar um Arquivo", Command="Copy-Item -Path 'C:\\Temp\\arquivo.txt\' -Destination 'C:\\Backup\\arquivo_backup.txt' -Force", Description= "Copia o arquivo para a pasta 'C:\\Backup'. O parâmetro -Force permite sobrescrever um arquivo existente."},
+    new (){Title = "Mover um Arquivo", Command="Move-Item -Path 'C:\\Temp\\arquivo.txt' -Destination 'C:\\Backup' -Force", Description= "Move o arquivo 'arquivo.txt' para 'C:\\Backup'."},
+    new (){Title = "Excluir um Arquivo", Command="Remove-Item -Path 'C:\\Temp\\arquivo.txt' -Force", Description= "Remove o arquivo especificado sem pedir confirmação."},
+    new (){Title = "Criar uma Pasta", Command="New-Item -Path 'C:\\Temp\\NovaPasta' -ItemType Directory -Force", Description= "Cria uma pasta chamada 'NovaPasta' dentro de 'C:\\Temp'."},
+    new (){Title = "Listar o Conteúdo de uma Pasta", Command="Get-ChildItem -Path 'C:\\Temp'", Description= "Lista todos os arquivos e subpastas dentro de 'C:\\Temp'."},
+    new (){Title = "Renomear uma Pasta", Command="Rename-Item -Path 'C:\\Temp\\NovaPasta' -NewName 'PastaRenomeada' -Force", Description= "Renomeia a pasta 'NovaPasta' para 'PastaRenomeada'."},
+    new (){Title = "Copiar uma Pasta", Command="Copy-Item -Path 'C:\\Temp\\PastaOriginal' -Destination 'C:\\Backup\\PastaCopiada' -Recurse -Force", Description= "Copia a pasta 'PastaOriginal' para 'C:\\Backup', incluindo todos os arquivos e subpastas."},
+    new (){Title = "Mover uma Pasta", Command="Move-Item -Path 'C:\\Temp\\PastaOriginal' -Destination 'C:\\Backup' -Force", Description= "Move a pasta 'PastaOriginal' para 'C:\\Backup'."},
+    new (){Title = "Excluir uma Pasta", Command="Remove-Item -Path 'C:\\Temp\\PastaParaDeletar' -Recurse -Force", Description= "Remove a pasta 'PastaParaDeletar' e todo o seu conteúdo."},
+    new (){Title = "Verificar se uma Pasta Existe", Command="Test-Path -Path 'C:\\Temp\\NovaPasta'", Description= "Verifica se a pasta 'NovaPasta' existe e retorna 'True' ou 'False'."},
+    new (){Title = "Criar uma Pasta se Ela Não Existir", Command="if (-not (Test-Path 'C:\\Temp\\NovaPasta')) { New-Item -Path 'C:\\Temp\\NovaPasta' -ItemType Directory }", Description= "Cria a pasta apenas se ela ainda não existir."},
+    new (){Title = "Listar Apenas Arquivos de uma Pasta", Command="Get-ChildItem -Path 'C:\\Temp' -File", Description= "Lista somente os arquivos dentro da pasta 'C:\\Temp'."},
+    new (){Title = "Listar Apenas Pastas de um Diretório", Command="Get-ChildItem -Path 'C:\\Temp' -Directory", Description= "Lista apenas as pastas dentro de 'C:\\Temp'."},
+    new (){Title = "Excluir Arquivos Mais Antigos que 30 Dias", Command="Get-ChildItem 'C:\\Temp\\*.log' | Where-Object { $_.LastWriteTime -lt (Get-Date).AddDays(-30) } | Remove-Item -Force", Description= "Remove todos os arquivos '.log' modificados há mais de 30 dias."},
+    new (){Title = "Criar Múltiplos Arquivos", Command="1..5 | ForEach-Object { New-Item -Path 'C:\\Temp\\arquivo$_.txt' -ItemType File }", Description= "Cria os arquivos 'arquivo1.txt' a 'arquivo5.txt' dentro de 'C:\\Temp'."},
+    new (){Title = "Criar Múltiplas Pastas", Command="1..3 | ForEach-Object { New-Item -Path 'C:\\Temp\\Pasta$_.txt' -ItemType Directory }", Description= "Cria três pastas chamadas 'Pasta1', 'Pasta2' e 'Pasta3' dentro de 'C:\\Temp'."},
+    new (){Title = "Mover Apenas Arquivos Modificados nos Últimos 7 Dias", Command="Get-ChildItem 'C:\\Temp\\*.txt' | Where-Object { $_.LastWriteTime -gt (Get-Date).AddDays(-7) } | Move-Item -Destination 'C:\\Backup'", Description= "Move apenas os arquivos '.txt' que foram modificados nos últimos 7 dias para 'C:\\Backup'."},
+    new (){Title = "Renomear Arquivos Usando Regex", Command="Get-ChildItem 'C:\\Temp\\*.txt' | Rename-Item -NewName { $_.Name -replace 'arquivo','documento' }", Description= "Renomeia todos os arquivos '.txt' dentro de 'C:\\Temp', substituindo 'arquivo' por 'documento' nos nomes dos arquivos."},
+    new (){Title = "Adicionar Prefixo a Arquivos Usando Regex", Command="Get-ChildItem 'C:\\Temp\\*.txt' | Rename-Item -NewName { 'Novo_' + $_.Name }", Description= "Adiciona o prefixo 'Novo_' a todos os arquivos '.txt' dentro da pasta 'C:\\Temp'."},
+    new (){Title = "Adicionar Sufixo a Arquivos Usando Regex", Command="Get-ChildItem 'C:\\Temp\\*.txt' | Rename-Item -NewName { $_.BaseName + '_Backup' + $_.Extension }", Description= "Adiciona '_Backup' ao final do nome de todos os arquivos '.txt' na pasta 'C:\\Temp'."},
+    new (){Title = "Renomear Arquivos por Padrão Numérico", Command="Get-ChildItem 'C:\\Temp\\*.txt' | Rename-Item -NewName { $_.Name -replace '\\d+', '000' }", Description= "Substitui qualquer sequência numérica no nome dos arquivos '.txt' por '000'."},
+    new (){Title = "Remover Caracteres Especiais do Nome dos Arquivos", Command="Get-ChildItem 'C:\\Temp\\*.txt' | Rename-Item -NewName { $_.Name -replace '[^a-zA-Z0-9_.]','' }", Description= "Remove todos os caracteres especiais dos nomes dos arquivos '.txt' dentro de 'C:\\Temp'."},
+    new (){Title = "Alterar a Extensão de Arquivos com Regex", Command="Get-ChildItem 'C:\\Temp\\*.log' | Rename-Item -NewName { $_.Name -replace '\\.log$', '.txt' }", Description= "Muda a extensão de todos os arquivos '.log' dentro da pasta 'C:\\Temp' para '.txt'."},
+    new (){Title = "Adicionar Data Atual ao Nome do Arquivo", Command="Get-ChildItem 'C:\\Temp\\*.txt' | Rename-Item -NewName { $_.BaseName + '_' + (Get-Date -Format 'yyyyMMdd') + $_.Extension }", Description= "Adiciona a data atual ao nome de todos os arquivos '.txt' dentro da pasta 'C:\\Temp'."},
+    new (){Title = "Corrigir Espaços em Branco no Nome do Arquivo", Command="Get-ChildItem 'C:\\Temp\\*.txt' | Rename-Item -NewName { $_.Name -replace '\\s+', '_' }", Description= "Substitui espaços em branco no nome dos arquivos '.txt' por underline '_', dentro de 'C:\\Temp'."},
+    };
+
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        ToastService.ShowToast(ToastIntent.Success, $"[ {command} ] Copied!");
+    }
+}
