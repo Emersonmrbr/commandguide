@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VYk912WUIYw=",
+  "dgSpecHash": "G/nShQZvNfg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\emers\\source\\repos\\Commands\\Commands.Client\\Commands.Client.csproj",
+  "projectFilePath": "D:\\repos\\Commands\\Commands.Client\\Commands.Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\emers\\.nuget\\packages\\microsoft.aspnetcore.authorization\\9.0.1\\microsoft.aspnetcore.authorization.9.0.1.nupkg.sha512",
     "C:\\Users\\emers\\.nuget\\packages\\microsoft.aspnetcore.components\\9.0.1\\microsoft.aspnetcore.components.9.0.1.nupkg.sha512",
@@ -34,9 +34,9 @@
     "C:\\Users\\emers\\.nuget\\packages\\microsoft.fluentui.aspnetcore.components.icons\\4.11.3\\microsoft.fluentui.aspnetcore.components.icons.4.11.3.nupkg.sha512",
     "C:\\Users\\emers\\.nuget\\packages\\microsoft.jsinterop\\9.0.1\\microsoft.jsinterop.9.0.1.nupkg.sha512",
     "C:\\Users\\emers\\.nuget\\packages\\microsoft.jsinterop.webassembly\\9.0.0\\microsoft.jsinterop.webassembly.9.0.0.nupkg.sha512",
-    "C:\\Users\\emers\\.nuget\\packages\\microsoft.net.illink.tasks\\9.0.1\\microsoft.net.illink.tasks.9.0.1.nupkg.sha512",
-    "C:\\Users\\emers\\.nuget\\packages\\microsoft.net.sdk.webassembly.pack\\9.0.1\\microsoft.net.sdk.webassembly.pack.9.0.1.nupkg.sha512",
-    "C:\\Users\\emers\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\9.0.1\\microsoft.netcore.app.runtime.mono.browser-wasm.9.0.1.nupkg.sha512"
+    "C:\\Users\\emers\\.nuget\\packages\\microsoft.net.illink.tasks\\9.0.2\\microsoft.net.illink.tasks.9.0.2.nupkg.sha512",
+    "C:\\Users\\emers\\.nuget\\packages\\microsoft.net.sdk.webassembly.pack\\9.0.2\\microsoft.net.sdk.webassembly.pack.9.0.2.nupkg.sha512",
+    "C:\\Users\\emers\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\9.0.2\\microsoft.netcore.app.runtime.mono.browser-wasm.9.0.2.nupkg.sha512"
   ],
   "logs": []
 }

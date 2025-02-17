@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BSCeaRlCA9o=",
+  "dgSpecHash": "TTCfY/ZAks0=",
   "success": true,
-  "projectFilePath": "C:\\Users\\emers\\source\\repos\\Commands\\Commands\\Commands.csproj",
+  "projectFilePath": "D:\\repos\\Commands\\Commands\\Commands.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\emers\\.nuget\\packages\\microsoft.aspnetcore.authorization\\9.0.1\\microsoft.aspnetcore.authorization.9.0.1.nupkg.sha512",
     "C:\\Users\\emers\\.nuget\\packages\\microsoft.aspnetcore.components\\9.0.1\\microsoft.aspnetcore.components.9.0.1.nupkg.sha512",
