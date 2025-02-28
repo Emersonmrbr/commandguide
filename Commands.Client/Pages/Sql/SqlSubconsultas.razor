@@ -26,7 +26,61 @@
 
     List<CardContent> cardContents = new()
 {
-    new (){Title = "Selecionar Dados com Subconsulta", Command="SELECT * FROM tabela1 WHERE coluna IN (SELECT coluna FROM tabela2 WHERE condição);", Description="Retorna registros da tabela1 onde a coluna corresponde a qualquer valor retornado pela subconsulta na tabela2."},
+   new (){
+        Title = "Subquery em SELECT",
+        Command = "SELECT ColumnName1, (SELECT COUNT(*) FROM TableName2 t2 WHERE t2.RelatedID = t1.RelatedID) AS TotalRegistros FROM TableName1 t1;",
+        Description = "Retorna o valor de uma coluna e a quantidade de registros relacionados utilizando subquery em SELECT."
+    },
+    new (){
+        Title = "Subquery em WHERE",
+        Command = "SELECT ColumnName1 FROM TableName1 t1 WHERE ColumnID IN (SELECT ColumnID FROM TableName2 GROUP BY ColumnID HAVING SUM(ColumnValue) > (SELECT AVG(ColumnValue) FROM TableName2));",
+        Description = "Filtra registros com base em valores acima da média utilizando subquery em WHERE."
+    },
+    new (){
+        Title = "Subquery em FROM",
+        Command = "SELECT t1.ColumnName1, subquery.MediaValores FROM TableName1 t1 JOIN (SELECT RelatedID, AVG(ColumnValue) AS MediaValores FROM TableName2 GROUP BY RelatedID) subquery ON t1.RelatedID = subquery.RelatedID;",
+        Description = "Calcula a média de valores em registros relacionados utilizando subquery em FROM."
+    },
+    new (){
+        Title = "Subquery em HAVING",
+        Command = "SELECT GroupColumn, SUM(ValueColumn) AS TotalValores FROM TableName GROUP BY GroupColumn HAVING SUM(ValueColumn) > (SELECT AVG(ValueColumn) FROM TableName);",
+        Description = "Agrupa registros e filtra grupos com valores superiores à média utilizando subquery em HAVING."
+    },
+    new (){
+        Title = "Subquery com EXISTS",
+        Command = "SELECT ColumnName1 FROM TableName1 t1 WHERE EXISTS (SELECT 1 FROM TableName2 t2 WHERE t2.RelatedID = t1.RelatedID);",
+        Description = "Verifica a existência de registros relacionados utilizando subquery com EXISTS."
+    },
+    new (){
+        Title = "Subquery com NOT EXISTS",
+        Command = "SELECT ColumnName1 FROM TableName1 t1 WHERE NOT EXISTS (SELECT 1 FROM TableName2 t2 WHERE t2.RelatedID = t1.RelatedID);",
+        Description = "Verifica a ausência de registros relacionados utilizando subquery com NOT EXISTS."
+    },
+    new (){
+        Title = "CASE em SELECT",
+        Command = "SELECT ColumnName1, ColumnName2, CASE WHEN ColumnValue > 100 THEN 'Alto' WHEN ColumnValue BETWEEN 50 AND 100 THEN 'Médio' ELSE 'Baixo' END AS Classificacao FROM TableName;",
+        Description = "Classifica registros com base em condições específicas utilizando CASE em SELECT."
+    },
+    new (){
+        Title = "CASE com AGGREGATE FUNCTION",
+        Command = "SELECT ColumnName1, COUNT(CASE WHEN ColumnValue > 100 THEN 1 END) AS TotalAlto, COUNT(CASE WHEN ColumnValue BETWEEN 50 AND 100 THEN 1 END) AS TotalMedio, COUNT(CASE WHEN ColumnValue < 50 THEN 1 END) AS TotalBaixo FROM TableName GROUP BY ColumnName1;",
+        Description = "Conta registros de acordo com condições específicas utilizando CASE em conjunto com funções agregadas."
+    },
+    new (){
+        Title = "CASE em ORDER BY",
+        Command = "SELECT ColumnName1, ColumnName2 FROM TableName ORDER BY CASE WHEN ColumnName2 = 'Especifico' THEN 1 ELSE 2 END;",
+        Description = "Ordena registros de forma condicional utilizando CASE em ORDER BY."
+    },
+    new (){
+        Title = "CASE em WHERE",
+        Command = "SELECT ColumnName1, ColumnName2 FROM TableName WHERE ColumnName3 = CASE WHEN ColumnName2 = 'Condicao' THEN 'Valor1' ELSE 'Valor2' END;",
+        Description = "Aplica filtro condicional utilizando CASE em WHERE."
+    },
+    new (){
+        Title = "Simulando DECODE com CASE",
+        Command = "SELECT ColumnName1, CASE ColumnName2 WHEN 'Valor1' THEN 'Resultado1' WHEN 'Valor2' THEN 'Resultado2' ELSE 'OutroResultado' END AS Resultado FROM TableName;",
+        Description = "Simula o comportamento do DECODE utilizando CASE no SQL Server."
+    },
 };
 
     public class CardContent()
