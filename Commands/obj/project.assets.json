@@ -1488,11 +1488,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\repos\\Commands\\Commands\\Commands.csproj",
+      "projectUniqueName": "D:\\repos\\commandguide\\Commands\\Commands.csproj",
       "projectName": "Commands",
-      "projectPath": "D:\\repos\\Commands\\Commands\\Commands.csproj",
+      "projectPath": "D:\\repos\\commandguide\\Commands\\Commands.csproj",
       "packagesPath": "C:\\Users\\emers\\.nuget\\packages\\",
-      "outputPath": "D:\\repos\\Commands\\Commands\\obj\\",
+      "outputPath": "D:\\repos\\commandguide\\Commands\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1514,8 +1514,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "D:\\repos\\Commands\\Commands.Client\\Commands.Client.csproj": {
-              "projectPath": "D:\\repos\\Commands\\Commands.Client\\Commands.Client.csproj"
+            "D:\\repos\\commandguide\\Commands.Client\\Commands.Client.csproj": {
+              "projectPath": "D:\\repos\\commandguide\\Commands.Client\\Commands.Client.csproj"
             }
           }
         }
