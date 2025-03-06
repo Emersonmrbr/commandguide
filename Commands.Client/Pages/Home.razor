@@ -5,7 +5,7 @@
 <FluentCard Height="auto" Style="border: solid 0.5px var(--neutral-layer-1)">
     <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
                  VerticalAlignment="@VerticalAlignment.Center"
-                 Style="height: 48px; padding-inline-end: 10px;">
+                 Style="height: auto; padding-inline-end: 10px;">
         <FluentLabel Typo="Typography.H3">Repositório de Guias de Comando</FluentLabel>
     </FluentStack>
     <FluentLabel Typo="Typography.Body">
@@ -21,7 +21,7 @@
 <FluentCard Height="auto" Style="border: solid 0.5px var(--neutral-layer-1)">
     <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
                  VerticalAlignment="@VerticalAlignment.Center"
-                 Style="height: 48px; padding-inline-end: 10px;">
+                 Style="height: auto; padding-inline-end: 10px;">
         <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.Apps())" Color="@Color.Error" />
         <FluentLabel Typo="Typography.H4">
             Estrutura do Repositório
@@ -31,7 +31,7 @@
         <li>
             <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
                          VerticalAlignment="@VerticalAlignment.Center"
-                         Style="height: 48px; padding-inline-end: 10px;">
+                         Style="height: auto; padding-inline-end: 10px;">
                 <FluentLabel Typo="Typography.H5">
                     O repositório está organizado nos seguintes arquivos:
                 </FluentLabel>
@@ -42,7 +42,7 @@
             <li>
                 <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
                              VerticalAlignment="@VerticalAlignment.Center"
-                             Style="height: 48px; padding-inline-end: 10px;">
+                             Style="height: auto; padding-inline-end: 10px;">
                     <FluentIcon Value=@content.IconType ColorType=@content.ColorType />
                     <FluentLabel Typo="Typography.H6">
                         @content.Title
@@ -58,7 +58,7 @@
 <FluentCard Height="auto" Style="border: solid 0.5px var(--neutral-layer-1)">
     <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
                  VerticalAlignment="@VerticalAlignment.Center"
-                 Style="height: 48px; padding-inline-end: 10px;">
+                 Style="height: auto; padding-inline-end: 10px;">
         <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.CheckmarkCircle())" Color="@Color.Error" />
         <FluentLabel Typo="Typography.H4">
             Como Usar
@@ -70,7 +70,7 @@
             <li>
                 <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
                              VerticalAlignment="@VerticalAlignment.Center"
-                             Style="height: 48px; padding-inline-end: 10px;">
+                             Style="height: auto; padding-inline-end: 10px;">
                     <FluentIcon Value=@content.IconType ColorType=@content.ColorType />
                     <FluentLabel Typo="Typography.H5">
                         @content.Title
@@ -92,7 +92,7 @@
 <FluentCard Height="auto" Style="border: solid 0.5px var(--neutral-layer-1)">
     <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
                  VerticalAlignment="@VerticalAlignment.Center"
-                 Style="height: 48px; padding-inline-end: 10px;">
+                 Style="height: auto; padding-inline-end: 10px;">
         <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.ClipboardTextEdit())" Color="@Color.Warning" />
         <FluentLabel Typo="Typography.H4">
             Visão Geral dos Guias
@@ -103,7 +103,7 @@
     {
         <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
                      VerticalAlignment="@VerticalAlignment.Center"
-                     Style="height: 48px; padding-inline-end: 10px; border: solid 1px var(--success)">
+                     Style="height: auto; padding-inline-end: 10px; border: solid 1px var(--success)">
             <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size32.CheckmarkCircle())" Color="@Color.Success" />
             <FluentLabel Typo="Typography.H5">
                 <FluentNavLink Href="@guide.Link" Target="_blank"> @guide.Title <b>@guide.LinkText</b>  </FluentNavLink>
@@ -113,7 +113,7 @@
             <li>
                 <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
                              VerticalAlignment="@VerticalAlignment.Center"
-                             Style="height: 48px; padding-inline-end: 10px;">
+                             Style="height: auto; padding-inline-end: 10px;">
                     <FluentLabel Typo="Typography.H5">
                         Este guia inclui:
                     </FluentLabel>
@@ -125,7 +125,7 @@
                 <li>
                     <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
                                  VerticalAlignment="@VerticalAlignment.Center"
-                                 Style="height: 48px; padding-inline-end: 10px;">
+                                 Style="height: auto; padding-inline-end: 10px;">
                         <FluentIcon Value=@content.IconType ColorType=@content.ColorType />
                         <FluentLabel Typo="Typography.H5">
                             @content.Title
@@ -141,7 +141,7 @@
 <FluentCard Height="auto" Style="border: solid 0.5px var(--neutral-layer-1)">
     <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
                  VerticalAlignment="@VerticalAlignment.Center"
-                 Style="height: 48px; padding-inline-end: 10px;">
+                 Style="height: auto; padding-inline-end: 10px;">
         <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.ApprovalsApp())" Color="@Color.Error" />
         <FluentLabel Typo="Typography.H4">
             Contribuindo
@@ -152,7 +152,7 @@
     </FluentLabel>
     <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
                  VerticalAlignment="@VerticalAlignment.Center"
-                 Style="height: 48px; padding-inline-end: 10px;">
+                 Style="height: auto; padding-inline-end: 10px;">
         <FluentLabel Typo="Typography.H5">
             Faça um fork do repositório.
         </FluentLabel>
@@ -163,7 +163,7 @@
             <li>
                 <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
                              VerticalAlignment="@VerticalAlignment.Center"
-                             Style="height: 48px; padding-inline-end: 10px;">
+                             Style="height: auto; padding-inline-end: 10px;">
                     <FluentIcon Value=@content.IconType ColorType=@content.ColorType />
                     <FluentLabel Typo="Typography.H6">
                         @content.Title
@@ -185,7 +185,7 @@
 <FluentCard Height="auto" Style="border: solid 0.5px var(--neutral-layer-1)">
     <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
                  VerticalAlignment="@VerticalAlignment.Center"
-                 Style="height: 48px; padding-inline-end: 10px;">
+                 Style="height: auto; padding-inline-end: 10px;">
         <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.ClipboardTextEdit())" Color="@Color.Warning" />
         <FluentLabel Typo="Typography.H4">
             Licença
@@ -201,7 +201,7 @@
 
     <FluentStack HorizontalAlignment="@HorizontalAlignment.Start"
                  VerticalAlignment="@VerticalAlignment.Center"
-                 Style="height: 48px; padding-inline-end: 10px;">
+                 Style="height: auto; padding-inline-end: 10px;">
         <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Color.Size32.Mail())" Color="@Color.Warning" />
         <FluentLabel Typo="Typography.H4">
             Contato
