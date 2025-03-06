@@ -1,0 +1,120 @@
+﻿@page "/nosql/basico"
+@inject IJSRuntime JSRuntime
+@inject IToastService ToastService
+
+<h2 Severity="Severity.Info">
+    Comandos de Exportação e Importação de Dados
+</h2>
+
+@foreach (var card in cardContents)
+{
+    <FluentGrid Justify="JustifyContent.FlexStart" Style="background-color: var(--neutral-layer-3); padding: 24px;">
+        <FluentCard MinimalStyle="true" Height="auto">
+            <h4>@card.Title</h4>
+            <FluentGridItem Justify="JustifyContent.FlexStart" style="padding: 20px">
+                <FluentIcon Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.Copy())" OnClick='()=>CopyText(card.Command)' />
+                <FluentBadge Appearance="Appearance.Neutral" OnClick='()=>CopyText(card.Command)'>
+                    @card.Command
+                </FluentBadge>
+            </FluentGridItem>
+            <p>@card.Description</p>
+        </FluentCard>
+    </FluentGrid>
+}
+
+@code {
+
+    List<CardContent> cardContents = new()
+{
+
+    new (){Title = "Criar um Banco de Dados (MongoDB)",
+        Command="use nome_do_banco;",
+        Description="Cria um novo banco de dados no MongoDB. Se o banco ainda não existir, ele será criado automaticamente ao inserir dados."},
+    new (){Title = "Criar uma Collection (MongoDB)",
+        Command="db.createCollection('nome_da_collection');",
+        Description="Cria uma coleção (equivalente a uma tabela em bancos relacionais) no banco de dados ativo."},
+    new (){Title = "Inserir um Documento (insertOne)",
+        Command="db.nome_da_collection.insertOne({ nome: 'João', idade: 30, cidade: 'São Paulo' });",
+        Description="Insere um único documento na coleção especificada."},
+    new (){Title = "Inserir Vários Documentos (insertMany)",
+        Command="db.nome_da_collection.insertMany([{ nome: 'Maria', idade: 25, cidade: 'Rio de Janeiro' }, { nome: 'Carlos', idade: 35, cidade: 'São Paulo' }]);",
+        Description="Insere múltiplos documentos na coleção de uma única vez."},
+    new (){Title = "Atualizar um Documento (updateOne)",
+        Command="db.nome_da_collection.updateOne({ nome: 'João' }, { $set: { idade: 31 } });",
+        Description="Atualiza apenas um documento que corresponda ao critério especificado."},
+    new (){Title = "Incrementar um Valor (updateOne com $inc)",
+        Command="db.nome_da_collection.updateOne({ nome: 'João' }, { $inc: { idade: 1 } });",
+        Description="Incrementa o campo 'idade' em 1 para o documento correspondente."},
+    new (){Title = "Atualizar Múltiplos Documentos (updateMany)",
+        Command="db.nome_da_collection.updateMany({ cidade: 'São Paulo' }, { $set: { status: 'Ativo' } });",
+        Description="Atualiza todos os documentos que correspondam ao critério especificado."},
+    new (){Title = "Deletar um Documento (deleteOne)",
+        Command="db.nome_da_collection.deleteOne({ nome: 'João' });",
+        Description="Remove apenas um documento que atenda ao critério especificado."},
+    new (){Title = "Deletar Múltiplos Documentos (deleteMany)",
+        Command="db.nome_da_collection.deleteMany({ cidade: 'São Paulo' });",
+        Description="Remove todos os documentos que atendam ao critério especificado."},
+    new (){Title = "Buscar com Comparação Maior ($gt)",
+        Command="db.nome_da_collection.find({ idade: { $gt: 30 } });",
+        Description="Retorna documentos onde a idade seja maior que 30."},
+    new (){Title = "Buscar com Comparação Maior ou Igual ($gte)",
+        Command="db.nome_da_collection.find({ idade: { $gte: 30 } });",
+        Description="Retorna documentos onde a idade seja maior ou igual a 30."},
+    new (){Title = "Buscar com Comparação Menor ($lt)",
+        Command="db.nome_da_collection.find({ idade: { $lt: 30 } });",
+        Description="Retorna documentos onde a idade seja menor que 30."},
+    new (){Title = "Buscar com Comparação Menor ou Igual ($lte)",
+        Command="db.nome_da_collection.find({ idade: { $lte: 30 } });",
+        Description="Retorna documentos onde a idade seja menor ou igual a 30."},
+    new (){Title = "Buscar com Campo Existente ($exists)",
+        Command="db.nome_da_collection.find({ status: { $exists: true } });",
+        Description="Retorna documentos que possuem o campo 'status' definido."},
+    new (){Title = "Buscar com Expressão Regular ($regex)",
+        Command="db.nome_da_collection.find({ nome: { $regex: '^J' } });",
+        Description="Retorna documentos onde o nome começa com a letra 'J'."},
+    new (){Title = "Buscar com Múltiplos Valores ($in)",
+        Command="db.nome_da_collection.find({ cidade: { $in: ['São Paulo', 'Rio de Janeiro'] } });",
+        Description="Retorna documentos onde a cidade seja 'São Paulo' ou 'Rio de Janeiro'."},
+    new (){Title = "Buscar Excluindo Valores ($nin)",
+        Command="db.nome_da_collection.find({ cidade: { $nin: ['São Paulo', 'Rio de Janeiro'] } });",
+        Description="Retorna documentos onde a cidade NÃO seja 'São Paulo' ou 'Rio de Janeiro'."},
+    new (){Title = "Buscar com Condição AND ($and)",
+        Command="db.nome_da_collection.find({ $and: [{ idade: { $gt: 25 } }, { cidade: 'São Paulo' }] });",
+        Description="Retorna documentos onde a idade seja maior que 25 e a cidade seja 'São Paulo'."},
+    new (){Title = "Buscar com Condição OR ($or)",
+        Command="db.nome_da_collection.find({ $or: [{ idade: { $lt: 25 } }, { cidade: 'São Paulo' }] });",
+        Description="Retorna documentos onde a idade seja menor que 25 OU a cidade seja 'São Paulo'."},
+    new (){Title = "Buscar com Negação ($not)",
+        Command="db.nome_da_collection.find({ idade: { $not: { $gte: 30 } } });",
+        Description="Retorna documentos onde a idade NÃO seja maior ou igual a 30."},
+    new (){Title = "Remover Duplicatas em um Campo (distinct)",
+        Command="db.nome_da_collection.distinct('cidade');",
+        Description="Retorna apenas os valores únicos do campo 'cidade'."},
+    new (){Title = "Ordenar Resultados em Ordem Crescente (sort)",
+        Command="db.nome_da_collection.find().sort({ idade: 1 });",
+        Description="Retorna os documentos ordenados pelo campo idade em ordem crescente (1 para crescente, -1 para decrescente)."},
+    new (){Title = "Buscar e Limitar Resultados (limit)",
+        Command="db.nome_da_collection.find().limit(5);",
+        Description="Retorna apenas os 5 primeiros documentos encontrados."},
+    new (){Title = "Buscar e Pular Resultados (skip)",
+        Command="db.nome_da_collection.find().skip(5);",
+        Description="Pula os primeiros 5 documentos e retorna os demais."},
+    new (){Title = "Buscar e Ordenar Descendente com Limite (sort + limit)",
+        Command="db.nome_da_collection.find().sort({ idade: -1 }).limit(3);",
+        Description="Retorna os 3 documentos com maior idade (idade em ordem decrescente)."}
+};
+
+
+    public class CardContent()
+    {
+        public string Title = string.Empty;
+        public string Command = string.Empty;
+        public string Description = string.Empty;
+    }
+
+    public async Task CopyText(string command)
+    {
+        await JSRuntime.InvokeVoidAsync("copyToClipboard", command);
+        ToastService.ShowToast(ToastIntent.Success, $"[ {command} ] Copied!");
+    }
+}

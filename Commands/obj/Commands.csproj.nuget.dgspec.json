@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "D:\\repos\\commandguide\\Commands\\Commands.csproj": {}
+    "D:\\repos\\commandguide\\commands\\Commands.csproj": {}
   },
   "projects": {
     "D:\\repos\\commandguide\\Commands.Client\\Commands.Client.csproj": {
@@ -107,14 +107,14 @@
         }
       }
     },
-    "D:\\repos\\commandguide\\Commands\\Commands.csproj": {
+    "D:\\repos\\commandguide\\commands\\Commands.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\repos\\commandguide\\Commands\\Commands.csproj",
+        "projectUniqueName": "D:\\repos\\commandguide\\commands\\Commands.csproj",
         "projectName": "Commands",
-        "projectPath": "D:\\repos\\commandguide\\Commands\\Commands.csproj",
+        "projectPath": "D:\\repos\\commandguide\\commands\\Commands.csproj",
         "packagesPath": "C:\\Users\\emers\\.nuget\\packages\\",
-        "outputPath": "D:\\repos\\commandguide\\Commands\\obj\\",
+        "outputPath": "D:\\repos\\commandguide\\commands\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
