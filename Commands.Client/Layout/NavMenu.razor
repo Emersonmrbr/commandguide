@@ -20,6 +20,9 @@
             <FluentNavGroup Title="HYPERV" Tooltip="Hyper-V" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.BuildingDesktop())">
                 <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Desktop())" Href="/hyperv/basico" Tooltip="Básico">Básico</FluentNavLink>
             </FluentNavGroup>
+            <FluentNavGroup Title="NoSQL" Tooltip="NoSQL" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.WindowDatabase())">
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Database())" Href="/nosql/basico" Tooltip="Básico">Básico</FluentNavLink>
+            </FluentNavGroup>
             <FluentNavGroup Title="POWERSHELL" Tooltip="POWERSHELL" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.DesktopEdit())">
                 <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Script())" Href="/powershell/basico" Tooltip="Básico">Básico</FluentNavLink>
                 <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Script())" Href="/powershell/pastasearquivos" Tooltip="Pastas e arquivos">Pastas e arquivos</FluentNavLink>
@@ -47,7 +50,7 @@
                 <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Prompt())" Href="/terminal/sistema" Tooltip="Sistema">Sistema</FluentNavLink>
             </FluentNavGroup>
             <FluentNavGroup Title="WINGET" Tooltip="WINGET" Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.WindowApps())">
-                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Apps())" Href="/winget/basico" Tooltip="Básico tooltip">Básico</FluentNavLink>
+                <FluentNavLink Icon="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24.Apps())" Href="/winget/basico" Tooltip="Básico">Básico</FluentNavLink>
             </FluentNavGroup>
         </FluentNavMenu>
     </nav>
@@ -55,5 +58,5 @@
 
 @code
 {
-   private bool expanded = true;
+    private bool expanded = true;
 }
