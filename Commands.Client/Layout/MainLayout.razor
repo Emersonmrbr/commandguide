@@ -3,14 +3,14 @@
 <FluentLayout>
     <FluentDesignTheme @bind-Mode="@Mode" @bind-OfficeColor="@OfficeColor" StorageName="theme" />
     <FluentHeader>
-        <FluentLabel Typo="Typography.H2">Comandos</FluentLabel>
-        <FluentSpacer />
         <picture class="c-logo">
             <source media="(min-width: 800px)" srcset="img\logoLarge.svg" type="image/svg+xml">
             <source media="(max-width: 800px)" srcset="img\logoSmall.svg" type="image/svg+xml">
             <img src="img\logoLarge.svg" alt="Núcleo MAP brand" class="c-logo__image">
         </picture>
-        <FluentSpacer Width="30" />
+        <FluentSpacer />
+        <FluentLabel Typo="Typography.H2">Comandos</FluentLabel>
+        <FluentSpacer/>
         <FluentIcon Value=@IconTheme Color="@Color.Neutral" OnClick="ChangeTheme" />
     </FluentHeader>
     <FluentStack Class="main" Orientation="Orientation.Horizontal" Width="100%">
